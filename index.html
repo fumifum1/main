@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse Creations</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 共通スタイルシートを読み込み -->
+    <link rel="stylesheet" href="../game_code/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* この値を調整してウォッシュアウト効果の強さを変更できます */
+        }
+
+        /* --- プロフィールページ用メニューデザイン：上部ウィンドウ風 --- */
+        /* アイコンの色をアクセントカラーに変更 */
+        #menu-icon span {
+            background: #a8c0ff; /* 明るい青紫色 */
+        }
+
+        /* アイコンがメニューウィンドウの上に表示されるようにz-indexを調整 */
+        #menu-icon {
+            z-index: 1002; /* メニューより手前に表示 */
+        }
+
+        /* メニュー本体を画面上部のウィンドウ風に変更 */
+        #menu-content {
+            /* 位置とサイズ */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            z-index: 1001; /* アイコンより後ろに配置 */
+            /* 見た目 */
+            background-color: rgba(20, 20, 35, 0.85); /* ガラス風の背景 */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none; /* 枠線をなくし、下線に統一 */
+            border-bottom: 1px solid rgba(168, 192, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            padding: 15px 0; /* 上下のパディングを調整 */
+
+            /* アニメーションの準備 */
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
+
+            /* common.css の .hidden { display: none; } を上書き */
+            display: block !important;
+        }
+
+        /* メニューが開いた状態のスタイル */
+        #menu-container.open #menu-content {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        /* メニューリストを横並びに */
+        #menu-content ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* 項目間のスペース */
+        }
+
+        /* メニュー項目のマージンをリセット */
+        #menu-content li {
+            margin: 0;
+        }
+
+        /* メニューリンクのスタイル */
+        #menu-content a {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ページの基本フォントに */
+            font-size: 1rem;
+            color: #e0e0e0; /* 基本の文字色 */
+            text-shadow: none; /* ゲーム風の影は消す */
+            padding: 8px 16px; /* パディングを調整 */
+            border-radius: 6px; /* 角を少し丸める */
+            transition: color 0.3s, background-color 0.3s, text-shadow 0.3s;
+        }
+
+        /* ホバー時のエフェクト */
+        #menu-content a:hover {
+            color: #fff;
+            background-color: rgba(168, 192, 255, 0.15);
+            text-shadow: 0 0 8px rgba(168, 192, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="../game_code/index.html">Game</a></li>
+                <li><a href="../game_code/about.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+    <header class="header">
+        <h1 class="animated-title">Synapse Creations</h1>
+        <p class="subtitle">AI-Powered Artistry</p>
+        <p>音と映像、そしてAIが織りなす無限の可能性。</p>
+    </header>
+
+    <main class="main-content">
+        <section class="artist-intro fade-in-section">
+            <div class="artist-image-container">
+                <img src="artist-image.jpg" alt="あなたのバーチャルアーティスト" class="artist-image">
+            </div>
+            <div class="artist-description">
+                <h2>はじめまして！</h2>
+                <p>AIと共に、ゲームや音楽、ウェブ制作を通して、創造することの喜びを追求しています。</p>
+                <p>私のデジタル作品が、あなたの好奇心を刺激できたら嬉しいです。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <!-- <a href="#" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a> -->
+            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- 共通メニュー用のスクリプトを読み込み -->
+    <script src="../game_code/menu.js" defer></script>
+</body>
+</html>

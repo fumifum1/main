@@ -1,0 +1,436 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    color: #e0e0e0; /* 基本の文字色を明るく */
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* ページ全体の背景を暗くし、イラストを重ねる */
+    background:
+        linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), /* 暗いオーバーレイ */
+        url('header-background.jpg') center / cover no-repeat fixed;
+}
+
+.header {
+    /* 背景は半透明のグラデーションのみにし、ページ背景が透けて見えるようにする */
+    background:
+        linear-gradient(
+            -45deg, 
+            rgba(63, 43, 150, 0.65), 
+            rgba(168, 192, 255, 0.65), 
+            rgba(106, 17, 203, 0.65), 
+            rgba(37, 117, 252, 0.65)
+        );
+    background-size: 400% 400%;
+    /* アニメーションは分離して記述 */
+    animation: 
+        header-gradient-animation 25s ease infinite,
+        neon-border-glow 4s ease-in-out infinite alternate;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative; /* ネオン効果がはみ出さないように */
+    /* 他のセクションとレイアウトを統一 */
+    max-width: 1000px; /* コンテンツの最大幅を設定 */
+    margin: 30px auto; /* 上下の余白と、左右中央寄せ */
+    border-radius: 10px; /* 他のセクションと合わせて角を丸める */
+}
+
+.header .subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 5px 0 20px;
+    opacity: 0.9;
+    color: #e0e0e0;
+}
+
+.header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.artist-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 暗いガラスのような半透明効果 */
+    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
+    backdrop-filter: blur(12px); /* ぼかしを少し強く */
+    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .artist-intro {
+        flex-direction: row;
+        text-align: left;
+    }
+}
+
+.artist-image-container {
+    flex-shrink: 0;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .artist-image-container {
+        margin-right: 40px;
+        margin-bottom: 0;
+    }
+}
+
+.artist-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #a8c0ff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.artist-description h2 {
+    color: #c5aeff; /* 明るい紫色に変更 */
+    margin-top: 0;
+    font-size: 2em;
+}
+
+.artist-description p {
+    font-size: 1.1em;
+    color: #dcdcdc; /* 明るいグレーに変更 */
+}
+
+.music-section {
+    /* 暗いガラスのような半透明効果 */
+    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
+    backdrop-filter: blur(12px); /* ぼかしを少し強く */
+    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
+    margin-bottom: 40px;
+}
+
+.music-section h2 {
+    color: #e0e0e0; /* 見出しの色を明るく */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+}
+
+.music-player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background-color: rgba(0, 0, 0, 0.3); /* プレイヤー背景を暗く */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+#suno-player-area iframe {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* ★★★ カルーセル関連の追加・変更 ★★★ */
+.song-carousel-container {
+    position: relative; /* ボタンの配置基準 */
+    display: flex;
+    align-items: center; /* 中央にボタンを配置 */
+    width: 100%;
+    overflow: hidden; /* リストのはみ出しを隠す */
+    padding: 0 40px; /* ボタンのスペース確保 */
+}
+
+.song-list {
+    display: flex; /* 横並びにする */
+    overflow-x: scroll; /* 横スクロールを可能に */
+    scroll-snap-type: x mandatory; /* スナップ効果 */
+    -webkit-overflow-scrolling: touch; /* iOSのスクロールを滑らかに */
+    gap: 25px; /* アイテム間の隙間 */
+    padding-bottom: 20px; /* スクロールバーのための余白 */
+    scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+}
+
+/* Chrome, Safari, Operaなどでスクロールバーを非表示にする */
+.song-list::-webkit-scrollbar {
+    display: none;
+}
+
+.song-item {
+    flex-shrink: 0; /* アイテムが縮まないようにする */
+    width: 280px; /* 固定幅を設定 */
+    scroll-snap-align: start; /* スクロールスナップの基準点 */
+    background-color: rgba(50, 50, 70, 0.8); /* 曲アイテムの背景を暗く */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.song-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.song-item.active {
+    border: 2px solid #a8c0ff; /* アクティブなアイテムの枠線を明るく */
+    box-shadow: 0 0 20px rgba(168, 192, 255, 0.5); /* 光るエフェクト */
+}
+
+.song-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.song-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.song-info h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #a8c0ff; /* 曲タイトルを明るく */
+    font-size: 1.3em;
+}
+
+.song-info p {
+    font-size: 0.95em;
+    color: #b0b0b0; /* 曲説明を明るく */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 0;
+}
+
+.carousel-button.next {
+    right: 0;
+}
+
+/* ★★★ カルーセル関連の追加・変更はここまで ★★★ */
+
+.fan-art-section {
+    /* 暗いガラスのような半透明効果 */
+    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
+    backdrop-filter: blur(12px); /* ぼかしを少し強く */
+    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
+}
+
+.fan-art-section h2 {
+    color: #e0e0e0; /* 見出しの色を明るく */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+}
+
+.fan-art-section ul {
+    list-style: disc inside;
+    padding-left: 20px;
+}
+
+.fan-art-section li {
+    margin-bottom: 10px;
+    color: #dcdcdc; /* 明るいグレーに変更 */
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    background-color: #1a1a2e; /* フッターをテーマに合わせた暗い色に */
+    color: white;
+    font-size: 0.9em;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #e0e0e0; /* アイコンの色 */
+    font-size: 2rem; /* アイコンのサイズ */
+    margin: 0 15px; /* アイコン間の余白 */
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* transformを適用するため */
+}
+
+.social-links a:hover {
+    color: #a8c0ff; /* ホバー時の色をアクセントカラーに */
+    transform: translateY(-3px); /* 少し浮き上がるエフェクト */
+}
+
+@media (max-width: 768px) {
+    .animated-title {
+        font-size: 2.5rem; /* モバイル用に調整 */
+    }
+    .header {
+        padding: 30px 15px; /* モバイル用にパディングを調整 */
+    }
+    .header .subtitle {
+        font-size: 1.2rem; /* モバイル用にフォントサイズを調整 */
+    }
+    .header p {
+        font-size: 1em;
+    }
+    .main-content {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    .artist-intro, .music-section, .fan-art-section {
+        padding: 25px;
+    }
+    .artist-image {
+        width: 180px;
+        height: 180px;
+    }
+    .artist-description h2 {
+        font-size: 1.8em;
+    }
+    .artist-description p {
+        font-size: 1em;
+    }
+    /* モバイルではボタンを非表示にするか、位置を調整する */
+    .carousel-button {
+        display: none;
+    }
+    .song-carousel-container {
+        padding: 0; /* ボタンがないのでパディングも不要 */
+    }
+    .song-list {
+        padding-bottom: 0; /* スクロールバー非表示なら不要 */
+    }
+}
+/* style.css に以下のコードを追記してください */
+
+/* タイトルのアニメーション */
+.animated-title {
+    font-size: 3.5rem;
+    margin: 0; /* h1タグが持つデフォルトの余白をリセット */
+    letter-spacing: 2px; /* 文字間隔を調整 */
+    font-weight: bold;
+    
+    /* グラデーションの設定 */
+    background: linear-gradient(
+        -45deg, 
+        #ee7752, 
+        #e73c7e, 
+        #23a6d5, 
+        #23d5ab
+    );
+    background-size: 400% 400%;
+    
+    /* テキストで背景を切り抜く */
+    -webkit-background-clip: text; /* SafariなどWebKit系ブラウザ対応 */
+    background-clip: text;
+    color: transparent;
+    
+    /* アニメーションの適用 */
+    animation: title-gradient-animation 15s ease infinite;
+}
+
+/* ヘッダー背景のグラデーションを動かすアニメーション */
+@keyframes header-gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* タイトル文字のグラデーションを動かすアニメーション */
+@keyframes title-gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ヘッダーの枠をネオンのように光らせるアニメーション */
+@keyframes neon-border-glow {
+    from {
+        /* 影を複数重ねてネオン効果を出す(弱い光) */
+        box-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.8), 
+            0 0 10px rgba(255, 255, 255, 0.8), 
+            0 0 15px rgba(231, 60, 126, 0.6), /* #e73c7e (タイトル色) に近い色 */
+            0 0 20px rgba(231, 60, 126, 0.6);
+    }
+    to {
+        /* 光が強くなった状態 */
+        box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1), 
+            0 0 20px rgba(255, 255, 255, 1), 
+            0 0 30px rgba(231, 60, 126, 0.8), 
+            0 0 40px rgba(231, 60, 126, 0.8);
+    }
+}
+
+/* スクロールでフェードインするセクションの初期状態 */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(40px); /* 少し下から表示される */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* JavaScriptによって追加されるクラス（表示状態） */
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
