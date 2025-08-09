@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -7,7 +11,7 @@ body {
     /* ページ全体の背景を暗くし、イラストを重ねる */
     background:
         linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), /* 暗いオーバーレイ */
-        url('header-background.jpg') center / cover no-repeat fixed;
+        url('jpg/header-background.jpg') center / cover no-repeat fixed;
 }
 
 .header {
@@ -108,25 +112,101 @@ body {
     color: #dcdcdc; /* 明るいグレーに変更 */
 }
 
-.music-section {
-    /* 暗いガラスのような半透明効果 */
-    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
-    backdrop-filter: blur(12px); /* ぼかしを少し強く */
-    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
+/* --- Showcase Sections (Game & Music) --- */
+.showcase-section {
+    background-color: rgba(20, 20, 35, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     margin-bottom: 40px;
 }
 
-.music-section h2 {
+.showcase-section h2 {
     color: #e0e0e0; /* 見出しの色を明るく */
     text-align: center;
     margin-bottom: 30px;
     font-size: 2.2em;
 }
 
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Game Card */
+.game-card {
+    background-color: rgba(50, 50, 70, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 320px;
+    text-align: center;
+    flex-shrink: 0; /* カルーセル内で縮まないようにする */
+    scroll-snap-align: start; /* スクロールスナップの基準点 */
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(168, 192, 255, 0.3);
+}
+
+.game-thumbnail {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 20px;
+}
+
+.game-info h3 {
+    margin-top: 0;
+    color: #a8c0ff;
+    font-size: 1.5em;
+}
+
+.game-info p {
+    color: #dcdcdc;
+    font-size: 1em;
+    min-height: 3em; /* 説明文の高さをある程度揃える */
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #a8c0ff;
+    color: #141423;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #c5d6ff;
+    transform: scale(1.05);
+}
+
+.cta-button.disabled {
+    background-color: #6c757d; /* グレー系の色 */
+    color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none; /* クリックイベントを無効化 */
+}
+
+.cta-button.disabled:hover {
+    background-color: #6c757d;
+    transform: none;
+}
+
+/* Music Section */
 .music-player-container {
     display: flex;
     justify-content: center;
@@ -135,6 +215,7 @@ body {
     background-color: rgba(0, 0, 0, 0.3); /* プレイヤー背景を暗く */
     border-radius: 8px;
     margin-bottom: 30px;
+    padding: 20px;
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
@@ -145,28 +226,31 @@ body {
     border: none;
 }
 
-/* ★★★ カルーセル関連の追加・変更 ★★★ */
-.song-carousel-container {
+.song-carousel-container,
+.game-carousel-container {
     position: relative; /* ボタンの配置基準 */
     display: flex;
     align-items: center; /* 中央にボタンを配置 */
     width: 100%;
-    overflow: hidden; /* リストのはみ出しを隠す */
     padding: 0 40px; /* ボタンのスペース確保 */
+    box-sizing: border-box; /* paddingを含めてwidth 100%にする */
 }
 
-.song-list {
+.song-list,
+.game-list {
     display: flex; /* 横並びにする */
     overflow-x: scroll; /* 横スクロールを可能に */
     scroll-snap-type: x mandatory; /* スナップ効果 */
     -webkit-overflow-scrolling: touch; /* iOSのスクロールを滑らかに */
-    gap: 25px; /* アイテム間の隙間 */
+    gap: 30px; /* アイテム間の隙間 */
     padding-bottom: 20px; /* スクロールバーのための余白 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+    width: 100%;
 }
 
 /* Chrome, Safari, Operaなどでスクロールバーを非表示にする */
-.song-list::-webkit-scrollbar {
+.song-list::-webkit-scrollbar,
+.game-list::-webkit-scrollbar {
     display: none;
 }
 
@@ -189,6 +273,17 @@ body {
 .song-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.song-item.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.song-item.disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* ホバーエフェクトを無効化 */
+    border-color: transparent; /* activeクラスがついても枠線が出ないように */
 }
 
 .song-item.active {
@@ -251,36 +346,6 @@ body {
     right: 0;
 }
 
-/* ★★★ カルーセル関連の追加・変更はここまで ★★★ */
-
-.fan-art-section {
-    /* 暗いガラスのような半透明効果 */
-    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
-    backdrop-filter: blur(12px); /* ぼかしを少し強く */
-    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
-}
-
-.fan-art-section h2 {
-    color: #e0e0e0; /* 見出しの色を明るく */
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.2em;
-}
-
-.fan-art-section ul {
-    list-style: disc inside;
-    padding-left: 20px;
-}
-
-.fan-art-section li {
-    margin-bottom: 10px;
-    color: #dcdcdc; /* 明るいグレーに変更 */
-}
-
 .footer {
     text-align: center;
     padding: 30px 20px;
@@ -324,7 +389,7 @@ body {
         margin: 20px auto;
         padding: 0 15px;
     }
-    .artist-intro, .music-section, .fan-art-section {
+    .artist-intro, .showcase-section {
         padding: 25px;
     }
     .artist-image {
@@ -341,11 +406,14 @@ body {
     .carousel-button {
         display: none;
     }
-    .song-carousel-container {
+    .song-carousel-container,
+    .game-carousel-container {
         padding: 0; /* ボタンがないのでパディングも不要 */
     }
-    .song-list {
+    .song-list,
+    .game-list {
         padding-bottom: 0; /* スクロールバー非表示なら不要 */
+        gap: 20px; /* モバイルでは少し詰める */
     }
 }
 /* style.css に以下のコードを追記してください */

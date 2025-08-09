@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 曲アイテムがクリックされたときの処理
         songItems.forEach(item => {
             item.addEventListener('click', () => {
+                // 'disabled' クラスを持つアイテムはクリックしても何もしない
+                if (item.classList.contains('disabled')) {
+                    return;
+                }
                 // 他のアイテムから 'active' クラスを削除
                 songItems.forEach(i => i.classList.remove('active'));
                 // クリックされたアイテムに 'active' クラスを追加
@@ -45,7 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. スクロールで要素をフェードインさせるロジック ---
+    // --- 2. ゲームカルーセルのロジック ---
+    const gameList = document.getElementById('game-list');
+    const prevGameButton = document.getElementById('prev-game');
+    const nextGameButton = document.getElementById('next-game');
+
+    // ゲームカルーセル関連の要素がすべて存在する場合のみ、処理を実行
+    if (gameList && prevGameButton && nextGameButton) {
+        // ゲームカードの幅(320px) + ギャップ(30px)
+        const gameScrollAmount = 350; 
+        
+        prevGameButton.addEventListener('click', () => {
+            gameList.scrollBy({ left: -gameScrollAmount, behavior: 'smooth' });
+        });
+
+        nextGameButton.addEventListener('click', () => {
+            gameList.scrollBy({ left: gameScrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // --- 3. スクロールで要素をフェードインさせるロジック ---
     const fadeInSections = document.querySelectorAll('.fade-in-section');
 
     // フェードインさせたいセクションが存在する場合のみ、処理を実行

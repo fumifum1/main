@@ -17,7 +17,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            background-image: url('background.jpg');
+            background-image: url('jpg/background.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.2; /* この値を調整してウォッシュアウト効果の強さを変更できます */
@@ -110,8 +110,8 @@
         <nav id="menu-content" class="hidden">
             <ul>
                 <li><a href="index.html">Profile</a></li>
-                <li><a href="https://fumifum1.github.io/arcade-invade/">Game</a></li>
-                <li><a href="https://fumifum1.github.io/arcade-invade/about.html">About</a></li>
+                <li><a href="#game-showcase">Game</a></li>
+                <li><a href="#music-showcase">Music</a></li>
             </ul>
         </nav>
     </div>
@@ -124,7 +124,7 @@
     <main class="main-content">
         <section class="artist-intro fade-in-section">
             <div class="artist-image-container">
-                <img src="artist-image.jpg" alt="あなたのバーチャルアーティスト" class="artist-image">
+                <img src="jpg/artist-image.jpg" alt="あなたのバーチャルアーティスト" class="artist-image">
             </div>
             <div class="artist-description">
                 <h2>はじめまして！</h2>
@@ -137,10 +137,150 @@
         <section class="about-me-section fade-in-section">
             <h2>創作活動について</h2>
             <p>
-                使っているソフトはVisual Studio Codeを使って編集しています。
-                基本的なAI機能は、Googlejeminiを使用しています。
+                Visual Studio Codeで編集をしており、
+                基本的なAI機能は、Googlejeminiを使用しています。<br>これからも、アップデートしながら創作していきますのでよろしくお願いします。
             </p>
             <p>----------</p>
+        </section>
+
+        <!-- ゲーム紹介セクション -->
+        <section id="game-showcase" class="showcase-section fade-in-section">
+            <h2>GAMES</h2>
+            <div class="game-carousel-container">
+                <button id="prev-game" class="carousel-button prev">&lt;</button>
+                <div id="game-list" class="game-list">
+                    <div class="game-card">
+                        <!-- 1. Rush Tetra Ascent -->
+                        <img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Rush Tetra Ascent</h3>
+                            <p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p>
+                            <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
+                        </div>
+                    </div>
+                    <!-- 2. Coming Soon -->
+                    <div class="game-card">
+                        <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Arcade Invade</h3>
+                            <p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p>
+                            <a href="https://fumifum1.github.io/arcade-invade/"  target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
+                        </div>
+                    </div>
+                    <!-- 3. Coming Soon -->
+                    <div class="game-card">
+                        <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Coming Soon</h3>
+                            <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                            <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                        </div>
+                    </div>
+                    <!-- 4. Coming Soon -->
+                    <div class="game-card">
+                        <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Coming Soon</h3>
+                            <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                            <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                        </div>
+                    </div>
+                    <!-- 5. Coming Soon -->
+                    <div class="game-card">
+                        <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Coming Soon</h3>
+                            <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                            <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                        </div>
+                    </div>
+                    <!-- 6. Coming Soon -->
+                    <div class="game-card">
+                        <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                        <div class="game-info">
+                            <h3>Coming Soon</h3>
+                            <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                            <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                        </div>
+                    </div>
+                </div>
+                <button id="next-game" class="carousel-button next">&gt;</button>
+            </div>
+        </section>
+
+        <!-- 音楽紹介セクション -->
+        <section id="music-showcase" class="showcase-section fade-in-section">
+            <h2>MUSIC</h2>
+            <div class="music-player-container">
+                <div id="suno-player-area">
+                    <p>下のリストから聴きたい曲を選んでください。</p>
+                </div>
+            </div>
+            <div class="song-carousel-container">
+                <button id="prev-song" class="carousel-button prev">&lt;</button>
+                <div id="song-list" class="song-list">
+                    <!-- 
+                        TODO: 
+                        - data-suno-id をあなたのSuno楽曲IDに置き換えてください。
+                        - 'song1.jpg' を実際のジャケット画像に置き換えてください。
+                        - 曲名や説明を書き換えてください。
+                    -->
+                    <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af" data-song-title="Starlight Echo">
+                        <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>そのまま</h3>
+                            <p>あなたらしく！</p>
+                            <p>あなたのそばに、そっと寄り添う曲</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item active" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2" data-song-title="Starlight Echo">
+                        <img src="jpg/song2.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>Silent Hero -DQver-</h3>
+                            <p>社畜ビート</p>
+                            <p>現代をドラクエ風にラップ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item active" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a" data-song-title="Starlight Echo">
+                        <img src="jpg/song3.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>Where the Wind Goes</h3>
+                            <p>風の行方。なぐさめラップ</p>
+                            <p>傷と想いが交差するエモラップ。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item active" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325" data-song-title="Starlight Echo">
+                        <img src="jpg/song4.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>灯-Tomoshibi</h3>
+                            <p>次の日、次へ行くため</p>
+                            <p>エールをラップに</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item active" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc" data-song-title="Starlight Echo">
+                        <img src="jpg/song5.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>Stuck but Breathing</h3>
+                            <p>立ち止まっても、、、</p>
+                            <p>それでも前へ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item active" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd" data-song-title="Starlight Echo">
+                        <img src="jpg/song6.jpg" alt="Starlight Echo" class="song-thumbnail">
+                        <div class="song-info">
+                            <h3>No Words, Just Work</h3>
+                            <p>言葉は要らない</p>
+                            <p>ただ仕事をするだけひたすら叫ぶラップ</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="next-song" class="carousel-button next">&gt;</button>
+            </div>
         </section>
 
     </main>
