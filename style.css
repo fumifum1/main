@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     color: #e0e0e0; /* 基本の文字色を明るく */
     line-height: 1.6;
@@ -44,6 +44,7 @@ body {
     font-weight: 300;
     margin: 5px 0 20px;
     opacity: 0.9;
+    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
     color: #e0e0e0;
 }
 
@@ -133,6 +134,11 @@ body {
     font-size: 2.2em;
 }
 
+/* Showcaseセクションの見出しのみフォントを変更 */
+.showcase-section h2 {
+    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
+}
+
 .card-container {
     display: flex;
     justify-content: center;
@@ -192,6 +198,7 @@ body {
     margin-top: 0;
     color: #a8c0ff;
     font-size: 1.5em;
+    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
 }
 
 .game-info p {
@@ -330,6 +337,7 @@ body {
     margin-bottom: 8px;
     color: #a8c0ff; /* 曲タイトルを明るく */
     font-size: 1.3em;
+    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
 }
 
 .song-info p {
@@ -396,7 +404,8 @@ body {
 
 @media (max-width: 768px) {
     .animated-title {
-        font-size: 2.5rem; /* モバイル用に調整 */
+        font-size: 2.2rem; /* モバイル用にフォントサイズを縮小 */
+        letter-spacing: 1px; /* 文字間隔も少し詰める */
     }
     .header {
         padding: 30px 15px; /* モバイル用にパディングを調整 */
@@ -424,13 +433,15 @@ body {
     .artist-description p {
         font-size: 1em;
     }
-    /* モバイルではボタンを非表示にするか、位置を調整する */
+    /* モバイルでもカルーセルボタンを表示するように修正 */
     .carousel-button {
-        display: none;
+        /* display: none を削除してボタンを表示 */
+        width: 35px; /* ボタンを少し小さくする */
+        height: 35px;
     }
     .song-carousel-container,
     .game-carousel-container {
-        padding: 0; /* ボタンがないのでパディングも不要 */
+        padding: 0 35px; /* ボタンの幅に合わせてパディングを再設定 */
     }
     .song-list,
     .game-list {
@@ -446,6 +457,7 @@ body {
     margin: 0; /* h1タグが持つデフォルトの余白をリセット */
     letter-spacing: 2px; /* 文字間隔を調整 */
     font-weight: bold;
+    font-family: 'Righteous', sans-serif; /* Google Fontを適用 */
     
     /* グラデーションの設定 */
     background: linear-gradient(
