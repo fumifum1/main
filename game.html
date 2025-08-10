@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Synapse Creations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* index.html と共通の背景設定 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: url('jpg/background.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        /* --- プロフィールページ用メニューデザイン (index.htmlからコピー) --- */
+        #menu-icon span { background: #a8c0ff; }
+        #menu-icon { z-index: 1002; }
+        #menu-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            background-color: rgba(20, 20, 35, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none;
+            border-bottom: 1px solid rgba(168, 192, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
+            display: block !important;
+        }
+        #menu-container.open #menu-content {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        #menu-content ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        #menu-content li { margin: 0; }
+        #menu-content a {
+            font-size: 1rem;
+            color: #e0e0e0;
+            text-shadow: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: color 0.3s, background-color 0.3s, text-shadow 0.3s;
+        }
+        #menu-content a:hover {
+            color: #fff;
+            background-color: rgba(168, 192, 255, 0.15);
+            text-shadow: 0 0 8px rgba(168, 192, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="game.html">Games</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li><a href="other.html">Others</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <!-- ゲーム一覧セクション -->
+        <section class="showcase-section fade-in-section">
+            <h2>All Games</h2>
+            <!-- style.css の .card-container を再利用してグリッドレイアウトを実現 -->
+            <div class="card-container">
+                <!-- 1. Rush Tetra Ascent -->
+                <div class="game-card">
+                    <img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Rush Tetra Ascent</h3>
+                        <p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p>
+                        <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
+                    </div>
+                </div>
+                <!-- 2. Arcade Invade -->
+                <div class="game-card">
+                    <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Arcade Invade</h3>
+                        <p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p>
+                        <a href="https://fumifum1.github.io/arcade-invade/"  target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
+                    </div>
+                </div>
+                <!-- 3. Coming Soon -->
+                <div class="game-card">
+                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Coming Soon</h3>
+                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                    </div>
+                </div>
+                <!-- 4. Coming Soon -->
+                <div class="game-card">
+                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Coming Soon</h3>
+                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                    </div>
+                </div>
+                <!-- 5. Coming Soon -->
+                <div class="game-card">
+                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Coming Soon</h3>
+                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                    </div>
+                </div>
+                <!-- 6. Coming Soon -->
+                <div class="game-card">
+                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Coming Soon</h3>
+                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
+                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 共通フッター -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
+    </footer>
+
+    <!-- メニューとフェードイン効果のためのスクリプト -->
+    <script src="script.js"></script>
+    <script src="menu.js" defer></script>
+</body>
+</html>

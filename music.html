@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music - Synapse Creations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* index.html と共通の背景設定 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: url('jpg/background.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        /* --- プロフィールページ用メニューデザイン (index.htmlからコピー) --- */
+        #menu-icon span { background: #a8c0ff; }
+        #menu-icon { z-index: 1002; }
+        #menu-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            background-color: rgba(20, 20, 35, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none;
+            border-bottom: 1px solid rgba(168, 192, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
+            display: block !important;
+        }
+        #menu-container.open #menu-content {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        #menu-content ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        #menu-content li { margin: 0; }
+        #menu-content a {
+            font-size: 1rem;
+            color: #e0e0e0;
+            text-shadow: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: color 0.3s, background-color 0.3s, text-shadow 0.3s;
+        }
+        #menu-content a:hover {
+            color: #fff;
+            background-color: rgba(168, 192, 255, 0.15);
+            text-shadow: 0 0 8px rgba(168, 192, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="game.html">Games</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li><a href="other.html">Others</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <!-- 音楽一覧セクション -->
+        <section id="music-showcase" class="showcase-section fade-in-section">
+            <h2>All Music</h2>
+            <div class="music-player-container">
+                <div id="suno-player-area">
+                    <p>下のリストから聴きたい曲を選んでください。</p>
+                </div>
+            </div>
+            <!-- 曲一覧グリッド -->
+            <div class="card-container" id="song-list">
+                <!-- index.htmlから楽曲データをコピー -->
+                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af" data-song-title="Starlight Echo">
+                    <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>そのまま</h3>
+                        <p>あなたらしく！</p>
+                        <p>あなたのそばに、そっと寄り添う曲</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2" data-song-title="Silent Hero -DQver-">
+                    <img src="jpg/song2.jpg" alt="Silent Hero -DQver-" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Silent Hero -DQver-</h3>
+                        <p>社畜ビート</p>
+                        <p>現代をドラクエ風にラップ</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a" data-song-title="Where the Wind Goes">
+                    <img src="jpg/song3.jpg" alt="Where the Wind Goes" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Where the Wind Goes</h3>
+                        <p>風の行方。なぐさめラップ</p>
+                        <p>傷と想いが交差するエモラップ。</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325" data-song-title="灯-Tomoshibi">
+                    <img src="jpg/song4.jpg" alt="灯-Tomoshibi" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>灯-Tomoshibi</h3>
+                        <p>次の日、次へ行くため</p>
+                        <p>エールをラップに</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc" data-song-title="Stuck but Breathing">
+                    <img src="jpg/song5.jpg" alt="Stuck but Breathing" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Stuck but Breathing</h3>
+                        <p>立ち止まっても、、、</p>
+                        <p>それでも前へ</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd" data-song-title="No Words, Just Work">
+                    <img src="jpg/song6.jpg" alt="No Words, Just Work" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>No Words, Just Work</h3>
+                        <p>言葉は要らない</p>
+                        <p>ただ仕事をするだけひたすら叫ぶラップ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 共通フッター -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
+    </footer>
+
+    <!-- メニューとフェードイン効果、音楽プレイヤーのためのスクリプト -->
+    <script src="script.js"></script>
+    <script src="menu.js" defer></script>
+</body>
+</html>
