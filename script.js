@@ -94,4 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // 各セクションの監視を開始
         fadeInSections.forEach(section => observer.observe(section));
     }
+
+    // --- 4. その他の作品カルーセルのロジック ---
+    const otherList = document.getElementById('other-list');
+    const prevOtherButton = document.getElementById('prev-other');
+    const nextOtherButton = document.getElementById('next-other');
+
+    // その他の作品カルーセル関連の要素がすべて存在する場合のみ、処理を実行
+    if (otherList && prevOtherButton && nextOtherButton) {
+        // game-card と game-list のスタイルを流用しているため、スクロール量も同じでOK
+        const otherScrollAmount = 350; 
+        
+        prevOtherButton.addEventListener('click', () => {
+            otherList.scrollBy({ left: -otherScrollAmount, behavior: 'smooth' });
+        });
+
+        nextOtherButton.addEventListener('click', () => {
+            otherList.scrollBy({ left: otherScrollAmount, behavior: 'smooth' });
+        });
+    }
 });
