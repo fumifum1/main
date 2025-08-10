@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // カルーセルのナビゲーションボタンの処理
-        const scrollAmount = 305; // 1アイテムの幅(280) + ギャップ(25)
+        // モバイルとPCでスクロール量を変更
+        const scrollAmount = window.innerWidth <= 768 ? 240 : 305; // モバイル: 220px card + 20px gap
         prevButton.addEventListener('click', () => {
             songList.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
@@ -56,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ゲームカルーセル関連の要素がすべて存在する場合のみ、処理を実行
     if (gameList && prevGameButton && nextGameButton) {
-        // ゲームカードの幅(320px) + ギャップ(30px)
-        const gameScrollAmount = 350; 
+        // モバイルとPCでスクロール量を変更
+        const gameScrollAmount = window.innerWidth <= 768 ? 260 : 350; // モバイル: 240px card + 20px gap
         
         prevGameButton.addEventListener('click', () => {
             gameList.scrollBy({ left: -gameScrollAmount, behavior: 'smooth' });
@@ -102,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // その他の作品カルーセル関連の要素がすべて存在する場合のみ、処理を実行
     if (otherList && prevOtherButton && nextOtherButton) {
-        // game-card と game-list のスタイルを流用しているため、スクロール量も同じでOK
-        const otherScrollAmount = 350; 
+        // モバイルとPCでスクロール量を変更 (ゲームカルーセルと同じ設定)
+        const otherScrollAmount = window.innerWidth <= 768 ? 260 : 350; // モバイル: 240px card + 20px gap
         
         prevOtherButton.addEventListener('click', () => {
             otherList.scrollBy({ left: -otherScrollAmount, behavior: 'smooth' });
