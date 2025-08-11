@@ -441,7 +441,11 @@ body {
     }
     .song-carousel-container,
     .game-carousel-container {
-        padding: 0 35px; /* ボタンの幅に合わせてパディングを再設定 */
+        /* .showcase-section の padding を打ち消して表示幅を確保 */
+        margin-left: -25px;
+        margin-right: -25px;
+        /* ボタン用のスペースは維持 */
+        padding: 0 35px;
     }
     .song-list,
     .game-list {

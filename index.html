@@ -102,6 +102,46 @@
             background-color: rgba(168, 192, 255, 0.15);
             text-shadow: 0 0 8px rgba(168, 192, 255, 0.5);
         }
+
+        @media (max-width: 768px) {
+            /* メニュー本体を画面右側のサイドバー風に変更 */
+            #menu-content {
+                top: 0;
+                left: auto; /* leftをリセット */
+                right: 0;
+                width: 250px; /* メニューの幅を固定 */
+                height: 100vh; /* 高さを画面全体に */
+                border-radius: 0; /* 角丸をなくす */
+                border-bottom: none; /* 下線をなくす */
+                border-left: 1px solid rgba(168, 192, 255, 0.3); /* 左側に境界線 */
+                padding: 80px 20px; /* 上のアイコンと被らないようにパディング調整 */
+
+                /* アニメーションを横からのスライドインに変更 */
+                transform: translateX(100%);
+                /* PC用のtransitionを上書き */
+                transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            }
+
+            /* メニューが開いた状態のスタイル */
+            #menu-container.open #menu-content {
+                transform: translateX(0);
+            }
+
+            /* メニューリストを縦並びに */
+            #menu-content ul {
+                flex-direction: column; /* flexboxのまま縦並びに変更 */
+                align-items: flex-start; /* 左揃えにする */
+                gap: 20px; /* 項目間のスペースを調整 */
+            }
+
+            #menu-content a {
+                font-size: 1.1rem; /* スマホで見やすいように少し大きく */
+                padding: 10px 15px;
+                width: 100%; /* クリック範囲を広げる */
+                display: inline-block; /* widthを有効にするため */
+                box-sizing: border-box; /* paddingを含めてwidth 100% */
+            }
+        }
     </style>
 </head>
 <body>
