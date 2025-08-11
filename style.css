@@ -116,7 +116,7 @@ body {
 /* --- Showcase Sections (Game & Music) --- */
 .showcase-section,
 .about-me-section {
-    background-color: rgba(20, 20, 35, 0.65);
+    background-color: rgba(20, 20, 35, 0.1); /* 0.65から0.5へ変更して透明度を上げます */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -168,7 +168,7 @@ body {
 
 /* Game Card */
 .game-card {
-    background-color: rgba(50, 50, 70, 0.8);
+    background-color: rgba(50, 50, 70, 0.7); /* 0.8から0.7へ変更して透明度を上げます */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
