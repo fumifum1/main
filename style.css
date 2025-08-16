@@ -139,6 +139,13 @@ body {
     font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
 }
 
+/* Showcaseセクションの直下にある説明文pタグのスタイル */
+.showcase-section > p {
+    text-align: center;
+    color: #dcdcdc;
+    margin-bottom: 30px;
+}
+
 .card-container {
     display: flex;
     justify-content: center;
