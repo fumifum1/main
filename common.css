@@ -1,17 +1,34 @@
-/* --- Menu Bar (Common Style) --- */
+/* --- 共通背景 --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image: url('jpg/background.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+}
+
+/* --- 共通メニューコンテナ --- */
 #menu-container {
     position: fixed; /* 画面に固定 */
     top: 15px;
     right: 20px;
-    z-index: 1000; /* ゲームUIより手前に表示 */
+    z-index: 1002; /* メニュー本体より手前に表示 */
     cursor: pointer;
 }
 
+/* --- 共通メニューアイコン --- */
 #menu-icon {
     width: 30px;
     height: 25px;
     position: relative;
     transition: transform 0.3s ease;
+    z-index: 1002; /* メニュー本体より手前に表示 */
 }
 
 #menu-icon span {
@@ -19,18 +36,19 @@
     position: absolute;
     height: 3px;
     width: 100%;
-    background: #0f0;
+    background: #ffffff; /* シンプルな白に変更 */
     border-radius: 3px;
     opacity: 1;
     left: 0;
     transition: all 0.25s ease-in-out;
 }
 
-/* メニューが開いている時のアイコンの変化（X印にするアニメーション） */
+/* アイコンの線（通常時） */
 #menu-icon span:nth-child(1) { top: 0px; }
 #menu-icon span:nth-child(2) { top: 10px; }
 #menu-icon span:nth-child(3) { top: 20px; }
 
+/* アイコンのX印アニメーション（メニューを開いた時） */
 #menu-container.open #menu-icon span:nth-child(1) {
     top: 10px;
     transform: rotate(135deg);
@@ -46,40 +64,69 @@
     transform: rotate(-135deg);
 }
 
+
+/* --- 共通メニュー本体（右側からスライドイン） --- */
 #menu-content {
-    position: absolute;
-    top: 40px;
+    /* 位置とサイズ */
+    position: fixed;
+    top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    border: 1px solid #0f0;
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    width: 250px; /* メニューの幅 */
+    height: 100vh; /* 画面の高さ全体 */
+    z-index: 1001; /* アイコンより後ろ */
+
+    /* シンプルなデザイン */
+    background-color: rgba(25, 25, 40, 0.95); /* 少し青みがかったダークカラー */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); /* 左側に影 */
+    padding: 80px 20px; /* アイコンと被らないように上を空ける */
+    box-sizing: border-box; /* paddingを幅に含める */
+
+    /* アニメーションの準備 */
+    transform: translateX(100%); /* 初期状態では画面右外に隠す */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
+
+    /* .hiddenを上書き */
+    display: block !important;
 }
 
-#menu-content.hidden {
-    display: none;
+/* メニューが開いた状態のスタイル */
+#menu-container.open #menu-content {
+    transform: translateX(0); /* 画面内に表示 */
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
+/* メニューリスト（縦並び） */
 #menu-content ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 項目間のスペース */
 }
 
 #menu-content li {
-    margin: 10px 0;
+    margin: 0;
 }
 
+/* メニューリンク */
 #menu-content a {
-    color: #0f0;
+    color: #e0e0e0;
     text-decoration: none;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
-    transition: color 0.2s;
+    font-family: 'Raleway', sans-serif; /* シンプルなフォントに変更 */
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    display: block; /* クリック範囲を広げる */
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s;
 }
 
+/* ホバー時のエフェクト */
 #menu-content a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #fff;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
 }

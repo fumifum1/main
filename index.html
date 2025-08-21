@@ -13,137 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background-image: url('jpg/background.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2; /* この値を調整してウォッシュアウト効果の強さを変更できます */
-        }
-
-        /* --- プロフィールページ用メニューデザイン：上部ウィンドウ風 --- */
-        /* アイコンの色をアクセントカラーに変更 */
-        #menu-icon span {
-            background: #a8c0ff; /* 明るい青紫色 */
-        }
-
-        /* アイコンがメニューウィンドウの上に表示されるようにz-indexを調整 */
-        #menu-icon {
-            z-index: 1002; /* メニューより手前に表示 */
-        }
-
-        /* メニュー本体を画面上部のウィンドウ風に変更 */
-        #menu-content {
-            /* 位置とサイズ */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-
-            z-index: 1001; /* アイコンより後ろに配置 */
-            /* 見た目 */
-            background-color: rgba(20, 20, 35, 0.85); /* ガラス風の背景 */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: none; /* 枠線をなくし、下線に統一 */
-            border-bottom: 1px solid rgba(168, 192, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            padding: 15px 0; /* 上下のパディングを調整 */
-
-            /* アニメーションの準備 */
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
-
-            /* common.css の .hidden { display: none; } を上書き */
-            display: block !important;
-        }
-
-        /* メニューが開いた状態のスタイル */
-        #menu-container.open #menu-content {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-        }
-
-        /* メニューリストを横並びに */
-        #menu-content ul {
-            display: flex;
-            justify-content: center;
-            gap: 30px; /* 項目間のスペース */
-        }
-
-        /* メニュー項目のマージンをリセット */
-        #menu-content li {
-            margin: 0;
-        }
-
-        /* メニューリンクのスタイル */
-        #menu-content a {
-            font-size: 1rem;
-            color: #e0e0e0; /* 基本の文字色 */
-            text-shadow: none; /* ゲーム風の影は消す */
-            padding: 8px 16px; /* パディングを調整 */
-            border-radius: 6px; /* 角を少し丸める */
-            transition: color 0.3s, background-color 0.3s, text-shadow 0.3s;
-        }
-
-        /* ホバー時のエフェクト */
-        #menu-content a:hover {
-            color: #fff;
-            background-color: rgba(168, 192, 255, 0.15);
-            text-shadow: 0 0 8px rgba(168, 192, 255, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            /* メニュー本体を画面右側のサイドバー風に変更 */
-            #menu-content {
-                top: 0;
-                left: auto; /* leftをリセット */
-                right: 0;
-                width: 250px; /* メニューの幅を固定 */
-                height: 100vh; /* 高さを画面全体に */
-                border-radius: 0; /* 角丸をなくす */
-                border-bottom: none; /* 下線をなくす */
-                border-left: 1px solid rgba(168, 192, 255, 0.3); /* 左側に境界線 */
-                padding: 80px 20px; /* 上のアイコンと被らないようにパディング調整 */
-
-                /* アニメーションを横からのスライドインに変更 */
-                transform: translateX(100%);
-                /* PC用のtransitionを上書き */
-                transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-            }
-
-            /* メニューが開いた状態のスタイル */
-            #menu-container.open #menu-content {
-                transform: translateX(0);
-            }
-
-            /* メニューリストを縦並びに */
-            #menu-content ul {
-                flex-direction: column; /* flexboxのまま縦並びに変更 */
-                align-items: flex-start; /* 左揃えにする */
-                gap: 20px; /* 項目間のスペースを調整 */
-            }
-
-            #menu-content a {
-                font-size: 1.1rem; /* スマホで見やすいように少し大きく */
-                padding: 10px 15px;
-                width: 100%; /* クリック範囲を広げる */
-                display: inline-block; /* widthを有効にするため */
-                box-sizing: border-box; /* paddingを含めてwidth 100% */
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- 共通ナビゲーションメニュー -->
@@ -410,7 +279,7 @@
                     <img src="jpg/g_s.jpg" alt="googlefonts_select" class="game-thumbnail">
                     <div class="game-info">
                         <h3>GeoScope</h3>
-                        <p>QuickShotや座標情報がある写真を地図に落とし込むアプリ。</p>
+                        <p>QuickShotで撮影した座標情報がある写真を地図に落とし込むアプリ。</p>
                         <a href="https://fumifum1.github.io/GeoScope/GeoScope.html" target="_blank" rel="noopener noreferrer" class="cta-button">GeoScope</a>
                     </div>
                 </div>  
