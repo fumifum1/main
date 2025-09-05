@@ -1,33 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. 楽曲関連のロジック ---
-    const songList = document.getElementById('song-list');
-    const songItems = document.querySelectorAll('.song-item');
-    const playerArea = document.getElementById('suno-player-area');
-    const prevButton = document.getElementById('prev-song');
-    const nextButton = document.getElementById('next-song');
+    // --- 1. 楽曲プレイヤーのセットアップ関数 ---
+    // 楽曲アイテムにクリックイベントを設定し、プレイヤーを制御する
+    const initializeMusicPlayer = (listElement, playerAreaElement) => {
+        if (!listElement || !playerAreaElement) return;
 
-    // 楽曲クリックイベントのロジック (曲リストとプレイヤーエリアがあれば実行)
-    if (songList && songItems.length > 0 && playerArea) {
+        const songItems = listElement.querySelectorAll('.song-item');
+        if (songItems.length === 0) return;
 
-        // 曲アイテムがクリックされたときの処理
         songItems.forEach(item => {
             item.addEventListener('click', () => {
-                // 'disabled' クラスを持つアイテムはクリックしても何もしない
-                if (item.classList.contains('disabled')) {
-                    return;
-                }
-
-                const sunoId = item.dataset.sunoId;
-                // sunoId がない場合（リンクカードなど）は何もしない
-                if (!sunoId) {
-                    return;
-                }
+                // 'disabled' クラスを持つアイテムやsunoIdがない場合は何もしない
+                if (item.classList.contains('disabled') || !item.dataset.sunoId) return;
 
                 // 他のアイテムから 'active' クラスを削除
-                songItems.forEach(i => i.classList.remove('active'));
+                // 親要素(listElement)から全アイテムを再取得して処理する
+                listElement.querySelectorAll('.song-item').forEach(i => i.classList.remove('active'));
                 // クリックされたアイテムに 'active' クラスを追加
                 item.classList.add('active');
+
+                const sunoId = item.dataset.sunoId;
                 const songTitle = item.dataset.songTitle;
 
                 // iframeを生成してプレイヤーを埋め込む
@@ -39,88 +31,133 @@ document.addEventListener('DOMContentLoaded', () => {
                 iframe.style.borderRadius = '8px';
                 iframe.title = `Suno AI Player for ${songTitle}`;
 
-                playerArea.innerHTML = ''; // 既存のプレイヤーをクリア
-                playerArea.appendChild(iframe);
+                playerAreaElement.innerHTML = ''; // 既存のプレイヤーをクリア
+                playerAreaElement.appendChild(iframe);
             });
         });
 
         // ページ読み込み時に最初の曲を自動で読み込む
-        const firstActiveSong = document.querySelector('.song-item.active');
+        const firstActiveSong = listElement.querySelector('.song-item.active');
         if (firstActiveSong) {
             firstActiveSong.click();
         }
     }
 
-    // カルーセルナビゲーションのロジック (カルーセルボタンがあれば実行)
-    if (prevButton && nextButton && songList) {
-        // モバイルとPCでスクロール量を変更
-        const scrollAmount = window.innerWidth <= 768 ? 240 : 305; // モバイル: 220px card + 20px gap
-        prevButton.addEventListener('click', () => songList.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
-        nextButton.addEventListener('click', () => songList.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
-    }
-
-    // --- 2. ゲームカルーセルのロジック ---
-    const gameList = document.getElementById('game-list');
-    const prevGameButton = document.getElementById('prev-game');
-    const nextGameButton = document.getElementById('next-game');
-
-    // ゲームカルーセル関連の要素がすべて存在する場合のみ、処理を実行
-    if (gameList && prevGameButton && nextGameButton) {
-        // モバイルとPCでスクロール量を変更
-        const gameScrollAmount = window.innerWidth <= 768 ? 260 : 350; // モバイル: 240px card + 20px gap
-        
-        prevGameButton.addEventListener('click', () => {
-            gameList.scrollBy({ left: -gameScrollAmount, behavior: 'smooth' });
-        });
-
-        nextGameButton.addEventListener('click', () => {
-            gameList.scrollBy({ left: gameScrollAmount, behavior: 'smooth' });
-        });
-    }
+    // --- 2. 楽曲プレイヤーの初期化実行 ---
+    // music.html と index.html の両方で動作する
+    const songList = document.getElementById('song-list');
+    const playerArea = document.getElementById('suno-player-area');
+    initializeMusicPlayer(songList, playerArea);
 
     // --- 3. スクロールで要素をフェードインさせるロジック ---
     const fadeInSections = document.querySelectorAll('.fade-in-section');
 
-    // フェードインさせたいセクションが存在する場合のみ、処理を実行
     if (fadeInSections.length > 0) {
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // 要素が10%見えたら実行
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                // 要素が画面内に入ったら
                 if (entry.isIntersecting) {
-                    // 'visible' クラスを追加して表示させる
                     entry.target.classList.add('visible');
-                    // 一度表示したら、その要素の監視を停止してパフォーマンスを向上
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // 各セクションの監視を開始
         fadeInSections.forEach(section => observer.observe(section));
     }
 
-    // --- 4. その他の作品カルーセルのロジック ---
-    const otherList = document.getElementById('other-list');
-    const prevOtherButton = document.getElementById('prev-other');
-    const nextOtherButton = document.getElementById('next-other');
+    // --- 4. カルーセルをセットアップする汎用関数（シームレスなループ機能付き） ---
+    const setupInfiniteCarousel = (containerId, prevButtonId, nextButtonId) => {
+        const list = document.getElementById(containerId);
+        const prevButton = document.getElementById(prevButtonId);
+        const nextButton = document.getElementById(nextButtonId);
 
-    // その他の作品カルーセル関連の要素がすべて存在する場合のみ、処理を実行
-    if (otherList && prevOtherButton && nextOtherButton) {
-        // モバイルとPCでスクロール量を変更 (ゲームカルーセルと同じ設定)
-        const otherScrollAmount = window.innerWidth <= 768 ? 260 : 350; // モバイル: 240px card + 20px gap
-        
-        prevOtherButton.addEventListener('click', () => {
-            otherList.scrollBy({ left: -otherScrollAmount, behavior: 'smooth' });
+        if (!list || !prevButton || !nextButton || list.children.length === 0) {
+            return;
+        }
+
+        const originalItems = Array.from(list.children);
+        const itemsCount = originalItems.length;
+        let isTransitioning = false;
+
+        // 前後にアイテムをクローンして配置
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            list.appendChild(clone);
+        });
+        originalItems.slice().reverse().forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            list.prepend(clone);
         });
 
-        nextOtherButton.addEventListener('click', () => {
-            otherList.scrollBy({ left: otherScrollAmount, behavior: 'smooth' });
+        // 楽曲カルーセルの場合、クローンにもクリックイベントを再設定
+        if (containerId === 'song-list') {
+            initializeMusicPlayer(list, document.getElementById('suno-player-area'));
+        }
+
+        // スクロール量を決定
+        let scrollAmount;
+        if (containerId === 'song-list') {
+            scrollAmount = window.innerWidth <= 768 ? 240 : 305;
+        } else {
+            scrollAmount = window.innerWidth <= 768 ? 260 : 350;
+        }
+
+        // 初期位置を「本物」のアイテムの先頭に設定
+        const resetScrollPosition = () => {
+            const itemWidth = list.children[0].offsetWidth;
+            const gap = parseInt(window.getComputedStyle(list).gap) || 30;
+            list.scrollLeft = (itemWidth + gap) * itemsCount;
+        };
+        resetScrollPosition();
+
+        const handleScroll = (direction) => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            list.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+        };
+
+        nextButton.addEventListener('click', () => handleScroll(1));
+        prevButton.addEventListener('click', () => handleScroll(-1));
+
+        // スクロールが端に達したら、アニメーションなしで位置をリセット
+        let scrollEndTimer;
+        list.addEventListener('scroll', () => {
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(() => {
+                isTransitioning = false;
+                const itemWidth = list.children[0].offsetWidth;
+                const gap = parseInt(window.getComputedStyle(list).gap) || 30;
+                const totalItemWidth = itemWidth + gap;
+
+                // 右端のクローン領域に達した場合
+                if (list.scrollLeft >= totalItemWidth * (itemsCount * 2)) {
+                    list.style.scrollBehavior = 'auto';
+                    list.scrollLeft -= totalItemWidth * itemsCount;
+                    list.style.scrollBehavior = 'smooth';
+                }
+                // 左端のクローン領域に達した場合
+                if (list.scrollLeft <= totalItemWidth * (itemsCount - 1)) {
+                    list.style.scrollBehavior = 'auto';
+                    list.scrollLeft += totalItemWidth * itemsCount;
+                    list.style.scrollBehavior = 'smooth';
+                }
+            }, 150);
         });
-    }
+
+        // ウィンドウリサイズ時に位置を再計算
+        window.addEventListener('resize', resetScrollPosition);
+    };
+
+    // --- 5. 各カルーセルの初期化 ---
+    setupInfiniteCarousel('song-list', 'prev-song', 'next-song');
+    setupInfiniteCarousel('game-list', 'prev-game', 'next-game');
+    setupInfiniteCarousel('other-list', 'prev-other', 'next-other');
 });

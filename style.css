@@ -177,6 +177,7 @@ body {
 .game-card {
     background-color: rgba(50, 50, 70, 0.7); /* 0.8から0.7へ変更して透明度を上げます */
     border-radius: 10px;
+    position: relative; /* 疑似要素を配置するための基準点 */
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -292,6 +293,7 @@ body {
 
 .song-item {
     flex-shrink: 0; /* アイテムが縮まないようにする */
+    position: relative; /* 疑似要素を配置するための基準点 */
     width: 280px; /* 固定幅を設定 */
     background-color: rgba(50, 50, 70, 0.8); /* 曲アイテムの背景を暗く */
     border-radius: 8px;
@@ -570,4 +572,46 @@ body {
 .fade-in-section.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* NEW/UPDATE コーナーリボンスタイル */
+.game-card.is-new::before,
+.song-item.is-new::before,
+.game-card.is-updated::before,
+.song-item.is-updated::before {
+    /* リボン本体のスタイル */
+    position: absolute;
+    width: 120px; /* リボンの長さ */
+    height: 30px; /* リボンの太さ */
+    
+    /* テキストのスタイル */
+    content: ''; /* 各クラスで上書き */
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 30px; /* heightと合わせることで垂直中央揃え */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+    /* 回転と位置調整 */
+    transform: rotate(-45deg);
+    left: -35px;
+    top: 15px;
+
+    z-index: 1; /* 画像より手前に表示 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* "NEW" バッジ */
+.game-card.is-new::before,
+.song-item.is-new::before {
+    content: 'NEW';
+    background: linear-gradient(45deg, #ff4757, #e84118); /* 鮮やかな赤系 */
+}
+
+/* "UPDATE" バッジ */
+.game-card.is-updated::before,
+.song-item.is-updated::before {
+    content: 'UPDATE';
+    background: linear-gradient(45deg, #2ed573, #1e90ff); /* 緑から青系 */
 }
