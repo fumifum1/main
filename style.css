@@ -194,7 +194,7 @@ body {
 
 .game-thumbnail {
     width: 100%;
-    height: 180px;
+    aspect-ratio: 16 / 9; /* 高さを幅に追従させ、常に16:9の比率を保つ */
     object-fit: cover;
 }
 
