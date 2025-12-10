@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,25 @@
     <link rel="stylesheet" href="common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
+
 <body>
+    <!-- SVG Background Container -->
+    <div class="svg-bg">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Continuous Wavy Lines -->
+            <path class="svg-wave wave-1" d="M-100,500 C300,200 700,800 1100,500" />
+            <path class="svg-wave wave-2" d="M-100,500 C400,800 600,200 1100,500" />
+            <path class="svg-wave wave-3" d="M-100,500 C200,300 800,700 1100,500" />
+            <path class="svg-wave wave-4" d="M-100,500 C500,700 500,300 1100,500" />
+            <path class="svg-wave wave-5" d="M-100,500 C600,100 400,900 1100,500" />
+        </svg>
+    </div>
     <!-- 共通ナビゲーションメニュー -->
     <div id="menu-container">
         <div id="menu-icon">
@@ -41,7 +56,8 @@
             <!-- 曲一覧グリッド -->
             <div class="card-container" id="song-list">
                 <!-- index.htmlから楽曲データをコピー -->
-                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af" data-song-title="Starlight Echo">
+                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
+                    data-song-title="Starlight Echo">
                     <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
                     <div class="song-info">
                         <h3>そのまま</h3>
@@ -49,7 +65,8 @@
                         <p>あなたのそばに、そっと寄り添う曲</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2" data-song-title="Silent Hero -DQver-">
+                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2"
+                    data-song-title="Silent Hero -DQver-">
                     <img src="jpg/song2.jpg" alt="Silent Hero -DQver-" class="song-thumbnail">
                     <div class="song-info">
                         <h3>Silent Hero -DQver-</h3>
@@ -57,7 +74,8 @@
                         <p>現代をドラクエ風にラップ</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a" data-song-title="Where the Wind Goes">
+                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a"
+                    data-song-title="Where the Wind Goes">
                     <img src="jpg/song3.jpg" alt="Where the Wind Goes" class="song-thumbnail">
                     <div class="song-info">
                         <h3>Where the Wind Goes</h3>
@@ -65,7 +83,8 @@
                         <p>傷と想いが交差するエモラップ。</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325" data-song-title="灯-Tomoshibi">
+                <div class="song-item" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325"
+                    data-song-title="灯-Tomoshibi">
                     <img src="jpg/song4.jpg" alt="灯-Tomoshibi" class="song-thumbnail">
                     <div class="song-info">
                         <h3>灯-Tomoshibi</h3>
@@ -73,7 +92,8 @@
                         <p>エールをラップに</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc" data-song-title="Stuck but Breathing">
+                <div class="song-item" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc"
+                    data-song-title="Stuck but Breathing">
                     <img src="jpg/song5.jpg" alt="Stuck but Breathing" class="song-thumbnail">
                     <div class="song-info">
                         <h3>Stuck but Breathing</h3>
@@ -81,7 +101,8 @@
                         <p>それでも前へ</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd" data-song-title="No Words, Just Work">
+                <div class="song-item" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd"
+                    data-song-title="No Words, Just Work">
                     <img src="jpg/song6.jpg" alt="No Words, Just Work" class="song-thumbnail">
                     <div class="song-info">
                         <h3>No Words, Just Work</h3>
@@ -98,7 +119,8 @@
         <div class="social-links">
             <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
         </div>
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
@@ -107,4 +129,5 @@
     <script src="script.js"></script>
     <script src="menu.js" defer></script>
 </body>
+
 </html>

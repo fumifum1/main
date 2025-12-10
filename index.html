@@ -1,299 +1,200 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synapse Creations</title>
+    <title>Synapse Creations | AI-Powered Artistry</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="style.css">
-    <!-- 共通スタイルシートを読み込み -->
     <link rel="stylesheet" href="common.css">
-    <!-- Google Fonts: Righteous -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
-    <!-- 共通ナビゲーションメニュー -->
-    <div id="menu-container">
-        <div id="menu-icon">
-            <span></span><span></span><span></span>
-        </div>
-        <nav id="menu-content" class="hidden">
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="game.html">Games</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="other.html">Others</a></li>
-            </ul>
-        </nav>
+
+    <!-- SVG Background Container -->
+    <div class="svg-bg">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Continuous Wavy Lines -->
+            <path class="svg-wave wave-1" d="M-100,500 C300,200 700,800 1100,500" />
+            <path class="svg-wave wave-2" d="M-100,500 C400,800 600,200 1100,500" />
+            <path class="svg-wave wave-3" d="M-100,500 C200,300 800,700 1100,500" />
+            <path class="svg-wave wave-4" d="M-100,500 C500,700 500,300 1100,500" />
+            <path class="svg-wave wave-5" d="M-100,500 C600,100 400,900 1100,500" />
+        </svg>
     </div>
+
+    <!-- Navigation (Simplified) -->
+    <nav style="position: absolute; top: 20px; right: 20px; z-index: 100;">
+        <a href="game.html" style="margin-left: 20px; font-weight: bold;">GAMES</a>
+        <a href="music.html" style="margin-left: 20px; font-weight: bold;">MUSIC</a>
+        <a href="other.html" style="margin-left: 20px; font-weight: bold;">OTHERS</a>
+    </nav>
+
+    <!-- Header Section -->
     <header class="header">
         <h1 class="animated-title">Synapse Creations</h1>
         <p class="subtitle">AI-Powered Artistry</p>
-        <p>音と映像、そしてAIが織りなす無限の可能性。</p>
+        <p style="max-width: 600px; margin: 0 auto; color: #aaa;">音と映像、そしてAIが織りなす無限の可能性。</p>
+        <div style="margin-top: 50px;">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+        </div>
     </header>
 
-    <main class="main-content">
-        <section class="artist-intro fade-in-section">
+    <main class="container">
+
+        <!-- Profile Section -->
+        <section class="section artist-intro fade-in-section">
             <div class="artist-image-container">
-                <img src="jpg/artist-image.jpg" alt="あなたのバーチャルアーティスト" class="artist-image">
+                <img src="jpg/artist-image.jpg" alt="fumifumi" class="artist-image">
             </div>
             <div class="artist-description">
-                <h2>はじめまして！</h2>
-                <p>fumifumi（フミフミ）といいます。<br>
-                    Synapse Creationsの意味は、シナプスのように色々なものを取り入れ、つなげ、創作するという意味でつけました。</p>
+                <h2>Profile</h2>
+                <p><strong>fumifumi（フミフミ）</strong></p>
+                <p>Synapse Creationsの意味は、シナプスのように色々なものを取り入れ、つなげ、創作するという意味でつけました。</p>
                 <p>AIと共に、ゲームや音楽、ウェブ制作を通して、創造することの喜びを追求しています。</p>
-                <p>私のデジタル作品が、あなたの好奇心を刺激できたら嬉しいです。</p>
+                <div
+                    style="margin-top: 20px; padding: 20px; border: 1px solid var(--accent-color); border-radius: 10px; background: rgba(0, 243, 255, 0.05);">
+                    <p style="font-size: 0.9rem;">
+                        Basic AI: Google Gemini<br>
+                        Assets: <a href="https://www.cryptoninja-partners.xyz//" target="_blank">CNP (CryptoNinja
+                            Partners)</a><br>
+                        Music: Suno AI
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- 新しい文章スペース -->
-        <section class="about-me-section fade-in-section">
-            <h2>創作活動について</h2>
-            <p>
-                Visual Studio Codeで編集をしており、
-                基本的なAI機能は、Googlejeminiを使用。<br>
-                背景やアイコンは、<a href="https://www.cryptoninja-partners.xyz//" target="_blank" rel="noopener noreferrer" class="special-link">CryptoNinja Partners（CNP）</a>の素材からAIの二次創作。<br>
-                <a href="https://www.cryptoninja-partners.xyz//" target="_blank" rel="noopener noreferrer" class="special-link">CryptoNinja Partners（CNP）</a>は、元々NFTであり私のアイコンの画像は、そのオーナーです✨<br>
-                また、音楽はSunoを使用して制作。<br>
-                これからも、アップデートしながら創作していきますのでよろしくお願いします。
-            </p>
-            <p>----------</p>
-        </section>
-
-        <!-- ゲーム紹介セクション -->
-        <section id="game-showcase" class="showcase-section fade-in-section">
+        <!-- Games Section -->
+        <section class="section fade-in-section">
             <h2>Games</h2>
-            <p>広告なしで暇つぶしゲームしたいために創作しています。<br>
-                これからも追加していきます。バグはご愛敬で；</p>
-            <div class="game-carousel-container">
-                <button id="prev-game" class="carousel-button prev">&lt;</button>
-                <div id="game-list" class="game-list">
-                    
-                    <!-- BINGO lottery&bingocard ---2025.9.21up-->
-                    <div class="game-card is-new">
-                        <img src="jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>BINGO</h3>
-                            <p>ビンゴのカード台紙と抽選が同時にできるアプリ。ちょっとしたイベントに最適‼</p>
-                            <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer" class="cta-button">play BINGO!</a>
-                        </div>
-                    </div>
-                    <!-- Rush Tetra Ascent -->
-                    <div class="game-card">
-                        <img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>Rush Tetra Ascent</h3>
-                            <p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p>
-                            <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
-                        </div>
-                    </div>
-                    <!-- Arcade Invade -->
-                    <div class="game-card">
-                        <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>Arcade Invade</h3>
-                            <p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p>
-                            <a href="https://fumifum1.github.io/game/"  target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
-                        </div>
-                    </div>
-
-                    <!-- Coming Soon -->
-                    <div class="game-card">
-                        <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>Coming Soon</h3>
-                            <p>現在、新しいゲームを開発中です。ご期待ください！</p>
-                            <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
-                        </div>
-                    </div>
-
-                    <!-- "More Games" へのリンクカード -->
-                    <div class="game-card">
-                        <img src="jpg/allview.jpg" alt="すべてのゲームを見る" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>More Games</h3>
-                            <p>制作したゲームの一覧ページへ移動します。</p>
-                            <a href="game.html" class="cta-button">ALL View</a>
-                        </div>
+            <p>広告なしで暇つぶし。バグはご愛敬。</p>
+            <div class="card-container" id="game-list">
+                <!-- BINGO -->
+                <div class="game-card">
+                    <img src="jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>BINGO</h3>
+                        <p>ビンゴのカード台紙と抽選が同時にできるアプリ。</p>
+                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" class="cta-button">PLAY</a>
                     </div>
                 </div>
-                <button id="next-game" class="carousel-button next">&gt;</button>
+                <!-- Rush Tetra Ascent -->
+                <div class="game-card">
+                    <img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Rush Tetra Ascent</h3>
+                        <p>レトロなアーケードスタイルのブロックパズル。</p>
+                        <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank"
+                            class="cta-button">PLAY</a>
+                    </div>
+                </div>
+                <!-- Arcade Invade -->
+                <div class="game-card">
+                    <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Arcade Invade</h3>
+                        <p>懐かしいレトロゲームの定番。</p>
+                        <a href="https://fumifum1.github.io/game/" target="_blank" class="cta-button">PLAY</a>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="game-card"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="game-info" style="text-align: center;">
+                        <h3>More Games</h3>
+                        <a href="game.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 音楽紹介セクション -->
-        <section id="music-showcase" class="showcase-section fade-in-section">
+        <!-- Music Section -->
+        <section class="section fade-in-section">
             <h2>Music</h2>
-            <p>歌詞・作曲ともにAIで作成し少し手直し。<br>
-                歌詞のテーマは、仕事に疲れた思いを込めたものになっています。<br>
-                少しでも癒されればと自分でも聞いています。</p>
-            <div class="music-player-container">
-                <div id="suno-player-area">
-                    <p>下のリストから聴きたい曲を選んでください。</p>
-                </div>
+            <p>AIで生成された、心に響くメロディ。</p>
+
+            <div id="suno-player-area" style="margin-bottom: 30px; min-height: 180px;">
+                <!-- Player will be inserted here -->
+                <p style="text-align: center; color: #666;">Select a song to play</p>
             </div>
-            <div class="song-carousel-container">
-                <button id="prev-song" class="carousel-button prev">&lt;</button>
-                <div id="song-list" class="song-list">
-                    <!-- 
-                        TODO: 
-                        - data-suno-id をあなたのSuno楽曲IDに置き換えてください。
-                        - 'song1.jpg' を実際のジャケット画像に置き換えてください。
-                        - 曲名や説明を書き換えてください。
-                    -->
-                    <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af" data-song-title="Starlight Echo">
-                        <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>そのまま</h3>
-                            <p>あなたらしく！</p>
-                            <p>あなたのそばに、そっと寄り添う曲</p>
-                        </div>
+
+            <div class="card-container" id="song-list">
+                <div class="song-item" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
+                    data-song-title="Starlight Echo">
+                    <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>そのまま</h3>
+                        <p>あなたらしく！</p>
                     </div>
-                    
-                    <div class="song-item active" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2" data-song-title="Starlight Echo">
-                        <img src="jpg/song2.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>Silent Hero -DQver-</h3>
-                            <p>社畜ビート</p>
-                            <p>現代をドラクエ風にラップ</p>
-                        </div>
-                    </div>
-                    
-                    <div class="song-item active" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a" data-song-title="Starlight Echo">
-                        <img src="jpg/song3.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>Where the Wind Goes</h3>
-                            <p>風の行方。なぐさめラップ</p>
-                            <p>傷と想いが交差するエモラップ。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="song-item active" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325" data-song-title="Starlight Echo">
-                        <img src="jpg/song4.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>灯-Tomoshibi</h3>
-                            <p>次の日、次へ行くため</p>
-                            <p>エールをラップに</p>
-                        </div>
-                    </div>
-                    
-                    <div class="song-item active" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc" data-song-title="Starlight Echo">
-                        <img src="jpg/song5.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>Stuck but Breathing</h3>
-                            <p>立ち止まっても、、、</p>
-                            <p>それでも前へ</p>
-                        </div>
-                    </div>
-                    
-                    <div class="song-item active" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd" data-song-title="Starlight Echo">
-                        <img src="jpg/song6.jpg" alt="Starlight Echo" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>No Words, Just Work</h3>
-                            <p>言葉は要らない</p>
-                            <p>ただ仕事をするだけひたすら叫ぶラップ</p>
-                        </div>
-                    </div>
-                    <!-- "More Music" へのリンクカード -->
-                    <a href="music.html" class="song-item" style="text-decoration: none;">
-                        <img src="jpg/allview.jpg" alt="すべての音楽を聴く" class="song-thumbnail">
-                        <div class="song-info">
-                            <h3>More Music</h3>
-                            <p>制作した音楽の一覧ページへ移動します。</p>
-                        </div>
-                    </a>
                 </div>
-                <button id="next-song" class="carousel-button next">&gt;</button>
+                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2"
+                    data-song-title="Silent Hero">
+                    <img src="jpg/song2.jpg" alt="Silent Hero" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Silent Hero</h3>
+                        <p>社畜ビート</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a"
+                    data-song-title="Where the Wind Goes">
+                    <img src="jpg/song3.jpg" alt="Where the Wind Goes" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Where the Wind Goes</h3>
+                        <p>風の行方</p>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="song-item"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="song-info" style="text-align: center;">
+                        <h3>More Music</h3>
+                        <a href="music.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- その他の作品セクション -->
-        <section id="other-creations" class="showcase-section fade-in-section">
+        <!-- Others Section -->
+        <section class="section fade-in-section">
             <h2>Other Creations</h2>
-            <p>余計なものを一切抜いた単純なアプリにしたい想いと<br>
-                実際に仕事で使いたいものを作成しました。<br>
-                今後はちょっとした遊び要素を加えたアプリも考えています。</p>
-            <div class="game-carousel-container">
-                <button id="prev-other" class="carousel-button prev">&lt;</button>
-                <div id="other-list" class="game-list">
-                    <!-- ここに作品カードを追加 -->
-                    <!-- QR.create --2025.9.13up-->
-                    <div class="game-card is-new">
-                       <img src="jpg/q_c.png" alt="googlefonts_select" class="game-thumbnail">
-                       <div class="game-info">
-                           <h3>QR.create</h3>
-                           <p>オリジナルQRコード作成アプリ。<br>ロゴや配色を自由に作成できます。</p>
-                           <a href="https://fumifum1.github.io/works/qr.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                       </div>
+            <div class="card-container">
+                <div class="game-card">
+                    <img src="jpg/q_c.png" alt="QR.create" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QR.create</h3>
+                        <p>オリジナルQRコード作成アプリ。</p>
+                        <a href="https://fumifum1.github.io/works/qr.html" target="_blank" class="cta-button">TRY IT</a>
                     </div>
-                    <!-- PDF Tool --2025.9.11update-->
-                    <div class="game-card is-updated">
-                       <img src="jpg/p_t.jpg" alt="googlefonts_select" class="game-thumbnail">
-                       <div class="game-info">
-                           <h3>PDF Tool</h3>
-                           <p>簡易的なPDF編集ツール。<br>PDFを結合、分割、ページ入れ替え、JPG変換ができます。</p>
-                           <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                       </div>
-                    </div>
-                    <!-- ShapeShifT --2025.9.11update-->
-                    <div class="game-card is-updated">
-                        <img src="jpg/s_s.jpg" alt="ShapeShifT_Image" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>ShapeShifT</h3>
-                            <p>簡易的な画像編集ツール。<br>背景を透明化、リサイズ、トリミング、PDF変換ができます。</p>
-                            <a href="https://fumifum1.github.io/works/menu.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                        </div>
-                    </div>
-                    <!-- QuickShot -->
-                    <div class="game-card">
-                       <img src="jpg/q_s.jpg" alt="googlefonts_select" class="game-thumbnail">
-                       <div class="game-info">
-                           <h3>QuickShot</h3>
-                           <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
-                           <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                       </div>
-                   </div>
-                    <!-- GeoScope -->
-                    <div class="game-card">
-                        <img src="jpg/g_s.jpg" alt="googlefonts_select" class="game-thumbnail">
-                        <div class="game-info">
-                           <h3>GeoScope</h3>
-                           <p>QuickShotで撮影した座標情報がある写真を地図に落とし込むアプリ。</p>
-                           <a href="https://fumifum1.github.io/GeoScope/GeoScope.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                         </div>
-                    </div>  
-                    <!-- Google Fonts Selecter -->
-                    <div class="game-card">
-                       <img src="jpg/g_f_s.jpg" alt="googlefonts_select" class="game-thumbnail">
-                       <div class="game-info">
-                           <h3>Google Fonts Selecter</h3>
-                           <p>GoogleFontを実際に確認しながら比較できるものです。サイト作成時に活躍。</p>
-                           <a href="https://fumifum1.github.io/works/googlefonts_select.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                       </div>
-                    </div>
-                    <!-- Clear Caendar --2025.9.13update-->
-                    <div class="game-card is-updated">
-                        <img src="jpg/c_c.jpg" alt="Clear Caendar" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>Clear Caendar</h3>
-                            <p>単純にその日に達成を記録する簡単アプリです。タイトル・色を自由に変更可能。記録をCSV出力可。</p>
-                            <a href="https://fumifum1.github.io/clear_caendar/clear_calendar.html" target="_blank" rel="noopener noreferrer" class="cta-button">Try it out</a>
-                        </div>
-                    </div>
-
-                    <div class="game-card">
-                        <img src="jpg/allview.jpg" alt="すべての作品を見る" class="game-thumbnail">
-                        <div class="game-info">
-                            <h3>More Creations</h3>
-                            <p>その他の作品一覧ページへ移動します。</p>
-                            <a href="other.html" class="cta-button">ALL View</a>
-                        </div>
-                    </div> 
                 </div>
-                <button id="next-other" class="carousel-button next">&gt;</button>
+                <div class="game-card">
+                    <img src="jpg/p_t.jpg" alt="PDF Tool" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>PDF Tool</h3>
+                        <p>簡易的なPDF編集ツール。</p>
+                        <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank" class="cta-button">TRY
+                            IT</a>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="game-card"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="game-info" style="text-align: center;">
+                        <h3>More Creations</h3>
+                        <a href="other.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -301,16 +202,25 @@
 
     <footer class="footer">
         <div class="social-links">
-            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <!-- <a href="#" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a> -->
-            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/_fum1_" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://suno.com/@fum1" target="_blank"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
 
+    <!-- Game Preview Modal (for index.html) -->
+    <div id="game-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-button">&times;</button>
+            <div id="modal-body" class="modal-body">
+                <!-- iframe will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-    <!-- 共通メニュー用のスクリプトを読み込み -->
-    <script src="menu.js" defer></script>
+    <script src="game.js" defer></script>
 </body>
+
 </html>

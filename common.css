@@ -7,18 +7,19 @@ body::before {
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background-image: url('jpg/background.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
+    background: transparent;
+    /* 背景画像を削除 */
+    pointer-events: none;
 }
 
 /* --- 共通メニューコンテナ --- */
 #menu-container {
-    position: fixed; /* 画面に固定 */
+    position: fixed;
+    /* 画面に固定 */
     top: 15px;
     right: 20px;
-    z-index: 1002; /* メニュー本体より手前に表示 */
+    z-index: 1002;
+    /* メニュー本体より手前に表示 */
     cursor: pointer;
 }
 
@@ -28,7 +29,8 @@ body::before {
     height: 25px;
     position: relative;
     transition: transform 0.3s ease;
-    z-index: 1002; /* メニュー本体より手前に表示 */
+    z-index: 1002;
+    /* メニュー本体より手前に表示 */
 }
 
 #menu-icon span {
@@ -36,7 +38,8 @@ body::before {
     position: absolute;
     height: 3px;
     width: 100%;
-    background: #ffffff; /* シンプルな白に変更 */
+    background: #ffffff;
+    /* シンプルな白に変更 */
     border-radius: 3px;
     opacity: 1;
     left: 0;
@@ -44,9 +47,17 @@ body::before {
 }
 
 /* アイコンの線（通常時） */
-#menu-icon span:nth-child(1) { top: 0px; }
-#menu-icon span:nth-child(2) { top: 10px; }
-#menu-icon span:nth-child(3) { top: 20px; }
+#menu-icon span:nth-child(1) {
+    top: 0px;
+}
+
+#menu-icon span:nth-child(2) {
+    top: 10px;
+}
+
+#menu-icon span:nth-child(3) {
+    top: 20px;
+}
 
 /* アイコンのX印アニメーション（メニューを開いた時） */
 #menu-container.open #menu-icon span:nth-child(1) {
@@ -71,18 +82,26 @@ body::before {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px; /* メニューの幅 */
-    height: 100vh; /* 画面の高さ全体 */
-    z-index: 1001; /* アイコンより後ろ */
+    width: 250px;
+    /* メニューの幅 */
+    height: 100vh;
+    /* 画面の高さ全体 */
+    z-index: 1001;
+    /* アイコンより後ろ */
 
     /* シンプルなデザイン */
-    background-color: rgba(25, 25, 40, 0.95); /* 少し青みがかったダークカラー */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); /* 左側に影 */
-    padding: 80px 20px; /* アイコンと被らないように上を空ける */
-    box-sizing: border-box; /* paddingを幅に含める */
+    background-color: rgba(25, 25, 40, 0.95);
+    /* 少し青みがかったダークカラー */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    /* 左側に影 */
+    padding: 80px 20px;
+    /* アイコンと被らないように上を空ける */
+    box-sizing: border-box;
+    /* paddingを幅に含める */
 
     /* アニメーションの準備 */
-    transform: translateX(100%); /* 初期状態では画面右外に隠す */
+    transform: translateX(100%);
+    /* 初期状態では画面右外に隠す */
     opacity: 0;
     visibility: hidden;
     transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
@@ -93,7 +112,8 @@ body::before {
 
 /* メニューが開いた状態のスタイル */
 #menu-container.open #menu-content {
-    transform: translateX(0); /* 画面内に表示 */
+    transform: translateX(0);
+    /* 画面内に表示 */
     opacity: 1;
     visibility: visible;
     transition: transform 0.4s ease-out, opacity 0.4s ease-out;
@@ -106,7 +126,8 @@ body::before {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* 項目間のスペース */
+    gap: 15px;
+    /* 項目間のスペース */
 }
 
 #menu-content li {
@@ -117,10 +138,12 @@ body::before {
 #menu-content a {
     color: #e0e0e0;
     text-decoration: none;
-    font-family: 'Raleway', sans-serif; /* シンプルなフォントに変更 */
+    font-family: 'Raleway', sans-serif;
+    /* シンプルなフォントに変更 */
     font-size: 1.1rem;
     padding: 10px 15px;
-    display: block; /* クリック範囲を広げる */
+    display: block;
+    /* クリック範囲を広げる */
     border-radius: 4px;
     transition: color 0.3s, background-color 0.3s;
 }
@@ -129,4 +152,108 @@ body::before {
 #menu-content a:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* game.htmlのカードリストを3列グリッドにする */
+#game-list.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* --- Game/Music Preview --- */
+.game-preview-container,
+.music-player-container {
+    position: relative;
+    width: 100%;    max-width: 800px;
+    margin: 0 auto 40px;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#game-preview-area,
+#suno-player-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.game-card.active, .song-item.active {
+    box-shadow: 0 0 15px 5px var(--accent-color);
+}
+
+/* ゲームプレビュー中に背景SVGを非表示にしてパフォーマンスを向上 */
+body.game-active .svg-bg {
+    display: none;
+}
+
+/* --- Modal (for Game Preview) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+.modal-overlay:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+    background-color: #111;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.modal-body {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+}
+
+.modal-body iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+}
 }

@@ -160,4 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupInfiniteCarousel('song-list', 'prev-song', 'next-song');
     setupInfiniteCarousel('game-list', 'prev-game', 'next-game');
     setupInfiniteCarousel('other-list', 'prev-other', 'next-other');
+
+    // --- 6. フッターのコピーライト年を自動更新 ---
+    const copyrightElement = document.querySelector('.footer p');
+    if (copyrightElement && copyrightElement.textContent.includes('Synapse Creations')) {
+        const currentYear = new Date().getFullYear();
+        copyrightElement.innerHTML = `&copy; ${currentYear} Synapse Creations. All Rights Reserved.`;
+    }
 });

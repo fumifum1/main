@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,25 @@
     <link rel="stylesheet" href="common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
+
 <body>
+    <!-- SVG Background Container -->
+    <div class="svg-bg">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Continuous Wavy Lines -->
+            <path class="svg-wave wave-1" d="M-100,500 C300,200 700,800 1100,500" />
+            <path class="svg-wave wave-2" d="M-100,500 C400,800 600,200 1100,500" />
+            <path class="svg-wave wave-3" d="M-100,500 C200,300 800,700 1100,500" />
+            <path class="svg-wave wave-4" d="M-100,500 C500,700 500,300 1100,500" />
+            <path class="svg-wave wave-5" d="M-100,500 C600,100 400,900 1100,500" />
+        </svg>
+    </div>
     <!-- 共通ナビゲーションメニュー -->
     <div id="menu-container">
         <div id="menu-icon">
@@ -36,21 +51,23 @@
             <div class="card-container">
                 <!-- QR.create -->
                 <div class="game-card is-new">
-                   <img src="jpg/q_c.png" alt="QR.create" class="game-thumbnail">
-                   <div class="game-info">
-                       <h3>QR.create</h3>
-                       <p>オリジナルQRコード作成アプリ。<br>ロゴや配色を自由に作成できます。</p>
-                       <a href="https://fumifum1.github.io/works/qr.html" target="_blank" rel="noopener noreferrer" class="cta-button">QR.create</a>
-                   </div>
+                    <img src="jpg/q_c.png" alt="QR.create" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QR.create</h3>
+                        <p>オリジナルQRコード作成アプリ。<br>ロゴや配色を自由に作成できます。</p>
+                        <a href="https://fumifum1.github.io/works/qr.html" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">QR.create</a>
+                    </div>
                 </div>
                 <!-- PDF Tool ---2025.9.11update-->
                 <div class="game-card is-updated">
-                   <img src="jpg/p_t.jpg" alt="PDF Tool" class="game-thumbnail">
-                   <div class="game-info">
-                       <h3>PDF Tool</h3>
-                       <p>簡易的なPDF編集ツール。<br>PDFを結合、分割、ページ入れ替え、JPG変換ができます。</p>
-                       <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank" rel="noopener noreferrer" class="cta-button">PDF Tool</a>
-                   </div>
+                    <img src="jpg/p_t.jpg" alt="PDF Tool" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>PDF Tool</h3>
+                        <p>簡易的なPDF編集ツール。<br>PDFを結合、分割、ページ入れ替え、JPG変換ができます。</p>
+                        <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">PDF Tool</a>
+                    </div>
                 </div>
                 <!-- ShapeShifT -->
                 <div class="game-card is-updated">
@@ -58,35 +75,39 @@
                     <div class="game-info">
                         <h3>ShapeShifT</h3>
                         <p>簡易的な画像編集ツール。<br>背景を透明化、リサイズ、トリミング、PDF変換ができます。</p>
-                        <a href="https://fumifum1.github.io/works/menu.html" target="_blank" rel="noopener noreferrer" class="cta-button">ShapeShifT</a>
+                        <a href="https://fumifum1.github.io/works/menu.html" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">ShapeShifT</a>
                     </div>
                 </div>
                 <!-- QuickShot -->
                 <div class="game-card">
-                   <img src="jpg/q_s.jpg" alt="QuickShot" class="game-thumbnail">
-                   <div class="game-info">
-                       <h3>QuickShot</h3>
-                       <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
-                       <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank" rel="noopener noreferrer" class="cta-button">QuickShot</a>
-                   </div>
-               </div>
+                    <img src="jpg/q_s.jpg" alt="QuickShot" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QuickShot</h3>
+                        <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
+                        <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">QuickShot</a>
+                    </div>
+                </div>
                 <!-- GeoScope -->
                 <div class="game-card">
                     <img src="jpg/g_s.jpg" alt="GeoScope" class="game-thumbnail">
                     <div class="game-info">
-                       <h3>GeoScope</h3>
-                       <p>QuickShotで撮影した座標情報がある写真を地図に落とし込むアプリ。</p>
-                       <a href="https://fumifum1.github.io/GeoScope/GeoScope.html" target="_blank" rel="noopener noreferrer" class="cta-button">GeoScope</a>
-                     </div>
+                        <h3>GeoScope</h3>
+                        <p>QuickShotで撮影した座標情報がある写真を地図に落とし込むアプリ。</p>
+                        <a href="https://fumifum1.github.io/GeoScope/GeoScope.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">GeoScope</a>
+                    </div>
                 </div>
                 <!-- Google Fonts Selecter -->
                 <div class="game-card">
-                   <img src="jpg/g_f_s.jpg" alt="Google Fonts Selecter" class="game-thumbnail">
-                   <div class="game-info">
-                       <h3>Google Fonts Selecter</h3>
-                       <p>GoogleFontを実際に確認しながら比較できるものです。サイト作成時に活躍。</p>
-                       <a href="https://fumifum1.github.io/works/googlefonts_select.html" target="_blank" rel="noopener noreferrer" class="cta-button">Google Fonts Selecter</a>
-                   </div>
+                    <img src="jpg/g_f_s.jpg" alt="Google Fonts Selecter" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Google Fonts Selecter</h3>
+                        <p>GoogleFontを実際に確認しながら比較できるものです。サイト作成時に活躍。</p>
+                        <a href="https://fumifum1.github.io/works/googlefonts_select.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">Google Fonts Selecter</a>
+                    </div>
                 </div>
                 <!-- Clear Caendar --2025.9.13update-->
                 <div class="game-card is-updated">
@@ -94,7 +115,8 @@
                     <div class="game-info">
                         <h3>Clear Caendar</h3>
                         <p>単純にその日に達成を記録する簡単アプリです。タイトル・色を自由に変更可能。日付もCSV出力可。</p>
-                        <a href="https://fumifum1.github.io/clear_caendar/clear_calendar.html" target="_blank" rel="noopener noreferrer" class="cta-button">Clear Caendar</a>
+                        <a href="https://fumifum1.github.io/clear_caendar/clear_calendar.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">Clear Caendar</a>
                     </div>
                 </div>
             </div>
@@ -106,7 +128,8 @@
         <div class="social-links">
             <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
         </div>
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
@@ -115,4 +138,5 @@
     <script src="script.js"></script>
     <script src="menu.js" defer></script>
 </body>
+
 </html>

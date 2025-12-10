@@ -1,397 +1,344 @@
-html {
-    scroll-behavior: smooth;
+:root {
+    --bg-color: #050505;
+    --text-color: #e0e0e0;
+    --accent-color: #00f3ff;
+    /* Cyan Neon */
+    --accent-secondary: #bc13fe;
+    /* Purple Neon */
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    color: #e0e0e0; /* 基本の文字色を明るく */
-    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
     overflow-x: hidden;
-    /* ページ全体の背景を暗くし、イラストを重ねる */
-    background:
-        linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), /* 暗いオーバーレイ */
-        url('jpg/header-background.jpg') center / cover no-repeat fixed;
+    line-height: 1.6;
 }
 
-.header {
-    /* 背景は半透明のグラデーションのみにし、ページ背景が透けて見えるようにする */
-    background:
-        linear-gradient(
-            -45deg, 
-            rgba(63, 43, 150, 0.65), 
-            rgba(168, 192, 255, 0.65), 
-            rgba(106, 17, 203, 0.65), 
-            rgba(37, 117, 252, 0.65)
-        );
-    background-size: 400% 400%;
-    /* アニメーションは分離して記述 */
-    animation: 
-        header-gradient-animation 25s ease infinite,
-        neon-border-glow 4s ease-in-out infinite alternate;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-    position: relative; /* ネオン効果がはみ出さないように */
-    /* 他のセクションとレイアウトを統一 */
-    max-width: 1000px; /* コンテンツの最大幅を設定 */
-    margin: 30px auto; /* 上下の余白と、左右中央寄せ */
-    border-radius: 10px; /* 他のセクションと合わせて角を丸める */
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.header .subtitle {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin: 5px 0 20px;
-    opacity: 0.9;
-    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
-    color: #e0e0e0;
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition-speed);
 }
 
-.header p {
-    font-size: 1.2em;
-    opacity: 0.9;
+a:hover {
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px var(--accent-secondary);
 }
 
-.main-content {
-    max-width: 1000px;
-    margin: 30px auto;
+/* Layout Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-.artist-intro {
+.section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header / Hero */
+.header {
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    /* 暗いガラスのような半透明効果 */
-    background-color: rgba(20, 20, 35, 0.65); /* さらに透明度を上げる */
-    backdrop-filter: blur(12px); /* ぼかしを少し強く */
-    -webkit-backdrop-filter: blur(12px); /* Safari対応 */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* 境界線を少し明るく */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 影を調整 */
-    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-@media (min-width: 768px) {
-    .artist-intro {
-        flex-direction: row;
-        text-align: left;
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.animated-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+    animation: glow 3s infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+/* SVG Backgrounds */
+.svg-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+}
+
+.svg-wave {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--accent-color));
+    opacity: 0.5;
+    /* Base animation for breathing/glow */
+    animation: wavePulse 6s infinite ease-in-out alternate;
+}
+
+/* Individual Wave Animations (Path Morphing) */
+.wave-1 {
+    stroke: var(--accent-color);
+    animation: waveMorph1 15s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate;
+}
+
+.wave-2 {
+    stroke: var(--accent-secondary);
+    animation: waveMorph2 12s infinite ease-in-out alternate, wavePulse 5s infinite ease-in-out alternate -2s;
+    opacity: 0.3;
+}
+
+.wave-3 {
+    stroke: var(--accent-color);
+    animation: waveMorph3 18s infinite ease-in-out alternate, wavePulse 7s infinite ease-in-out alternate -1s;
+}
+
+.wave-4 {
+    stroke: var(--accent-secondary);
+    animation: waveMorph4 20s infinite ease-in-out alternate, wavePulse 8s infinite ease-in-out alternate -3s;
+    opacity: 0.4;
+}
+
+.wave-5 {
+    stroke: #fff;
+    animation: waveMorph5 14s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate -4s;
+    opacity: 0.2;
+}
+
+/* Path Morphing Keyframes - Dynamic X/Y Movement */
+@keyframes waveMorph1 {
+    0% {
+        d: path('M-100,500 C200,200 600,800 1100,500');
+    }
+
+    50% {
+        d: path('M-100,500 C400,100 800,900 1100,500');
+    }
+
+    100% {
+        d: path('M-100,500 C300,800 700,200 1100,500');
     }
 }
 
-.artist-image-container {
-    flex-shrink: 0;
-    margin-bottom: 20px;
-}
+@keyframes waveMorph2 {
+    0% {
+        d: path('M-100,500 C400,800 700,200 1100,500');
+    }
 
-@media (min-width: 768px) {
-    .artist-image-container {
-        margin-right: 40px;
-        margin-bottom: 0;
+    50% {
+        d: path('M-100,500 C600,900 300,100 1100,500');
+    }
+
+    100% {
+        d: path('M-100,500 C500,200 500,800 1100,500');
     }
 }
 
-.artist-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #a8c0ff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+@keyframes waveMorph3 {
+    0% {
+        d: path('M-100,500 C200,300 900,700 1100,500');
+    }
+
+    50% {
+        d: path('M-100,500 C500,800 500,200 1100,500');
+    }
+
+    100% {
+        d: path('M-100,500 C800,100 200,900 1100,500');
+    }
 }
 
-.artist-description h2 {
-    color: #c5aeff; /* 明るい紫色に変更 */
-    margin-top: 0;
-    font-size: 2em;
+@keyframes waveMorph4 {
+    0% {
+        d: path('M-100,500 C600,700 400,300 1100,500');
+    }
+
+    50% {
+        d: path('M-100,500 C800,200 200,800 1100,500');
+    }
+
+    100% {
+        d: path('M-100,500 C300,900 700,100 1100,500');
+    }
 }
 
-.artist-description p {
-    font-size: 1.1em;
-    color: #dcdcdc; /* 明るいグレーに変更 */
+@keyframes waveMorph5 {
+    0% {
+        d: path('M-100,500 C700,100 300,900 1100,500');
+    }
+
+    50% {
+        d: path('M-100,500 C400,500 600,500 1100,500');
+    }
+
+    100% {
+        d: path('M-100,500 C200,800 800,200 1100,500');
+    }
 }
 
-/* --- Showcase Sections (Game & Music) --- */
-.showcase-section,
-.about-me-section {
-    background-color: rgba(20, 20, 35, 0.1); /* 0.65から0.5へ変更して透明度を上げます */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
+@keyframes wavePulse {
+    0% {
+        stroke-width: 1;
+        filter: drop-shadow(0 0 2px currentColor);
+    }
+
+    100% {
+        stroke-width: 3;
+        filter: drop-shadow(0 0 8px currentColor);
+    }
 }
 
-.showcase-section h2,
-.about-me-section h2 {
-    color: #e0e0e0; /* 見出しの色を明るく */
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.2em;
-}
-
-/* Showcaseセクションの見出しのみフォントを変更 */
-.showcase-section h2 {
-    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
-}
-
-/* Showcaseセクションの直下にある説明文pタグのスタイル */
-.showcase-section > p {
-    text-align: center;
-    color: #dcdcdc;
-    margin-bottom: 30px;
-}
-
+/* Cards */
 .card-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    margin-top: 40px;
 }
 
-.about-me-section p {
-    text-align: center;
-    color: #dcdcdc;
-    line-height: 1.8;
-}
-
-/* 創作活動についてのセクション内の特定のリンクの色を変更 */
-.about-me-section .special-link {
-    color: #c5aeff; /* 明るい紫色 */
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-.about-me-section .special-link:hover {
-    color: #fff;
-    text-shadow: 0 0 8px rgba(197, 174, 255, 0.7);
-    text-decoration: underline;
-}
-
-/* Game Card */
-.game-card {
-    background-color: rgba(50, 50, 70, 0.7); /* 0.8から0.7へ変更して透明度を上げます */
-    border-radius: 10px;
-    position: relative; /* 疑似要素を配置するための基準点 */
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 320px;
-    text-align: center;
-    flex-shrink: 0; /* カルーセル内で縮まないようにする */
-    scroll-snap-align: center; /* スクロールスナップの基準点 */
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(168, 192, 255, 0.3);
-}
-
-.game-thumbnail {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* 高さを幅に追従させ、常に16:9の比率を保つ */
-    object-fit: cover;
-}
-
-.game-info {
-    padding: 20px;
-}
-
-.game-info h3 {
-    margin-top: 0;
-    color: #a8c0ff;
-    font-size: 1.5em;
-    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
-}
-
-.game-info p {
-    color: #dcdcdc;
-    font-size: 1em;
-    min-height: 3em; /* 説明文の高さをある程度揃える */
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: #a8c0ff;
-    color: #141423;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #c5d6ff;
-    transform: scale(1.05);
-}
-
-.cta-button.disabled {
-    background-color: #6c757d; /* グレー系の色 */
-    color: #ccc;
-    cursor: not-allowed;
-    pointer-events: none; /* クリックイベントを無効化 */
-}
-
-.cta-button.disabled:hover {
-    background-color: #6c757d;
-    transform: none;
-}
-
-/* Music Section */
-.music-player-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background-color: rgba(0, 0, 0, 0.3); /* プレイヤー背景を暗く */
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 20px;
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-#suno-player-area iframe {
-    width: 100%;
-    height: 180px;
-    border-radius: 8px;
-    border: none;
-}
-
-.song-carousel-container,
-.game-carousel-container {
-    position: relative; /* ボタンの配置基準 */
-    display: flex;
-    align-items: center; /* 中央にボタンを配置 */
-    width: 100%;
-    padding: 0 40px; /* ボタンのスペース確保 */
-    box-sizing: border-box; /* paddingを含めてwidth 100%にする */
-}
-
-.song-list,
-.game-list {
-    display: flex; /* 横並びにする */
-    overflow-x: scroll; /* 横スクロールを可能に */
-    scroll-snap-type: x mandatory; /* スナップ効果 */
-    -webkit-overflow-scrolling: touch; /* iOSのスクロールを滑らかに */
-    gap: 30px; /* アイテム間の隙間 */
-    padding-bottom: 20px; /* スクロールバーのための余白 */
-    scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
-    width: 100%;
-}
-
-/* Chrome, Safari, Operaなどでスクロールバーを非表示にする */
-.song-list::-webkit-scrollbar,
-.game-list::-webkit-scrollbar {
-    display: none;
-}
-
+.game-card,
 .song-item {
-    flex-shrink: 0; /* アイテムが縮まないようにする */
-    position: relative; /* 疑似要素を配置するための基準点 */
-    width: 280px; /* 固定幅を設定 */
-    background-color: rgba(50, 50, 70, 0.8); /* 曲アイテムの背景を暗く */
-    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 15px;
-    scroll-snap-align: center; /* スクロールスナップの基準点 */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    backdrop-filter: blur(10px);
+    position: relative;
 }
 
+.game-card:hover,
 .song-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+    border-color: var(--accent-color);
 }
 
-.song-item.disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.song-item.disabled:hover {
-    transform: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* ホバーエフェクトを無効化 */
-    border-color: transparent; /* activeクラスがついても枠線が出ないように */
-}
-
-.song-item.active {
-    border: 2px solid #a8c0ff; /* アクティブなアイテムの枠線を明るく */
-    box-shadow: 0 0 20px rgba(168, 192, 255, 0.5); /* 光るエフェクト */
-}
-
+.game-thumbnail,
 .song-thumbnail {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--card-border);
 }
 
+.game-info,
 .song-info {
-    padding: 15px;
-    text-align: center;
+    padding: 20px;
 }
 
-.song-info h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    color: #a8c0ff; /* 曲タイトルを明るく */
-    font-size: 1.3em;
-    font-family: 'Righteous', sans-serif; /* フォントをRighteousに統一 */
+.cta-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 30px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
-.song-info p {
-    font-size: 0.95em;
-    color: #b0b0b0; /* 曲説明を明るく */
+.cta-button:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-color);
 }
 
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5em;
-    cursor: pointer;
-    z-index: 10;
+/* Artist Section */
+.artist-intro {
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.carousel-button.prev {
-    left: 0;
-}
-
-.carousel-button.next {
-    right: 0;
-}
-
-.footer {
+.artist-image-container {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
-    background-color: #1a1a2e; /* フッターをテーマに合わせた暗い色に */
-    color: white;
-    font-size: 0.9em;
+}
+
+.artist-image {
+    width: 100%;
+    max-width: 250px;
+    /* Resize profile image */
+    border-radius: 50%;
+    /* Circular */
+    filter: grayscale(100%);
+    transition: filter 0.5s, transform 0.5s;
+    background: #000;
+    padding: 0;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.artist-image:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.5);
+}
+
+.artist-description {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Footer */
+.footer {
+    background: #000;
+    padding: 50px 0;
+    text-align: center;
+    border-top: 1px solid var(--card-border);
 }
 
 .social-links {
@@ -399,219 +346,51 @@ body {
 }
 
 .social-links a {
-    color: #e0e0e0; /* アイコンの色 */
-    font-size: 2rem; /* アイコンのサイズ */
-    margin: 0 15px; /* アイコン間の余白 */
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* transformを適用するため */
+    font-size: 1.5rem;
+    margin: 0 15px;
+    color: #fff;
 }
 
 .social-links a:hover {
-    color: #a8c0ff; /* ホバー時の色をアクセントカラーに */
-    transform: translateY(-3px); /* 少し浮き上がるエフェクト */
+    color: var(--accent-color);
 }
 
-@media (max-width: 768px) {
-    .animated-title {
-        font-size: 2.2rem; /* モバイル用にフォントサイズを縮小 */
-        letter-spacing: 1px; /* 文字間隔も少し詰める */
-    }
-    .header {
-        padding: 30px 15px; /* モバイル用にパディングを調整 */
-    }
-    .header .subtitle {
-        font-size: 1.2rem; /* モバイル用にフォントサイズを調整 */
-    }
-    .header p {
-        font-size: 1em;
-    }
-    .main-content {
-        margin: 20px auto;
-        padding: 0 15px;
-    }
-    .artist-intro, .showcase-section {
-        padding: 25px;
-    }
-    .artist-image {
-        width: 180px;
-        height: 180px;
-    }
-    .artist-description h2 {
-        font-size: 1.8em;
-    }
-    .artist-description p {
-        font-size: 1em;
-    }
-    /* モバイルでもカルーセルボタンを表示するように修正 */
-    .carousel-button {
-        width: 35px; /* ボタンを少し小さくする */
-        height: 35px;
-    }
-
-    .carousel-button.prev {
-        left: -15px; /* .main-contentのpadding(15px)分、外側に移動して画面端に配置 */
-    }
-    .carousel-button.next {
-        right: -15px; /* .main-contentのpadding(15px)分、外側に移動して画面端に配置 */
-    }
-
-    .song-carousel-container,
-    .game-carousel-container {
-        /* .showcase-section の padding を打ち消して表示幅を確保 */
-        margin-left: -25px;
-        margin-right: -25px;
-        /* ボタンをコンテナの外に配置したため、内側のpaddingは不要に */
-        padding: 0;
-    }
-    .song-list,
-    .game-list {
-        padding-bottom: 0; /* スクロールバー非表示なら不要 */
-        gap: 20px; /* モバイルでは少し詰める */
-    }
-
-    /* スマホ表示でカルーセルの最初と最後のアイテムを中央寄せにする */
-    .game-list {
-        /* (コンテナ幅 - カード幅) / 2 の計算で左右の余白を確保 */
-        padding-left: calc((100% - 240px) / 2);
-        padding-right: calc((100% - 240px) / 2);
-        box-sizing: border-box; /* paddingをwidthに含めることでレイアウト崩れを防ぐ */
-    }
-
-    /* モバイル表示でカードの幅を調整して見切れをなくす */
-    .game-card {
-        width: 240px; /* PC用の320pxから縮小し、最小画面でも見切れないように調整 */
-    }
-
-    .song-item {
-        width: 220px; /* PC用の280pxから縮小し、最小画面でも見切れないように調整 */
-    }
-}
-/* style.css に以下のコードを追記してください */
-
-/* タイトルのアニメーション */
-.animated-title {
-    font-size: 3.5rem;
-    margin: 0; /* h1タグが持つデフォルトの余白をリセット */
-    letter-spacing: 2px; /* 文字間隔を調整 */
-    font-weight: bold;
-    font-family: 'Righteous', sans-serif; /* Google Fontを適用 */
-    
-    /* グラデーションの設定 */
-    background: linear-gradient(
-        -45deg, 
-        #ee7752, 
-        #e73c7e, 
-        #23a6d5, 
-        #23d5ab
-    );
-    background-size: 400% 400%;
-    
-    /* テキストで背景を切り抜く */
-    -webkit-background-clip: text; /* SafariなどWebKit系ブラウザ対応 */
-    background-clip: text;
-    color: transparent;
-    
-    /* アニメーションの適用 */
-    animation: title-gradient-animation 15s ease infinite;
-}
-
-/* ヘッダー背景のグラデーションを動かすアニメーション */
-@keyframes header-gradient-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* タイトル文字のグラデーションを動かすアニメーション */
-@keyframes title-gradient-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* ヘッダーの枠をネオンのように光らせるアニメーション */
-@keyframes neon-border-glow {
+/* Animations */
+@keyframes glow {
     from {
-        /* 影を複数重ねてネオン効果を出す(弱い光) */
-        box-shadow: 
-            0 0 5px rgba(255, 255, 255, 0.8), 
-            0 0 10px rgba(255, 255, 255, 0.8), 
-            0 0 15px rgba(231, 60, 126, 0.6), /* #e73c7e (タイトル色) に近い色 */
-            0 0 20px rgba(231, 60, 126, 0.6);
+        text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
     }
+
     to {
-        /* 光が強くなった状態 */
-        box-shadow: 
-            0 0 10px rgba(255, 255, 255, 1), 
-            0 0 20px rgba(255, 255, 255, 1), 
-            0 0 30px rgba(231, 60, 126, 0.8), 
-            0 0 40px rgba(231, 60, 126, 0.8);
+        text-shadow: 0 0 30px rgba(0, 243, 255, 1), 0 0 10px rgba(255, 255, 255, 0.5);
     }
 }
 
-/* スクロールでフェードインするセクションの初期状態 */
+/* Fade In Animation */
 .fade-in-section {
     opacity: 0;
-    transform: translateY(40px); /* 少し下から表示される */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* JavaScriptによって追加されるクラス（表示状態） */
 .fade-in-section.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* NEW/UPDATE コーナーリボンスタイル */
-.game-card.is-new::before,
-.song-item.is-new::before,
-.game-card.is-updated::before,
-.song-item.is-updated::before {
-    /* リボン本体のスタイル */
-    position: absolute;
-    width: 120px; /* リボンの長さ */
-    height: 30px; /* リボンの太さ */
-    
-    /* テキストのスタイル */
-    content: ''; /* 各クラスで上書き */
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 30px; /* heightと合わせることで垂直中央揃え */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-
-    /* 回転と位置調整 */
-    transform: rotate(-45deg);
-    left: -35px;
-    top: 15px;
-
-    z-index: 1; /* 画像より手前に表示 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+/* Active Song Item */
+.song-item.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
-/* "NEW" バッジ */
-.game-card.is-new::before,
-.song-item.is-new::before {
-    content: 'NEW';
-    background: linear-gradient(45deg, #ff4757, #e84118); /* 鮮やかな赤系 */
-}
+/* Responsive */
+@media (max-width: 768px) {
+    .animated-title {
+        font-size: 2.5rem;
+    }
 
-/* "UPDATE" バッジ */
-.game-card.is-updated::before,
-.song-item.is-updated::before {
-    content: 'UPDATE';
-    background: linear-gradient(45deg, #2ed573, #1e90ff); /* 緑から青系 */
+    .artist-intro {
+        flex-direction: column;
+    }
 }

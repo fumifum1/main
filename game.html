@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,25 @@
     <link rel="stylesheet" href="common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
+
 <body>
+    <!-- SVG Background Container -->
+    <div class="svg-bg">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Continuous Wavy Lines -->
+            <path class="svg-wave wave-1" d="M-100,500 C300,200 700,800 1100,500" />
+            <path class="svg-wave wave-2" d="M-100,500 C400,800 600,200 1100,500" />
+            <path class="svg-wave wave-3" d="M-100,500 C200,300 800,700 1100,500" />
+            <path class="svg-wave wave-4" d="M-100,500 C500,700 500,300 1100,500" />
+            <path class="svg-wave wave-5" d="M-100,500 C600,100 400,900 1100,500" />
+        </svg>
+    </div>
     <!-- 共通ナビゲーションメニュー -->
     <div id="menu-container">
         <div id="menu-icon">
@@ -33,15 +48,17 @@
         <!-- ゲーム一覧セクション -->
         <section class="showcase-section fade-in-section">
             <h2>All Games</h2>
+
             <!-- style.css の .card-container を再利用してグリッドレイアウトを実現 -->
-            <div class="card-container">
+            <div class="card-container" id="game-list">
                 <!-- BINGO lottery&bingocard ---2025.9.21up-->
                 <div class="game-card is-new">
                     <img src="jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
                     <div class="game-info">
                         <h3>BINGO</h3>
                         <p>ビンゴのカード台紙と抽選が同時にできるアプリ。ちょっとしたイベントに最適‼</p>
-                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer" class="cta-button">play BINGO!</a>
+                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">play BINGO!</a>
                     </div>
                 </div>
                 <!-- 1. Rush Tetra Ascent -->
@@ -50,7 +67,8 @@
                     <div class="game-info">
                         <h3>Rush Tetra Ascent</h3>
                         <p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p>
-                        <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
+                        <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
                     </div>
                 </div>
                 <!-- 2. Arcade Invade -->
@@ -59,43 +77,8 @@
                     <div class="game-info">
                         <h3>Arcade Invade</h3>
                         <p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p>
-                        <a href="https://fumifum1.github.io/game/"  target="_blank" rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                <!-- 3. Coming Soon -->
-                <div class="game-card">
-                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Coming Soon</h3>
-                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
-                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
-                    </div>
-                </div>
-                <!-- 4. Coming Soon -->
-                <div class="game-card">
-                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Coming Soon</h3>
-                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
-                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
-                    </div>
-                </div>
-                <!-- 5. Coming Soon -->
-                <div class="game-card">
-                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Coming Soon</h3>
-                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
-                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
-                    </div>
-                </div>
-                <!-- 6. Coming Soon -->
-                <div class="game-card">
-                    <img src="jpg/coming-soon.jpg" alt="Coming Soon" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Coming Soon</h3>
-                        <p>現在、新しいゲームを開発中です。ご期待ください！</p>
-                        <a href="#" class="cta-button disabled" aria-disabled="true">COMING SOON</a>
+                        <a href="https://fumifum1.github.io/game/" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">PLAY GAME</a>
                     </div>
                 </div>
             </div>
@@ -107,13 +90,26 @@
         <div class="social-links">
             <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
         </div>
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
 
+    <!-- Game Preview Modal -->
+    <div id="game-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-button">&times;</button>
+            <div id="modal-body" class="modal-body">
+                <!-- iframe will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- メニューとフェードイン効果のためのスクリプト -->
     <script src="script.js"></script>
     <script src="menu.js" defer></script>
+    <script src="game.js" defer></script>
 </body>
+
 </html>
