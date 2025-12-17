@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music - Synapse Creations</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
@@ -18,7 +18,7 @@
 
 <body>
     <!-- SVG Background Container -->
-    <div class="svg-bg">
+    <div class="svg-bg header-waves">
         <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg">
             <!-- Continuous Wavy Lines -->
@@ -48,6 +48,21 @@
         <!-- 音楽一覧セクション -->
         <section id="music-showcase" class="showcase-section fade-in-section">
             <h2>All Music</h2>
+
+            <!-- Musician Intro -->
+            <div class="artist-intro music-artist-intro" style="margin-top: 40px; margin-bottom: 50px;">
+                <div class="artist-image-container">
+                    <img src="jpg/artist.jpg" alt="BEAR BEER BEAT" class="artist-image">
+                </div>
+                <div class="artist-description">
+                    <h3>BEAR BEER BEAT</h3>
+                    <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
+                    <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
+                    <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
+                    <a href="artist-profile.html" class="cta-button" style="margin-top: 20px;">View Full Profile</a>
+                </div>
+            </div>
+
             <div class="music-player-container">
                 <div id="suno-player-area">
                     <p>下のリストから聴きたい曲を選んでください。</p>
@@ -56,22 +71,31 @@
             <!-- 曲一覧グリッド -->
             <div class="card-container" id="song-list">
                 <!-- index.htmlから楽曲データをコピー -->
-                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
-                    data-song-title="Starlight Echo">
-                    <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
+                <div class="song-item active" data-suno-id="81859e00-c3ab-45a0-82a5-447a655e7d84"
+                    data-song-title="ありのままで2">
+                    <img src="jpg/song1-2.jpg" alt="ありのままで2" class="song-thumbnail">
                     <div class="song-info">
-                        <h3>そのまま</h3>
-                        <p>あなたらしく！</p>
+                        <h3>ありのままで2</h3>
+                        <p>SUNOのVer4.5でリミックス</p>
+                        <p>全く違う性能が分かるよ</p>
+                    </div>
+                </div>
+                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
+                    data-song-title="ありのままで">
+                    <img src="jpg/song1.jpg" alt="ありのままで" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>ありのままで</h3>
+                        <p>あなたらしく！SUNOのVer3</p>
                         <p>あなたのそばに、そっと寄り添う曲</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2"
-                    data-song-title="Silent Hero -DQver-">
-                    <img src="jpg/song2.jpg" alt="Silent Hero -DQver-" class="song-thumbnail">
+                <div class="song-item" data-suno-id="c426acae-ca01-4732-a0be-f0b9c2595525"
+                    data-song-title="Where the Wind Goes2">
+                    <img src="jpg/song3-2.jpg" alt="Where the Wind Goes2" class="song-thumbnail">
                     <div class="song-info">
-                        <h3>Silent Hero -DQver-</h3>
-                        <p>社畜ビート</p>
-                        <p>現代をドラクエ風にラップ</p>
+                        <h3>Where the Wind Goes2</h3>
+                        <p>SUNOのVer4.5でリミックス</p>
+                        <p>これも違いを比べてみて！</p>
                     </div>
                 </div>
                 <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a"
@@ -83,6 +107,27 @@
                         <p>傷と想いが交差するエモラップ。</p>
                     </div>
                 </div>
+
+                <div class="song-item" data-suno-id="87d91602-d491-4305-9390-84dc0dc3211f"
+                    data-song-title="over">
+                    <img src="jpg/song2.jpg" alt="over" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>over</h3>
+                        <p>ひたすらまくしたてラップ</p>
+                        <p>SUNO-Ver4.5</p>
+                    </div>
+                </div>
+
+                <div class="song-item" data-suno-id="90106cc4-33bd-40a0-bfb8-9c44eb78f837"
+                    data-song-title="Corporate slave Beat">
+                    <img src="jpg/song7.jpg" alt="Corporate slave Beat" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Corporate slave Beat</h3>
+                        <p>働いて！働いて！働いて！</p>
+                        <p>働け！　SUNO-Ver4.5</p>
+                    </div>
+                </div>
+                
                 <div class="song-item" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325"
                     data-song-title="灯-Tomoshibi">
                     <img src="jpg/song4.jpg" alt="灯-Tomoshibi" class="song-thumbnail">

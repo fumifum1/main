@@ -1,36 +1,346 @@
-/* --- 共通背景 --- */
-body::before {
-    content: "";
+/* common.css */
+
+/* :root でサイト全体のカラー変数を定義 */
+:root {
+    --bg-color: #0a0a1a;
+    --text-color: #e0e0e0;
+    --accent-color: #00f3ff;
+    --accent-color-dark: #00a8b3;
+    --card-bg-color: rgba(20, 20, 40, 0.7);
+    --card-border-color: rgba(0, 243, 255, 0.2);
+    --font-primary: 'Raleway', sans-serif;
+    --font-secondary: 'Righteous', cursive;
+}
+
+/* 基本的なページ設定 */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* 背景アニメーション停止用 */
+    transition: background-color 0.5s;
+}
+
+body.game-active {
+    background-color: #000;
+}
+
+/* SVG背景 */
+.svg-bg {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    background: transparent;
-    /* 背景画像を削除 */
+    opacity: 0.1;
     pointer-events: none;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
 }
 
-/* --- 共通メニューコンテナ --- */
-#menu-container {
-    position: fixed;
-    /* 画面に固定 */
-    top: 15px;
-    right: 20px;
-    z-index: 1002;
-    /* メニュー本体より手前に表示 */
+.header-waves {
+    opacity: 1 !important;
+}
+
+.header-waves .svg-wave {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--accent-color));
+    opacity: 0.5;
+    animation: wavePulse 6s infinite ease-in-out alternate;
+}
+
+.header-waves .wave-1 {
+    stroke: var(--accent-color);
+    animation: waveMorph1 15s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate;
+}
+
+.header-waves .wave-2 {
+    stroke: var(--accent-secondary, #bc13fe);
+    animation: waveMorph2 12s infinite ease-in-out alternate, wavePulse 5s infinite ease-in-out alternate -2s;
+    opacity: 0.3;
+}
+
+.header-waves .wave-3 {
+    stroke: var(--accent-color);
+    animation: waveMorph3 18s infinite ease-in-out alternate, wavePulse 7s infinite ease-in-out alternate -1s;
+}
+
+.header-waves .wave-4 {
+    stroke: var(--accent-secondary, #bc13fe);
+    animation: waveMorph4 20s infinite ease-in-out alternate, wavePulse 8s infinite ease-in-out alternate -3s;
+    opacity: 0.4;
+}
+
+.header-waves .wave-5 {
+    stroke: #fff;
+    animation: waveMorph5 14s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate -4s;
+    opacity: 0.2;
+}
+
+@keyframes waveMorph1 {
+    0% { d: path('M-100,500 C200,200 600,800 1100,500'); }
+    50% { d: path('M-100,500 C400,100 800,900 1100,500'); }
+    100% { d: path('M-100,500 C300,800 700,200 1100,500'); }
+}
+
+@keyframes waveMorph2 {
+    0% { d: path('M-100,500 C400,800 700,200 1100,500'); }
+    50% { d: path('M-100,500 C600,900 300,100 1100,500'); }
+    100% { d: path('M-100,500 C500,200 500,800 1100,500'); }
+}
+
+@keyframes waveMorph3 {
+    0% { d: path('M-100,500 C200,300 900,700 1100,500'); }
+    50% { d: path('M-100,500 C500,800 500,200 1100,500'); }
+    100% { d: path('M-100,500 C800,100 200,900 1100,500'); }
+}
+
+@keyframes waveMorph4 {
+    0% { d: path('M-100,500 C600,700 400,300 1100,500'); }
+    50% { d: path('M-100,500 C800,200 200,800 1100,500'); }
+    100% { d: path('M-100,500 C300,900 700,100 1100,500'); }
+}
+
+@keyframes waveMorph5 {
+    0% { d: path('M-100,500 C700,100 300,900 1100,500'); }
+    50% { d: path('M-100,500 C400,500 600,500 1100,500'); }
+    100% { d: path('M-100,500 C200,800 800,200 1100,500'); }
+}
+
+@keyframes wavePulse {
+    0% {
+        stroke-width: 1;
+        filter: drop-shadow(0 0 2px currentColor);
+    }
+    100% {
+        stroke-width: 3;
+        filter: drop-shadow(0 0 8px currentColor);
+    }
+}
+
+/* メインコンテンツのコンテナ */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 40px;
+}
+
+/* セクション共通スタイル */
+.showcase-section {
+    margin-bottom: 60px;
+}
+
+.showcase-section h2 {
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* フェードイン効果 */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- artist-profile.html 専用スタイル --- */
+.story-section {
+    max-width: 800px;
+    margin: 20px auto 40px;
+    padding: 30px;
+    background: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.story-section p {
+    margin-bottom: 1em;
+}
+
+.member-profile {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-direction: column; /* Mobile first */
+}
+
+.member-image {
+    flex-shrink: 0;
+}
+
+.member-image img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid var(--card-border-color);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+@media (min-width: 768px) {
+    .member-profile {
+        flex-direction: row;
+    }
+    .member-profile:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+}
+
+/* ユーティリティ */
+.hidden {
+    display: none !important;
+}
+
+/* --- カード共通スタイル --- */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.game-card,
+.song-item {
+    background: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+    position: relative;
     cursor: pointer;
 }
 
-/* --- 共通メニューアイコン --- */
+.game-card:hover,
+.song-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+    border-color: var(--accent-color);
+}
+
+.game-thumbnail,
+.song-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.game-info,
+.song-info {
+    padding: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 30px;
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* --- game.html のゲームプレビュー用モーダルスタイル --- */
+.game-preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.game-preview-overlay iframe {
+    /* PCでは見やすいサイズに、スマホでは画面幅に合わせる */
+    width: 100%;
+    max-width: 960px;
+    /* 16:9のアスペクト比を維持しつつ、画面内に収まるように高さを設定 */
+    aspect-ratio: 16 / 9;
+    max-height: 90vh;
+    border: 2px solid var(--accent-color-dark);
+    border-radius: 10px;
+    background-color: #000;
+}
+
+.preview-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 33px;
+    text-align: center; 
+    cursor: pointer; 
+    z-index: 10;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.preview-close-button:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    transform: scale(1.1) rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .preview-close-button {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* --- ハンバーガーメニュー --- */
+#menu-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
 #menu-icon {
     width: 30px;
-    height: 25px;
+    height: 22px;
     position: relative;
-    transition: transform 0.3s ease;
-    z-index: 1002;
-    /* メニュー本体より手前に表示 */
+    transition: transform 0.5s ease-in-out;
 }
 
 #menu-icon span {
@@ -38,31 +348,22 @@ body::before {
     position: absolute;
     height: 3px;
     width: 100%;
-    background: #ffffff;
-    /* シンプルな白に変更 */
+    background: var(--text-color);
     border-radius: 3px;
     opacity: 1;
     left: 0;
-    transition: all 0.25s ease-in-out;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
 }
 
-/* アイコンの線（通常時） */
-#menu-icon span:nth-child(1) {
-    top: 0px;
-}
+#menu-icon span:nth-child(1) { top: 0px; }
+#menu-icon span:nth-child(2) { top: 9px; }
+#menu-icon span:nth-child(3) { top: 18px; }
 
-#menu-icon span:nth-child(2) {
-    top: 10px;
-}
-
-#menu-icon span:nth-child(3) {
-    top: 20px;
-}
-
-/* アイコンのX印アニメーション（メニューを開いた時） */
 #menu-container.open #menu-icon span:nth-child(1) {
-    top: 10px;
+    top: 9px;
     transform: rotate(135deg);
+    background: var(--accent-color);
 }
 
 #menu-container.open #menu-icon span:nth-child(2) {
@@ -71,189 +372,35 @@ body::before {
 }
 
 #menu-container.open #menu-icon span:nth-child(3) {
-    top: 10px;
+    top: 9px;
     transform: rotate(-135deg);
+    background: var(--accent-color);
 }
 
-
-/* --- 共通メニュー本体（右側からスライドイン） --- */
 #menu-content {
-    /* 位置とサイズ */
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
-    /* メニューの幅 */
-    height: 100vh;
-    /* 画面の高さ全体 */
-    z-index: 1001;
-    /* アイコンより後ろ */
-
-    /* シンプルなデザイン */
-    background-color: rgba(25, 25, 40, 0.95);
-    /* 少し青みがかったダークカラー */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-    /* 左側に影 */
-    padding: 80px 20px;
-    /* アイコンと被らないように上を空ける */
-    box-sizing: border-box;
-    /* paddingを幅に含める */
-
-    /* アニメーションの準備 */
+    width: 280px;
+    height: 100%;
+    background: rgba(10, 10, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding-top: 80px;
     transform: translateX(100%);
-    /* 初期状態では画面右外に隠す */
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0s 0.4s;
-
-    /* .hiddenを上書き */
-    display: block !important;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* メニューが開いた状態のスタイル */
 #menu-container.open #menu-content {
     transform: translateX(0);
-    /* 画面内に表示 */
-    opacity: 1;
-    visibility: visible;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
-/* メニューリスト（縦並び） */
-#menu-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    /* 項目間のスペース */
-}
-
-#menu-content li {
-    margin: 0;
-}
-
-/* メニューリンク */
+#menu-content ul { list-style: none; padding: 0; margin: 0; }
+#menu-content li { text-align: center; margin: 20px 0; }
 #menu-content a {
-    color: #e0e0e0;
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    color: var(--text-color);
     text-decoration: none;
-    font-family: 'Raleway', sans-serif;
-    /* シンプルなフォントに変更 */
-    font-size: 1.1rem;
-    padding: 10px 15px;
-    display: block;
-    /* クリック範囲を広げる */
-    border-radius: 4px;
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.3s, text-shadow 0.3s;
 }
-
-/* ホバー時のエフェクト */
-#menu-content a:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* game.htmlのカードリストを3列グリッドにする */
-#game-list.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-/* --- Game/Music Preview --- */
-.game-preview-container,
-.music-player-container {
-    position: relative;
-    width: 100%;    max-width: 800px;
-    margin: 0 auto 40px;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    background-color: #000;
-    border: 1px solid var(--accent-color);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#game-preview-area,
-#suno-player-area {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #888;
-    font-size: 1.2rem;
-}
-
-.game-card.active, .song-item.active {
-    box-shadow: 0 0 15px 5px var(--accent-color);
-}
-
-/* ゲームプレビュー中に背景SVGを非表示にしてパフォーマンスを向上 */
-body.game-active .svg-bg {
-    display: none;
-}
-
-/* --- Modal (for Game Preview) --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0s 0.3s;
-}
-
-.modal-overlay:not(.hidden) {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s;
-}
-
-.modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 960px;
-    background-color: #111;
-    border: 1px solid var(--accent-color);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.modal-body {
-    position: relative;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-}
-
-.modal-body iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.modal-close-button {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 3rem;
-    cursor: pointer;
-}
-}
+#menu-content a:hover { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color); }

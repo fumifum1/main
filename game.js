@@ -1,41 +1,34 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const gameList = document.getElementById('game-list');
-    const modal = document.getElementById('game-modal');
-    const modalBody = document.getElementById('modal-body');
-    const closeModalButton = document.getElementById('modal-close');
+    const gameModal = document.getElementById('game-preview-modal');
+    const gameIframe = document.getElementById('game-preview-iframe');
+    const closeModalButton = document.getElementById('game-preview-close');
+    const gameCards = document.querySelectorAll('.game-card');
 
-    if (!gameList || !modal || !modalBody || !closeModalButton) return;
-
-    const gameCards = gameList.querySelectorAll('.game-card');
-    if (gameCards.length === 0) return;
+    if (!gameModal || !gameIframe || !closeModalButton || gameCards.length === 0) {
+        return;
+    }
 
     // モーダルを開く関数
-    function openModal(url) {
-        // iframeを生成してモーダル内に配置
-        modalBody.innerHTML = ''; // 中身をクリア
-        const iframe = document.createElement('iframe');
-        iframe.src = url;
-        iframe.setAttribute('allowfullscreen', '');
-        modalBody.appendChild(iframe);
-
-        // モーダルを表示
-        modal.classList.remove('hidden');
-        document.body.classList.add('game-active'); // 背景アニメーションを停止
+    function openGameModal(url) {
+        gameIframe.src = url;
+        gameModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // 背景のスクロールを禁止
     }
 
     // モーダルを閉じる関数
-    function closeModal() {
-        modal.classList.add('hidden');
-        modalBody.innerHTML = ''; // iframeを削除してメモリを解放
-        document.body.classList.remove('game-active'); // 背景アニメーションを再開
+    function closeGameModal() {
+        gameModal.classList.add('hidden');
+        gameIframe.src = ''; // iframeの読み込みを停止してリソースを解放
+        document.body.style.overflow = ''; // 背景のスクロール禁止を解除
     }
 
-    // 閉じるボタンとモーダル背景のクリックイベント
-    closeModalButton.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        // モーダルの背景（黒い部分）をクリックした時だけ閉じる
-        if (e.target === modal) {
-            closeModal();
+    // 閉じるボタンのクリックイベント
+    closeModalButton.addEventListener('click', closeGameModal);
+
+    // モーダルの背景（オーバーレイ）クリックで閉じる
+    gameModal.addEventListener('click', (e) => {
+        if (e.target === gameModal) {
+            closeGameModal();
         }
     });
 
@@ -43,21 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
     gameCards.forEach(card => {
         const link = card.querySelector('a.cta-button');
         if (link) {
-            // "PLAY"ボタンは新しいタブで開くので、モーダルは開かない
-            link.addEventListener('click', (e) => {
-                e.stopPropagation();
+            // カード全体をクリックしたときにモーダルを開く
+            card.addEventListener('click', (e) => {
+                e.preventDefault(); // リンクのデフォルト動作（ページ遷移やタブを開くなど）をキャンセル
+                openGameModal(link.href);
             });
-        }
-        
-        // カード本体（"PLAY"ボタン以外）がクリックされたらモーダルを開く
-        card.addEventListener('click', () => {
-            if (link) {
-                // 他のカードから .active クラスを削除
-                gameCards.forEach(c => c.classList.remove('active'));
-                // クリックされたカードに .active クラスを追加
-                card.classList.add('active');
-                openModal(link.href);
-            }
         });
     });
 });

@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- 5. 各カルーセルの初期化 ---
-    setupInfiniteCarousel('song-list', 'prev-song', 'next-song');
+    setupInfiniteCarousel('carousel-list', 'prev-song', 'next-song');
     setupInfiniteCarousel('game-list', 'prev-game', 'next-game');
     setupInfiniteCarousel('other-list', 'prev-other', 'next-other');
 

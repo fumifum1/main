@@ -99,206 +99,27 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-/* SVG Backgrounds */
-.svg-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none;
-    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
-}
-
-.svg-wave {
-    fill: none;
-    stroke: var(--accent-color);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    filter: drop-shadow(0 0 5px var(--accent-color));
-    opacity: 0.5;
-    /* Base animation for breathing/glow */
-    animation: wavePulse 6s infinite ease-in-out alternate;
-}
-
-/* Individual Wave Animations (Path Morphing) */
-.wave-1 {
-    stroke: var(--accent-color);
-    animation: waveMorph1 15s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate;
-}
-
-.wave-2 {
-    stroke: var(--accent-secondary);
-    animation: waveMorph2 12s infinite ease-in-out alternate, wavePulse 5s infinite ease-in-out alternate -2s;
-    opacity: 0.3;
-}
-
-.wave-3 {
-    stroke: var(--accent-color);
-    animation: waveMorph3 18s infinite ease-in-out alternate, wavePulse 7s infinite ease-in-out alternate -1s;
-}
-
-.wave-4 {
-    stroke: var(--accent-secondary);
-    animation: waveMorph4 20s infinite ease-in-out alternate, wavePulse 8s infinite ease-in-out alternate -3s;
-    opacity: 0.4;
-}
-
-.wave-5 {
-    stroke: #fff;
-    animation: waveMorph5 14s infinite ease-in-out alternate, wavePulse 6s infinite ease-in-out alternate -4s;
-    opacity: 0.2;
-}
-
-/* Path Morphing Keyframes - Dynamic X/Y Movement */
-@keyframes waveMorph1 {
-    0% {
-        d: path('M-100,500 C200,200 600,800 1100,500');
-    }
-
-    50% {
-        d: path('M-100,500 C400,100 800,900 1100,500');
-    }
-
-    100% {
-        d: path('M-100,500 C300,800 700,200 1100,500');
-    }
-}
-
-@keyframes waveMorph2 {
-    0% {
-        d: path('M-100,500 C400,800 700,200 1100,500');
-    }
-
-    50% {
-        d: path('M-100,500 C600,900 300,100 1100,500');
-    }
-
-    100% {
-        d: path('M-100,500 C500,200 500,800 1100,500');
-    }
-}
-
-@keyframes waveMorph3 {
-    0% {
-        d: path('M-100,500 C200,300 900,700 1100,500');
-    }
-
-    50% {
-        d: path('M-100,500 C500,800 500,200 1100,500');
-    }
-
-    100% {
-        d: path('M-100,500 C800,100 200,900 1100,500');
-    }
-}
-
-@keyframes waveMorph4 {
-    0% {
-        d: path('M-100,500 C600,700 400,300 1100,500');
-    }
-
-    50% {
-        d: path('M-100,500 C800,200 200,800 1100,500');
-    }
-
-    100% {
-        d: path('M-100,500 C300,900 700,100 1100,500');
-    }
-}
-
-@keyframes waveMorph5 {
-    0% {
-        d: path('M-100,500 C700,100 300,900 1100,500');
-    }
-
-    50% {
-        d: path('M-100,500 C400,500 600,500 1100,500');
-    }
-
-    100% {
-        d: path('M-100,500 C200,800 800,200 1100,500');
-    }
-}
-
-@keyframes wavePulse {
-    0% {
-        stroke-width: 1;
-        filter: drop-shadow(0 0 2px currentColor);
-    }
-
-    100% {
-        stroke-width: 3;
-        filter: drop-shadow(0 0 8px currentColor);
-    }
-}
-
-/* Cards */
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.game-card,
-.song-item {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    backdrop-filter: blur(10px);
-    position: relative;
-}
-
-.game-card:hover,
-.song-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
-    border-color: var(--accent-color);
-}
-
-.game-thumbnail,
-.song-thumbnail {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid var(--card-border);
-}
-
-.game-info,
-.song-info {
-    padding: 20px;
-}
-
-.cta-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 25px;
-    background: transparent;
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
-    border-radius: 30px;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    transition: all 0.3s;
-}
-
-.cta-button:hover {
-    background: var(--accent-color);
-    color: #000;
-    box-shadow: 0 0 20px var(--accent-color);
-}
-
 /* Artist Section */
 .artist-intro {
     display: flex;
     align-items: center;
     gap: 50px;
     flex-wrap: wrap;
+}
+
+.music-artist-intro {
+    /* トップページのプロフィールと区別するためのスタイル */
+    flex-direction: row; /* デフォルトの挙動を明示 */
+}
+
+.music-artist-intro .artist-image {
+    border-radius: 15px; /* 円形ではなく、角丸の四角形に */
+    filter: none; /* グレースケールを解除してカラー表示に */
+    aspect-ratio: 1 / 1; /* 縦横比を1:1（正方形）に */
+    object-fit: cover; /* 画像がコンテナに合わせてトリミングされる */
+}
+.music-artist-intro .artist-image:hover {
+    filter: none; /* ホバー時もカラーを維持 */
 }
 
 .artist-image-container {
@@ -331,6 +152,19 @@ a:hover {
 .artist-description {
     flex: 1;
     min-width: 300px;
+}
+
+.tech-stack-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.tech-stack-box p {
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* Footer */
@@ -376,12 +210,6 @@ a:hover {
 .fade-in-section.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Active Song Item */
-.song-item.active {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
 /* Responsive */

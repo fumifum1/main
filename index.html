@@ -11,8 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -20,7 +19,7 @@
 <body>
 
     <!-- SVG Background Container -->
-    <div class="svg-bg">
+    <div class="svg-bg header-waves">
         <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg">
             <!-- Continuous Wavy Lines -->
@@ -32,12 +31,20 @@
         </svg>
     </div>
 
-    <!-- Navigation (Simplified) -->
-    <nav style="position: absolute; top: 20px; right: 20px; z-index: 100;">
-        <a href="game.html" style="margin-left: 20px; font-weight: bold;">GAMES</a>
-        <a href="music.html" style="margin-left: 20px; font-weight: bold;">MUSIC</a>
-        <a href="other.html" style="margin-left: 20px; font-weight: bold;">OTHERS</a>
-    </nav>
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="game.html">Games</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li><a href="other.html">Others</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <!-- Header Section -->
     <header class="header">
@@ -64,10 +71,10 @@
                 <p><strong>fumifumi（フミフミ）</strong></p>
                 <p>Synapse Creationsの意味は、シナプスのように色々なものを取り入れ、つなげ、創作するという意味でつけました。</p>
                 <p>AIと共に、ゲームや音楽、ウェブ制作を通して、創造することの喜びを追求しています。</p>
-                <div
-                    style="margin-top: 20px; padding: 20px; border: 1px solid var(--accent-color); border-radius: 10px; background: rgba(0, 243, 255, 0.05);">
-                    <p style="font-size: 0.9rem;">
+                <div class="tech-stack-box">
+                    <p>
                         Basic AI: Google Gemini<br>
+                        Editor: Visual Studio Code<br>
                         Assets: <a href="https://www.cryptoninja-partners.xyz//" target="_blank">CNP (CryptoNinja
                             Partners)</a><br>
                         Music: Suno AI
@@ -125,34 +132,51 @@
             <h2>Music</h2>
             <p>AIで生成された、心に響くメロディ。</p>
 
+            <!-- Musician Intro -->
+            <div class="artist-intro music-artist-intro" style="margin-top: 40px; margin-bottom: 50px;">
+                <div class="artist-image-container">
+                    <img src="jpg/artist.jpg" alt="BEAR BEER BEAT" class="artist-image">
+                </div>
+                <div class="artist-description">
+                    <h3>BEAR BEER BEAT</h3>
+                    <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
+                    <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
+                    <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
+                    <a href="artist-profile.html" class="cta-button" style="margin-top: 20px;">View Full Profile</a>
+                </div>
+            </div>
+
             <div id="suno-player-area" style="margin-bottom: 30px; min-height: 180px;">
                 <!-- Player will be inserted here -->
                 <p style="text-align: center; color: #666;">Select a song to play</p>
             </div>
 
-            <div class="card-container" id="song-list">
-                <div class="song-item" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
-                    data-song-title="Starlight Echo">
-                    <img src="jpg/song1.jpg" alt="Starlight Echo" class="song-thumbnail">
+            <div class="card-container carousel-list" id="song-list">
+                <div class="song-item active" data-suno-id="81859e00-c3ab-45a0-82a5-447a655e7d84"
+                    data-song-title="ありのままで2">
+                    <img src="jpg/song1-2.jpg" alt="ありのままで2" class="song-thumbnail">
                     <div class="song-info">
-                        <h3>そのまま</h3>
-                        <p>あなたらしく！</p>
+                        <h3>ありのままで2</h3>
+                        <p>SUNOのVer4.5でリミックス</p>
+                        <p>前回のVer.3と比較して聞いてみてください</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="96b94be4-2809-4e38-8bbe-10a858e58ea2"
-                    data-song-title="Silent Hero">
-                    <img src="jpg/song2.jpg" alt="Silent Hero" class="song-thumbnail">
+                <div class="song-item" data-suno-id="c426acae-ca01-4732-a0be-f0b9c2595525"
+                    data-song-title="Where the Wind Goes2">
+                    <img src="jpg/song3-2.jpg" alt="Where the Wind Goes2" class="song-thumbnail">
                     <div class="song-info">
-                        <h3>Silent Hero</h3>
-                        <p>社畜ビート</p>
+                        <h3>Where the Wind Goes2</h3>
+                        <p>SUNOのVer4.5でリミックス</p>
+                        <p>前回のVer.3と比較して聞いてみてください</p>
                     </div>
                 </div>
-                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a"
-                    data-song-title="Where the Wind Goes">
-                    <img src="jpg/song3.jpg" alt="Where the Wind Goes" class="song-thumbnail">
+                <div class="song-item" data-suno-id="87d91602-d491-4305-9390-84dc0dc3211f"
+                    data-song-title="over">
+                    <img src="jpg/song2.jpg" alt="over" class="song-thumbnail">
                     <div class="song-info">
-                        <h3>Where the Wind Goes</h3>
-                        <p>風の行方</p>
+                        <h3>over</h3>
+                        <p>ひたすらまくしたてラップ</p>
+                        <p>SUNO-Ver4.5</p>
                     </div>
                 </div>
                 <!-- More -->
@@ -187,6 +211,15 @@
                             IT</a>
                     </div>
                 </div>
+                <div class="game-card">
+                    <img src="jpg/q_s.jpg" alt="QuickShot" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QuickShot</h3>
+                        <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
+                        <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
                 <!-- More -->
                 <div class="game-card"
                     style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
@@ -209,18 +242,8 @@
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
 
-    <!-- Game Preview Modal (for index.html) -->
-    <div id="game-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button id="modal-close" class="modal-close-button">&times;</button>
-            <div id="modal-body" class="modal-body">
-                <!-- iframe will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
-    <script src="game.js" defer></script>
+    <script src="menu.js" defer></script>
 </body>
 
 </html>

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games - Synapse Creations</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
@@ -18,7 +18,7 @@
 
 <body>
     <!-- SVG Background Container -->
-    <div class="svg-bg">
+    <div class="svg-bg header-waves">
         <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg">
             <!-- Continuous Wavy Lines -->
@@ -58,7 +58,7 @@
                         <h3>BINGO</h3>
                         <p>ビンゴのカード台紙と抽選が同時にできるアプリ。ちょっとしたイベントに最適‼</p>
                         <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">play BINGO!</a>
+                            class="cta-button">PLAY GAME</a>
                     </div>
                 </div>
                 <!-- 1. Rush Tetra Ascent -->
@@ -85,6 +85,12 @@
         </section>
     </main>
 
+    <!-- ゲームプレビュー用モーダルウィンドウ -->
+    <div id="game-preview-modal" class="game-preview-overlay hidden">
+        <iframe id="game-preview-iframe" allowfullscreen></iframe>
+        <button id="game-preview-close" class="preview-close-button">&times;</button>
+    </div>
+
     <!-- 共通フッター -->
     <footer class="footer">
         <div class="social-links">
@@ -95,16 +101,6 @@
         </div>
         <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
     </footer>
-
-    <!-- Game Preview Modal -->
-    <div id="game-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button id="modal-close" class="modal-close-button">&times;</button>
-            <div id="modal-body" class="modal-body">
-                <!-- iframe will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </div>
 
     <!-- メニューとフェードイン効果のためのスクリプト -->
     <script src="script.js"></script>
