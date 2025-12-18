@@ -160,6 +160,19 @@ body.game-active {
 }
 
 /* --- artist-profile.html 専用スタイル --- */
+.group-photo-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.group-photo-container img {
+    max-width: 100%;
+    width: 700px;
+    border-radius: 15px;
+    border: 2px solid var(--card-border-color);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.25);
+}
+
 .story-section {
     max-width: 800px;
     margin: 20px auto 40px;
