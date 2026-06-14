@@ -249,6 +249,42 @@ body.game-active {
     border-color: var(--accent-color);
 }
 
+/* カードの角に表示するNEW/UPDATEバッジ */
+.game-card.is-new::after {
+    content: "NEW";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, #ff007f 0%, #ff5e62 100%);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(255, 0, 127, 0.4);
+    z-index: 2;
+    pointer-events: none;
+    letter-spacing: 1px;
+}
+
+.game-card.is-updated::after {
+    content: "UPDATE";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, #00f3ff 0%, #00a8b3 100%);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 243, 255, 0.4);
+    z-index: 2;
+    pointer-events: none;
+    letter-spacing: 1px;
+}
+
+
 .game-thumbnail,
 .song-thumbnail {
     width: 100%;

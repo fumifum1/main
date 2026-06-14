@@ -161,6 +161,32 @@ document.addEventListener('DOMContentLoaded', () => {
     setupInfiniteCarousel('game-list', 'prev-game', 'next-game');
     setupInfiniteCarousel('other-list', 'prev-other', 'next-other');
 
+    // --- 5.5. ゲームカード全体をクリック可能にする設定 ---
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        // game.html のようにプレビュー用モーダルがある場合は、game.js の処理と競合しないようスキップする
+        if (document.getElementById('game-preview-modal')) {
+            return;
+        }
+
+        const link = card.querySelector('a.cta-button');
+        if (link) {
+            card.addEventListener('click', (e) => {
+                // すでにリンク要素(a)自体をクリックしている場合は、二重遷移を防ぐために何もしない
+                if (e.target.closest('a')) {
+                    return;
+                }
+                e.preventDefault();
+                const target = link.getAttribute('target') || '_self';
+                if (target === '_blank') {
+                    window.open(link.href, '_blank', 'noopener,noreferrer');
+                } else {
+                    window.location.href = link.href;
+                }
+            });
+        }
+    });
+
     // --- 6. フッターのコピーライト年を自動更新 ---
     const copyrightElement = document.querySelector('.footer p');
     if (copyrightElement && copyrightElement.textContent.includes('Synapse Creations')) {
