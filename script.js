@@ -193,4 +193,77 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentYear = new Date().getFullYear();
         copyrightElement.innerHTML = `&copy; ${currentYear} Synapse Creations. All Rights Reserved.`;
     }
+
+    // --- 7. 背景テーマの自動切り替えロジック ---
+    const themes = [
+        {
+            name: "white",
+            bgColor: "#f6f5f1",
+            textMain: "#25282a",
+            orbs: ["#ffd2d2", "#d2e0ff"],
+            textures: [1, 0] // [Plaster, Brick]
+        },
+        {
+            name: "navy",
+            bgColor: "#0a192f",
+            textMain: "#e2e8f0",
+            orbs: ["#1e40af", "#0ea5e9"],
+            textures: [0, 1]
+        },
+        {
+            name: "black",
+            bgColor: "#090a0c",
+            textMain: "#e8ecef",
+            orbs: ["#f43f5e", "#06b6d4"],
+            textures: [0, 1]
+        }
+    ];
+
+    function updateTheme(index) {
+        const theme = themes[index];
+        
+        // 背景色と文字色の適用
+        document.documentElement.style.setProperty('--current-bg', theme.bgColor);
+        document.documentElement.style.setProperty('--text-main', theme.textMain);
+        document.body.style.backgroundColor = theme.bgColor;
+        document.body.style.color = theme.textMain;
+
+        // テクスチャの不透明度切り替え
+        const plaster = document.getElementById('texture-plaster');
+        const brick = document.getElementById('texture-brick');
+        if (plaster) plaster.style.opacity = theme.textures[0] ? '0.25' : '0';
+        if (brick) brick.style.opacity = theme.textures[1] ? '0.35' : '0';
+
+        // 光の玉の色変更
+        const orb1 = document.getElementById('orb-1');
+        const orb2 = document.getElementById('orb-2');
+        if (orb1) orb1.style.backgroundColor = theme.orbs[0];
+        if (orb2) orb2.style.backgroundColor = theme.orbs[1];
+        
+        // 各種カード要素のスタイル自動調整
+        const cards = document.querySelectorAll('.game-card, .song-item, .artist-intro, .member-profile, .tech-stack-box');
+        cards.forEach(card => {
+            if (theme.name === "white") {
+                card.style.background = '#ffffff';
+                card.style.borderColor = 'rgba(0, 0, 0, 0.05)';
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.08)';
+                card.style.backdropFilter = 'none';
+            } else {
+                card.style.background = 'rgba(255, 255, 255, 0.05)';
+                card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                card.style.boxShadow = 'none';
+                card.style.backdropFilter = 'blur(10px)';
+            }
+        });
+    }
+
+    // 8秒ごとに自動切り替え
+    let currentThemeIndex = 0;
+    setInterval(() => {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        updateTheme(currentThemeIndex);
+    }, 8000);
+
+    // 初回実行
+    updateTheme(0);
 });

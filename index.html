@@ -14,21 +14,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .bg-transition-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .absolute-full {
+            position: absolute;
+            inset: 0;
+        }
+        .smooth-transition {
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ambient-orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            transition: background-color 1.5s ease, transform 3s ease;
+        }
+        .orb-1 { top: 15%; left: -15%; }
+        .orb-2 { bottom: 15%; right: -15%; }
+        .plaster-texture {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+            mix-blend-mode: color-burn;
+        }
+        .brick-texture {
+            background-image: 
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
+            background-size: 58px 58px;
+            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
+            mix-blend-mode: multiply;
+        }
+        body { transition: background-color 1.5s ease, color 1.5s ease; }
+        .opacity-0 { opacity: 0; }
+    </style>
 </head>
 
 <body>
 
-    <!-- SVG Background Container -->
-    <div class="svg-bg header-waves">
-        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <!-- Continuous Wavy Lines -->
-            <path class="svg-wave wave-1" d="M-100,500 C300,200 700,800 1100,500" />
-            <path class="svg-wave wave-2" d="M-100,500 C400,800 600,200 1100,500" />
-            <path class="svg-wave wave-3" d="M-100,500 C200,300 800,700 1100,500" />
-            <path class="svg-wave wave-4" d="M-100,500 C500,700 500,300 1100,500" />
-            <path class="svg-wave wave-5" d="M-100,500 C600,100 400,900 1100,500" />
-        </svg>
+    <!-- 背景レイヤー -->
+    <div class="bg-transition-container">
+        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
+        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
+        <div id="orb-1" class="ambient-orb orb-1"></div>
+        <div id="orb-2" class="ambient-orb orb-2"></div>
     </div>
 
     <!-- 共通ナビゲーションメニュー -->
