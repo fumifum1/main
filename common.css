@@ -293,6 +293,13 @@ body.game-active {
     border-bottom: 1px solid var(--card-border-color);
 }
 
+/* ブログ記事カードのサムネイル（透過キャラ画像を切らずに見せる） */
+.blog-thumbnail {
+    object-fit: contain;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
 .game-info,
 .song-info {
     padding: 20px;
