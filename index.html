@@ -1,372 +1,614 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synapse Creations | AI-Powered Artistry</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .bg-transition-container {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .absolute-full {
-            position: absolute;
-            inset: 0;
-        }
-        .smooth-transition {
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .ambient-orb {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            transition: background-color 1.5s ease, transform 3s ease;
-        }
-        .orb-1 { top: 15%; left: -15%; }
-        .orb-2 { bottom: 15%; right: -15%; }
-        .plaster-texture {
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
-            mix-blend-mode: color-burn;
-        }
-        .brick-texture {
-            background-image: 
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
-            background-size: 58px 58px;
-            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
-            mix-blend-mode: multiply;
-        }
-        body { transition: background-color 1.5s ease, color 1.5s ease; }
-        .opacity-0 { opacity: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synapse Creations | AI-Powered Artistry</title>
+<meta name="description" content="fumifumi が AI と一緒につくるゲーム・音楽・Webツールの遊び場。">
+<link rel="icon" type="image/x-icon" href="jpg/ico.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#fdf6ff;--ink:#1b1530;--mute:#6f6787;--pink:#ff7ac6;--lilac:#a98bff;--mint:#6ee7c8;--lemon:#ffe066;--sky:#7cc8ff}
+*{margin:0;padding:0;box-sizing:border-box}
+/* スマホで横スクロール・縮小表示にならないよう、はみ出しを切り取る */
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Zen Maru Gothic',sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* 背景のパステルのモヤ：周期をずらして、それぞれ別の軌道でゆっくり漂う */
+.blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.blobs div{position:absolute;inset:-12vmax;filter:blur(80px);opacity:.72}
+.blobs i{position:absolute;border-radius:50%;will-change:transform;animation:var(--path) var(--dur) ease-in-out infinite}
+.blobs i:nth-child(1){width:48vmax;height:48vmax;background:var(--pink);left:4%;top:4%;--path:d1;--dur:48s}
+.blobs i:nth-child(2){width:42vmax;height:42vmax;background:var(--lilac);left:58%;top:12%;--path:d2;--dur:62s}
+.blobs i:nth-child(3){width:40vmax;height:40vmax;background:var(--mint);left:22%;top:58%;--path:d3;--dur:55s}
+.blobs i:nth-child(4){width:28vmax;height:28vmax;background:var(--lemon);left:64%;top:62%;--path:d4;--dur:44s}
+.blobs i:nth-child(5){width:30vmax;height:30vmax;background:var(--sky);left:38%;top:30%;--path:d5;--dur:70s;opacity:.75}
+@keyframes d1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20vw,12vh) scale(1.12)}50%{transform:translate(8vw,36vh) scale(.9)}75%{transform:translate(-6vw,14vh) scale(1.06)}}
+@keyframes d2{0%,100%{transform:translate(0,0) scale(1)}30%{transform:translate(-22vw,18vh) scale(.92)}60%{transform:translate(-8vw,40vh) scale(1.14)}80%{transform:translate(6vw,10vh) scale(1)}}
+@keyframes d3{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(24vw,-20vh) scale(1.1)}65%{transform:translate(-10vw,-30vh) scale(.94)}}
+@keyframes d4{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-30vw,-12vh) scale(1.2)}70%{transform:translate(-12vw,-34vh) scale(.9)}}
+@keyframes d5{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-18vw,26vh) scale(1.25)}}
+
+/* ぷにっと：押すとつぶれて、離すとゼリーのように戻る（タッチでも動く） */
+.puni{transition:transform .16s cubic-bezier(.3,1.6,.5,1),box-shadow .16s}
+.puni.pressed{transform:scale(1.05,.9)}
+.puni.jelly{animation:jelly .65s cubic-bezier(.3,1.4,.5,1)}
+@keyframes jelly{0%{transform:scale(1.05,.9)}30%{transform:scale(.94,1.08)}50%{transform:scale(1.04,.96)}70%{transform:scale(.98,1.02)}100%{transform:scale(1)}}
+
+nav{position:sticky;top:16px;z-index:20;margin:16px auto 0;width:min(1100px,calc(100% - 32px));display:flex;justify-content:space-between;align-items:center;padding:10px 10px 10px 22px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:999px;box-shadow:0 10px 30px -14px rgba(80,40,120,.35)}
+nav b{font-family:'Unbounded';font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px}
+nav b img{width:28px;height:28px;border-radius:50%;object-fit:cover;transition:transform .5s cubic-bezier(.3,2,.5,1)}
+nav b:hover img{transform:rotate(-20deg) scale(1.1)}
+nav b span{color:var(--pink)}
+nav ul{display:flex;gap:4px;list-style:none}
+nav ul a{display:block;padding:9px 15px;border-radius:999px;font-weight:700;font-size:14px;transition:background .25s,rotate .25s}
+nav ul a:hover{background:var(--lemon);rotate:-3deg}
+nav .hi{padding:10px 18px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:14px}
+.mbtn{all:unset;display:none;cursor:pointer;padding:10px 18px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:14px}
+.mmenu{position:absolute;right:0;top:calc(100% + 10px);width:min(280px,calc(100vw - 32px));padding:12px;border-radius:28px;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:none;gap:8px}
+.mmenu.open{display:grid;animation:jelly .5s}
+.mmenu a{padding:12px 16px;border-radius:18px;font-weight:700;border:2px solid var(--ink)}
+.mmenu a:nth-child(1){background:var(--lemon)}.mmenu a:nth-child(2){background:var(--pink)}.mmenu a:nth-child(3){background:var(--mint)}.mmenu a:nth-child(4){background:var(--sky)}.mmenu a:nth-child(5){background:var(--ink);color:#fff}
+
+.hero{text-align:center;padding:110px 16px 70px;position:relative}
+.tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tags a{padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;border:2px solid var(--ink);background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.tags a:nth-child(1){background:var(--lemon);rotate:-4deg}.tags a:nth-child(2){background:var(--pink);rotate:3deg}.tags a:nth-child(3){background:var(--mint);rotate:-2deg}.tags a:nth-child(4){background:var(--sky);rotate:4deg}
+.tags a i{font-style:normal;font-size:.8em;margin-left:4px;display:inline-block;transition:transform .3s cubic-bezier(.3,2,.5,1)}
+@media (hover:hover){
+  .tags a:hover:not(.pressed){animation:hop .6s cubic-bezier(.3,1.6,.5,1);box-shadow:5px 5px 0 var(--ink)}
+  .tags a:hover i{transform:translate(2px,-2px) scale(1.2)}
+}
+@keyframes hop{0%{transform:translateY(0)}35%{transform:translateY(-9px) scale(1.06,.95)}60%{transform:translateY(0) scale(1.05,.92)}80%{transform:translateY(-3px) scale(.98,1.03)}100%{transform:translateY(0)}}
+.hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(34px,12.5vw,150px);line-height:1.1;letter-spacing:-.04em;margin:34px 0 26px}
+.hero h1 .ch{display:inline-block;transition:transform .5s cubic-bezier(.3,2,.5,1),color .3s}
+.hero h1 .ch:hover,.hero h1 .ch.pop{transform:translateY(-.18em) scale(1.15) rotate(-6deg);color:var(--pink)}
+.hero h1 .ch:nth-child(3n):hover,.hero h1 .ch:nth-child(3n).pop{color:var(--lilac)}.hero h1 .ch:nth-child(3n+1):hover,.hero h1 .ch:nth-child(3n+1).pop{color:#18b991}
+.hero h1 .idot{position:relative}
+/* i の点：ドットなしの ı に Mitama の顔をのせる。行間を少し広げ、上の p の下端と ı の上端のすき間に収める */
+.tittle{position:absolute;left:50%;top:var(--tt,.033em);width:.28em;height:.28em;translate:-50% 0;border-radius:50%;overflow:hidden;border:.022em solid var(--ink);background:#eee;cursor:pointer;animation:tbob 2.8s ease-in-out infinite}
+.tittle img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.tittle.jump{animation:tjump .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes tbob{25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+@keyframes tjump{30%{transform:translateY(-.35em) rotate(-200deg) scale(1.2)}60%{transform:translateY(.02em) scale(1.15,.85)}100%{transform:none}}
+.spark{position:absolute;font-size:34px;animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{50%{transform:scale(.6) rotate(45deg);opacity:.5}}
+.hero p{font-size:18px;color:var(--mute);font-weight:700}
+.hint{margin-top:16px;font-size:13px;color:var(--mute)}
+
+.buddy{position:fixed;left:0;top:0;width:74px;height:74px;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 12px 24px -8px rgba(80,40,120,.45);pointer-events:none;z-index:30;background:#eee}
+.buddy img{width:100%;height:100%;object-fit:cover}
+
+.marq{background:var(--ink);color:#fff;transform:rotate(-2deg);margin:30px -20px 0;padding:18px 0;overflow:hidden;white-space:nowrap;font-family:'Unbounded';font-weight:800;font-size:clamp(20px,2.6vw,30px)}
+.marq div{display:inline-block;animation:mq 22s linear infinite}
+.marq span{color:var(--lemon)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+section{padding:110px 0 0}
+.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;gap:16px;flex-wrap:wrap}
+.sh h2{font-family:'Unbounded';font-weight:800;font-size:clamp(34px,5vw,60px);letter-spacing:-.04em;line-height:1}
+.sh p{color:var(--mute);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cd{position:relative;display:block;padding:14px 14px 20px;border-radius:32px;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.cd:nth-child(4n+1){background:#ffe3f3}.cd:nth-child(4n+2){background:#e4fbf4}.cd:nth-child(4n+3){background:#fff6cf}.cd:nth-child(4n+4){background:#e9e2ff}
+@media (hover:hover){.cd:hover:not(.pressed){animation:jelly .65s cubic-bezier(.3,1.4,.5,1)}}
+.cd.pressed{transform:translate(4px,4px) scale(1.03,.94);box-shadow:2px 2px 0 var(--ink)}
+.cd img{width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:22px;border:2px solid var(--ink);display:block}
+.cd h3{font-family:'Unbounded';font-weight:600;font-size:19px;margin:16px 6px 4px;letter-spacing:-.02em}
+.cd p{font-size:14px;color:var(--mute);margin:0 56px 0 6px;font-weight:500}
+.cd .go{position:absolute;right:20px;bottom:18px;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:transform .4s cubic-bezier(.3,2,.5,1)}
+.cd:hover .go{transform:rotate(-45deg) scale(1.1)}
+/* 種類ラベル（GAME / TOOL）は常に表示し、NEW は別のステッカーにする */
+.cd .pill{position:absolute;left:26px;top:26px;padding:4px 12px;border-radius:999px;border:2px solid var(--ink);font-family:'Unbounded';font-size:11px;font-weight:600;background:#fff}
+.pill.game{background:var(--lemon)}.pill.tool{background:var(--sky)}
+.pill i{font-style:normal;margin-right:4px}
+.new{position:absolute;right:20px;top:20px;padding:6px 10px;border-radius:12px;background:var(--pink);color:#fff;border:2px solid var(--ink);font-family:'Unbounded';font-size:11px;font-weight:800;rotate:10deg;box-shadow:2px 2px 0 var(--ink);animation:wob 2.6s ease-in-out infinite}
+@keyframes wob{50%{rotate:-4deg;transform:scale(1.08)}}
+.more{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.more a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:700;font-size:14px}
+.more a{transition:background .25s,color .25s,transform .16s cubic-bezier(.3,1.6,.5,1),box-shadow .16s}
+.more a b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;transition:transform .35s cubic-bezier(.3,2,.5,1),background .25s}
+@media (hover:hover){
+  .more a:hover{background:var(--lemon)}
+  .more a:nth-child(2):hover{background:var(--mint)}
+  .more a:hover b{background:var(--pink);transform:rotate(-45deg) scale(1.1)}
+}
+.more a.pressed{transform:translate(3px,3px) scale(1.04,.92);box-shadow:1px 1px 0 var(--ink)}
+
+.player{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:30px;border-radius:40px;background:linear-gradient(135deg,var(--lilac),var(--pink));color:#fff;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.player{grid-template-columns:minmax(0,420px) 1fr}
+.mplayer{width:100%;border-radius:28px;background:#fff;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);color:var(--ink);overflow:hidden}
+.mp-bar{display:flex;align-items:center;gap:8px;padding:10px}
+.mp-bar img{flex:none;width:52px;height:52px;border-radius:14px;border:2px solid var(--ink);object-fit:cover;transition:border-radius .5s}
+.mplayer.playing .mp-bar img{border-radius:50%;animation:spin 6s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+.mp-tx{flex:1;min-width:0;padding-left:4px}
+.mp-tx small{display:block;white-space:nowrap;font-family:'Unbounded';font-size:9px;font-weight:600;color:var(--mute);letter-spacing:.06em}
+.mp-tx b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mplayer .eq{color:var(--ink)}
+.mplayer.playing .eq b{opacity:1;background:var(--pink);animation:eq .9s ease-in-out infinite}
+.mplayer button{all:unset;cursor:pointer;flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:13px;transition:background .2s,transform .16s cubic-bezier(.3,1.6,.5,1)}
+.mplayer button:hover{background:var(--lemon)}
+.mplayer button:active{transform:scale(1.1,.85)}
+.mplayer button.pp{background:var(--ink);color:#fff;width:42px;height:42px}
+.mplayer button.pp:hover{background:var(--pink);color:var(--ink)}
+.mp-stage{position:relative;height:184px;border-top:2px solid var(--ink);background:#1b1530}
+.mp-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#fff}
+.mp-cover{position:absolute;inset:0;cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mp-cover::before{content:'';position:absolute;inset:-20px;background:var(--art) center/cover;filter:blur(14px) saturate(1.2);opacity:.75;transition:transform .6s}
+.mp-cover:hover::before{transform:scale(1.08)}
+.mp-cover span{position:relative;white-space:nowrap;display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:700;font-size:14px;transition:background .25s}
+.mp-cover:hover span{background:var(--lemon)}
+.mp-cover b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px}
+.mplayer.playing .mp-cover{display:none}
+.player h3{font-family:'Unbounded';font-weight:800;font-size:clamp(24px,3vw,36px);letter-spacing:-.03em}
+.player p{opacity:.9;margin-top:8px;font-weight:700}
+.list{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.list div{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.18);font-weight:700;cursor:pointer;text-align:left}
+.list div:hover,.list div.on{background:#fff;color:var(--ink)}
+.list i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px;font-style:normal}
+.list .tt{flex:1}
+.eq{display:flex;gap:3px;align-items:flex-end;height:20px;margin-left:auto;flex:none}
+.eq b{width:4px;height:5px;border-radius:3px;background:currentColor;opacity:.5}
+.list div.on .eq b{opacity:1;background:var(--pink);animation:eq .9s ease-in-out infinite}
+.list div:not(.on):hover .eq b{opacity:.8;animation:eq 1.6s ease-in-out infinite}
+.eq b:nth-child(2){animation-delay:-.45s!important}.eq b:nth-child(3){animation-delay:-.2s!important}.eq b:nth-child(4){animation-delay:-.7s!important}.eq b:nth-child(5){animation-delay:-.35s!important}
+@keyframes eq{0%,100%{height:4px}50%{height:20px}}
+.player .more{justify-content:flex-start;margin-top:18px}
+.player .more a{color:var(--ink);font-size:13px;padding:10px 16px}
+
+.me{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center;padding:34px;border-radius:40px;background:#fff;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.mitama{position:relative;width:240px;cursor:pointer;user-select:none}
+.mitama .face{width:240px;height:240px;border-radius:50%;overflow:hidden;border:2px solid var(--ink);animation:bob 3s ease-in-out infinite;background:#eee}
+.mitama .face img{width:100%;height:100%;object-fit:cover;display:block}
+.mitama.boing .face{animation:boing .55s cubic-bezier(.3,1.6,.5,1),bob 3s ease-in-out .55s infinite}
+@keyframes boing{0%{transform:scale(1.12,.86)}35%{transform:scale(.92,1.1)}65%{transform:scale(1.04,.97)}100%{transform:scale(1)}}
+@keyframes bob{50%{transform:translateY(-10px) rotate(3deg)}}
+.mitama .tap{position:absolute;right:6px;top:196px;padding:4px 10px;border-radius:999px;background:var(--ink);color:#fff;font-family:'Unbounded';font-size:11px;font-weight:600;rotate:-8deg;animation:tw 2.4s ease-in-out infinite}
+.mitama .name{display:block;margin-top:14px;text-align:center;font-family:'Unbounded';font-weight:800;font-size:16px}
+.mitama .name small{display:block;font-family:'Zen Maru Gothic';font-size:12px;color:var(--mute);font-weight:700}
+.say{position:absolute;left:34%;bottom:calc(100% + 10px);width:max-content;max-width:270px;padding:12px 16px;background:#fff;border:2px solid var(--ink);border-radius:22px 22px 22px 6px;box-shadow:4px 4px 0 var(--ink);font-weight:700;font-size:14px;line-height:1.6;text-align:left;z-index:3;transform-origin:bottom left;opacity:0;transform:scale(.4) translateY(12px);transition:opacity .2s,transform .45s cubic-bezier(.3,1.8,.5,1);pointer-events:none}
+.say.show{opacity:1;transform:none}
+.say small{display:block;font-family:'Unbounded';font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--mute);margin-bottom:2px}
+.say.luck{background:var(--lemon)}
+.say.luck small{color:#8a6400}
+.say.luck b{color:#e0457b}
+.me h3{font-family:'Unbounded';font-weight:800;font-size:30px}
+.me p{color:var(--mute);line-height:1.9;margin-top:10px;font-weight:500}
+.me .note{font-size:13px;margin-top:14px}
+
+footer{text-align:center;padding:140px 16px 100px}
+footer h2{font-family:'Unbounded';font-weight:800;font-size:clamp(30px,6vw,76px);letter-spacing:-.04em;line-height:1}
+.soc{display:flex;gap:12px;justify-content:center;margin-top:30px}
+.soc a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.soc a:hover{background:var(--lemon)}
+.fnav{display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap;margin-top:26px;font-weight:700;font-size:14px}
+.fnav a{border-bottom:2px solid var(--pink)}
+.credit{margin-top:22px;color:var(--mute);font-size:12px;line-height:1.8}
+.credit a{text-decoration:underline}
+
+/* しゃぼん玉チャレンジ */
+.gbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:13px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--pink);transition:background .25s,color .25s,transform .16s cubic-bezier(.3,1.6,.5,1),box-shadow .16s}
+.gbtn small{opacity:.7;font-weight:500}
+.gbtn:hover{background:var(--pink);color:var(--ink)}
+.gfield{position:fixed;inset:0;z-index:35;pointer-events:none;overflow:hidden}
+.gb{position:absolute;bottom:-100px;border-radius:50%;pointer-events:auto;cursor:pointer;touch-action:manipulation;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 10%,rgba(255,255,255,.3) 24%,var(--c) 72%);border:2px solid rgba(27,21,48,.65);animation:rise var(--d) linear forwards,swing 2.4s ease-in-out infinite alternate}
+.gb.gold{background:#fff;border:3px solid #ffb800;box-shadow:0 0 0 4px rgba(255,184,0,.35)}
+.gb.gold img{width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none}
+@keyframes rise{to{transform:translateY(calc(-100vh - 160px))}}
+@keyframes swing{from{translate:-18px 0}to{translate:18px 0}}
+.ptxt{position:fixed;z-index:36;pointer-events:none;font-family:'Unbounded';font-weight:800;font-size:20px;color:var(--ink);translate:-50% -50%;animation:pts .8s ease-out forwards;white-space:nowrap}
+@keyframes pts{to{transform:translateY(-50px) scale(1.3);opacity:0}}
+.shard{position:fixed;z-index:36;width:9px;height:9px;border-radius:50%;pointer-events:none;border:1.5px solid var(--ink);animation:shard .5s ease-out forwards}
+@keyframes shard{to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}}
+.hud{position:fixed;left:50%;top:86px;translate:-50% 0;z-index:37;display:none;gap:20px;padding:10px 22px;border-radius:999px;background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Unbounded';font-weight:800;font-size:16px}
+.hud.on{display:flex}
+.result{position:fixed;inset:0;z-index:38;display:none;place-items:center;background:rgba(27,21,48,.35);backdrop-filter:blur(4px)}
+.result.on{display:grid}
+.result .box{width:min(340px,calc(100vw - 40px));padding:28px;border-radius:32px;background:#fff;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);text-align:center;animation:jelly .6s}
+.result img{width:92px;height:92px;border-radius:50%;border:2px solid var(--ink);object-fit:cover}
+.result h3{font-family:'Unbounded';font-weight:800;font-size:48px;line-height:1;margin:6px 0}
+.result p{font-weight:700;color:var(--mute)}
+.result .say2{margin:14px 0;padding:10px 14px;border-radius:16px;background:var(--lemon);font-weight:700}
+.result .row{display:flex;gap:10px;justify-content:center}
+.result button{all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;border:2px solid var(--ink);font-weight:700;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.result button:hover{background:var(--lemon)}
+.result button.p{background:var(--pink)}
+
+/* オープニング */
+.splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);overflow:hidden;clip-path:circle(150% at 50% 50%)}
+.splash::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 30% 30%,var(--pink) 0,transparent 35%),radial-gradient(circle at 70% 40%,var(--lilac) 0,transparent 35%),radial-gradient(circle at 50% 75%,var(--mint) 0,transparent 35%);filter:blur(60px);opacity:.6}
+.splash.out{animation:spout .75s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes spout{to{clip-path:circle(0% at 50% 50%)}}
+.sp-bub{position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 10%,rgba(255,255,255,.3) 24%,rgba(169,139,255,.55) 72%);border:2px solid var(--ink);animation:spbub 1.1s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes spbub{0%{transform:translateY(60vh) scale(.4)}70%{transform:translateY(0) scale(1)}85%{transform:scale(1.15,.9)}100%{transform:scale(1.5);opacity:0}}
+.sp-m{position:absolute;width:150px;height:150px;border-radius:50%;overflow:hidden;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);opacity:0;animation:spm .7s 1s cubic-bezier(.3,1.8,.5,1) forwards}
+.sp-m img{width:100%;height:100%;object-fit:cover}
+@keyframes spm{0%{opacity:0;transform:scale(.2) rotate(-30deg)}100%{opacity:1;transform:none}}
+.sp-say{position:absolute;translate:105px -105px;padding:10px 16px;border-radius:20px 20px 20px 6px;background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:700;white-space:nowrap;opacity:0;animation:spm .5s 1.45s cubic-bezier(.3,1.8,.5,1) forwards}
+.sp-title{position:absolute;translate:0 135px;display:flex;align-items:center;gap:10px;font-family:'Unbounded';font-weight:800;font-size:clamp(34px,8vw,60px);letter-spacing:-.04em;opacity:0;animation:spt .6s 1.8s cubic-bezier(.3,1.6,.5,1) forwards}
+.sp-title img{width:.8em;height:.8em;border-radius:50%}
+.sp-title span{color:var(--pink)}
+@keyframes spt{from{opacity:0;transform:translateY(30px) scale(.8)}to{opacity:1;transform:none}}
+.sp-skip{all:unset;cursor:pointer;position:absolute;right:20px;bottom:20px;padding:8px 14px;border-radius:999px;border:2px solid var(--ink);background:#fff;font-weight:700;font-size:13px}
+.sp-skip:hover{background:var(--lemon)}
+body.intro .hero h1 .ch{animation:drop .7s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--i) * 45ms)}
+body.intro .tags a{animation:drop .6s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--i) * 80ms + .5s)}
+@keyframes drop{from{transform:translateY(-120px) rotate(-20deg);opacity:0}}
+.reveal{opacity:0;transform:translateY(46px) scale(.94)}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s,transform .75s cubic-bezier(.3,1.5,.5,1);transition-delay:var(--rd,0ms)}
+
+.bub{position:fixed;border-radius:50%;pointer-events:none;z-index:40;border:2px solid var(--ink);animation:up 1.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{0%{transform:translate(-50%,-50%) scale(0)}20%{transform:translate(-50%,-50%) scale(1)}90%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% - 160px)) scale(1.2);opacity:0}}
+
+@media (prefers-reduced-motion:reduce){.blobs i,.marq div{animation:none}}
+@media (max-width:860px){
+  nav ul,nav .hi{display:none}
+  .mbtn{display:block}
+  .cards{grid-template-columns:1fr}
+  .player,.me{grid-template-columns:1fr;justify-items:center;text-align:center;padding:26px 20px}
+  .player .more{justify-content:center}
+  .player{grid-template-columns:1fr}
+  .mplayer{max-width:440px}
+  .mplayer .eq{display:none}
+  .say{left:50%;translate:-50% 0;transform-origin:bottom center;border-radius:22px;max-width:min(270px,calc(100vw - 64px))}
+  .buddy{display:none}
+  .hero{padding-top:80px}
+  .hint .pc{display:none}
+}
+@media (min-width:861px){.hint .sp{display:none}}
+</style>
 </head>
-
 <body>
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="sp-bub"></div>
+  <div class="sp-m"><img src="jpg/artist-image.jpg" alt=""></div>
+  <div class="sp-say">やあ！ようこそ👋</div>
+  <div class="sp-title"><img src="jpg/ico.ico" alt="">Synapse<span>✦</span></div>
+  <button class="sp-skip" id="spskip">スキップ →</button>
+</div>
+<div class="gfield" id="gfield"></div>
+<div class="hud" id="hud"><span>⏱ <b id="gt">20</b></span><span>🫧 <b id="gs">0</b></span></div>
+<div class="result" id="result"><div class="box"><img src="jpg/artist-image.jpg" alt="Mitama"><p>SCORE</p><h3 id="rs">0</h3><p id="rb">BEST 0</p><div class="say2" id="rsay"></div><div class="row"><button class="p" id="again">もう一回</button><button id="rclose">とじる</button></div></div></div>
+<div class="blobs"><div><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="buddy" id="buddy"><img src="jpg/artist-image.jpg" alt=""></div>
 
-    <!-- 背景レイヤー -->
-    <div class="bg-transition-container">
-        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
-        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
-        <div id="orb-1" class="ambient-orb orb-1"></div>
-        <div id="orb-2" class="ambient-orb orb-2"></div>
+<nav>
+  <b><img src="jpg/ico.ico" alt="">Synapse<span>✦</span></b>
+  <ul><li><a href="game.html">Games</a></li><li><a href="music.html">Music</a></li><li><a href="other.html">Others</a></li><li><a href="blog.html">Blog</a></li></ul>
+  <a class="hi puni" href="#hi">Say hi 👋</a>
+  <button class="mbtn puni" id="mbtn" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <div class="mmenu" id="mmenu">
+    <a href="game.html">🎮 Games</a><a href="music.html">🎧 Music</a><a href="other.html">🛠️ Others</a><a href="blog.html">✍️ Blog</a><a href="#hi">👋 Say hi</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="spark" style="left:12%;top:120px">✦</span><span class="spark" style="right:14%;top:200px;animation-delay:-1s;color:var(--pink)">✦</span><span class="spark" style="left:22%;bottom:60px;animation-delay:-1.6s;color:var(--lilac)">✷</span>
+  <div class="tags"><a class="puni" href="game.html">#Games<i>↗</i></a><a class="puni" href="music.html">#Music<i>↗</i></a><a class="puni" href="other.html">#Others<i>↗</i></a><a class="puni" href="blog.html">#Blog<i>↗</i></a></div>
+  <h1 data-split>Synapse<br>Creations</h1>
+  <p>音と映像、そしてAIが織りなす無限の可能性。</p>
+  <div class="hint" id="hint"><span class="pc">どこでもクリックすると、しゃぼん玉がでるよ。Mitama もついてくる。</span><span class="sp">どこでもタップすると、しゃぼん玉がでるよ。</span></div>
+  <button class="gbtn puni" id="gbtn">🫧 しゃぼん玉チャレンジ <small>20秒</small></button>
+</header>
+
+<div class="marq"><div>GAMES <span>✦</span> MUSIC <span>✦</span> TOOLS <span>✦</span> BLOG <span>✦</span> 広告なし <span>✦</span> バグはご愛敬 <span>✦</span> GAMES <span>✦</span> MUSIC <span>✦</span> TOOLS <span>✦</span> BLOG <span>✦</span> 広告なし <span>✦</span> バグはご愛敬 <span>✦</span>&nbsp;</div></div>
+
+<main class="wrap">
+  <section id="works">
+    <div class="sh"><h2>Play &amp; Make</h2><p>ぷにっと押してみてね。</p></div>
+    <div class="cards">
+      <a class="cd puni" href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/bingo.jpg" alt=""><h3>BINGO</h3><p>台紙と抽選がいっしょに</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/game/rv.html" target="_blank" rel="noopener"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/rv.jpg" alt=""><h3>Reversi</h3><p>AI対戦のリバーシ</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/game/" target="_blank" rel="noopener"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/game-thumbnail2.jpg" alt=""><h3>Arcade Invade</h3><p>なつかしの定番</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/works/kippoui-navi/" target="_blank" rel="noopener"><span class="pill tool"><i>🛠️</i>TOOL</span><span class="new">NEW!</span><img src="jpg/k_n.png" alt=""><h3>Celestial Compass</h3><p>吉方位をチェック</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/works/GraffitiStudio.html" target="_blank" rel="noopener"><span class="pill tool"><i>🛠️</i>TOOL</span><span class="new">NEW!</span><img src="jpg/v_p.jpg" alt=""><h3>GraffitiStudio</h3><p>AIプロンプト工房</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/works/tarot_g.html" target="_blank" rel="noopener"><span class="pill tool"><i>🛠️</i>TOOL</span><img src="jpg/c_t.png" alt=""><h3>Tarot</h3><p>タロットでうらなう</p><span class="go">→</span></a>
     </div>
+    <div class="more"><a class="puni" href="game.html"><b>→</b>ゲームをぜんぶ見る</a><a class="puni" href="other.html"><b>→</b>ツールをぜんぶ見る</a></div>
+  </section>
 
-    <!-- 共通ナビゲーションメニュー -->
-    <div id="menu-container">
-        <div id="menu-icon">
-            <span></span><span></span><span></span>
+  <section id="music">
+    <div class="player">
+      <div class="mplayer" id="mplayer">
+        <div class="mp-bar">
+          <img id="mpcv" src="jpg/y_b.jpg" alt="">
+          <div class="mp-tx"><small>NOW PLAYING</small><b id="mptt">そのまま進め、ゆっくり歩いていこう</b></div>
+          <span class="eq"><b></b><b></b><b></b><b></b><b></b></span>
+          <button id="mpprev" aria-label="前の曲">⏮</button><button id="mpplay" class="pp" aria-label="再生">▶</button><button id="mpnext" aria-label="次の曲">⏭</button>
         </div>
-        <nav id="menu-content" class="hidden">
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="game.html">Games</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="other.html">Others</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-            </ul>
-        </nav>
+        <div class="mp-stage">
+          <iframe id="mpif" title="Suno player" allow="autoplay" hidden></iframe>
+          <div class="mp-cover" id="mpcover" role="button" tabindex="0" aria-label="Suno で聴く" style="--art:url(jpg/y_b.jpg)"><span><b>▶</b>Suno で聴く</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>BEAR BEER BEAT</h3>
+        <p>fumifumi × KUMA × NAMA のハイブリッド音楽ユニット</p>
+        <div class="list">
+          <div class="on puni" data-img="jpg/y_b.jpg"><i>♪</i><span class="tt">そのまま進め、ゆっくり歩いていこう</span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+          <div class="puni" data-img="jpg/song8.jpg"><i>▶</i><span class="tt">Hamburg steak recipe</span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+          <div class="puni" data-img="jpg/song1-2.jpg"><i>▶</i><span class="tt">ありのままで2</span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+          <div class="puni" data-img="jpg/song2.jpg"><i>▶</i><span class="tt">over</span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        </div>
+        <div class="more"><a class="puni" href="music.html"><b>♪</b>ぜんぶ聴く</a><a class="puni" href="artist-profile.html"><b>→</b>BEAR BEER BEAT について</a></div>
+      </div>
     </div>
+  </section>
 
-    <!-- Header Section -->
-    <header class="header">
-        <h1 class="animated-title">Synapse Creations</h1>
-        <p class="subtitle">AI-Powered Artistry</p>
-        <p style="max-width: 600px; margin: 0 auto; color: #aaa;">音と映像、そしてAIが織りなす無限の可能性。</p>
-        <div style="margin-top: 50px;">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-            </svg>
-        </div>
-    </header>
+  <section id="blog">
+    <div class="sh"><h2>Blog</h2><p>つくったものの裏話。</p></div>
+    <div class="cards">
+      <a class="cd puni" href="https://fumifum1.github.io/blog/tsugihagi_ghost.html" target="_blank" rel="noopener"><img src="https://fumifum1.github.io/blog/assets/tsugihagi-ghost/main.png" alt="" style="object-fit:contain;background:#fff"><h3>Tsugihagi Ghost</h3><p>やさしい幽霊のLINEスタンプ</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/blog/gothic-fantasy-boy.html" target="_blank" rel="noopener"><img src="https://fumifum1.github.io/blog/assets/gothic-fantasy-boy/main.png" alt="" style="object-fit:contain;background:#fff"><h3>Gothic Fantasy Boy</h3><p>黒猫耳の魔法使い ノクト</p><span class="go">→</span></a>
+      <a class="cd puni" href="https://fumifum1.github.io/blog/s_log.html" target="_blank" rel="noopener"><img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/847836810/iPhone/sticker@2x.png" alt="" style="object-fit:contain;background:#fff"><h3>Spray Art</h3><p>ぜんぶ“イイね”のスタンプ集</p><span class="go">→</span></a>
+    </div>
+    <div class="more"><a class="puni" href="blog.html"><b>→</b>ブログをぜんぶ読む</a><a class="puni" href="https://note.com/fumifum1" target="_blank" rel="noopener"><b>✎</b>note もよんでね</a></div>
+  </section>
 
-    <main class="container">
+  <section id="me">
+    <div class="me">
+      <div class="mitama" id="mitama" role="button" tabindex="0" aria-label="Mitama に話しかける">
+        <div class="say" id="say" aria-live="polite"><small id="sayLabel">MITAMA</small><span id="sayText"></span></div>
+        <div class="face"><img src="jpg/artist-image.jpg" alt="Mitama（ミタマ）"></div>
+        <span class="tap">tap!</span>
+        <span class="name">Mitama<small>ミタマ · CNP</small></span>
+      </div>
+      <div>
+        <h3>Hi, I'm fumifumi!</h3>
+        <p>シナプスのように色々なものを取り入れ、つなげ、創作する。AIと一緒に、ゲームや音楽、ウェブ制作を通して、つくる楽しさを追いかけています。相棒は CNP の Mitama（ミタマ）。</p>
+        <p class="note">👻 Mitama をタップすると、なにか話します。今日の運勢は <b>1日1回</b> だけ。</p>
+      </div>
+    </div>
+  </section>
+</main>
 
-        <!-- Profile Section -->
-        <section class="section artist-intro fade-in-section">
-            <div class="artist-image-container">
-                <img src="jpg/artist-image.jpg" alt="fumifumi" class="artist-image">
-            </div>
-            <div class="artist-description">
-                <h2>Profile</h2>
-                <p><strong>fumifumi（フミフミ）</strong></p>
-                <p>Synapse Creationsの意味は、シナプスのように色々なものを取り入れ、つなげ、創作するという意味でつけました。</p>
-                <p>AIと共に、ゲームや音楽、ウェブ制作を通して、創造することの喜びを追求しています。</p>
-                <div class="tech-stack-box">
-                    <p>
-                        Basic AI: chatGTP5.6、Claud Opus5<br>
-                        Editor: Claude Desktop<br>
-                        Assets: <a href="https://www.cryptoninja-partners.xyz//" target="_blank">CNP (CryptoNinja
-                            Partners)</a><br>
-                        Music: Suno AI
-                    </p>
-                </div>
-            </div>
-        </section>
+<footer id="hi">
+  <h2>Let's make<br>something fun!</h2>
+  <div class="soc"><a class="puni" href="https://x.com/_fum1_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener" aria-label="Suno"><i class="fa-solid fa-music"></i></a><a class="puni" href="https://www.instagram.com/sachi.cobito/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="puni" href="https://note.com/fumifum1" target="_blank" rel="noopener" aria-label="note"><i class="fa-solid fa-pen-nib"></i></a></div>
+  <div class="fnav"><a href="game.html">Games</a><a href="music.html">Music</a><a href="other.html">Others</a><a href="blog.html">Blog</a></div>
+  <p class="credit">Mitama: <a href="https://www.cryptoninja-partners.xyz/" target="_blank" rel="noopener">CNP (CryptoNinja Partners)</a><br>© 2025 Synapse Creations</p>
+</footer>
 
-        <!-- Games Section -->
-        <section class="section fade-in-section">
-            <h2>Games</h2>
-            <p>広告なしで暇つぶし。バグはご愛敬。</p>
-            <div class="card-container" id="game-list">
-                <!-- BINGO -->
-                <div class="game-card">
-                    <img src="jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>BINGO</h3>
-                        <p>ビンゴのカード台紙と抽選が同時にできるアプリ。</p>
-                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" class="cta-button">PLAY</a>
-                    </div>
-                </div>
-                <!-- Reversi -->
-                <div class="game-card">
-                    <img src="jpg/rv.jpg" alt="Reversi" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Reversi</h3>
-                        <p>AI対戦のリバーシ</p>
-                        <a href="https://fumifum1.github.io/game/rv.html" target="_blank"
-                            class="cta-button">PLAY</a>
-                    </div>
-                </div>
-                <!-- Arcade Invade -->
-                <div class="game-card">
-                    <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Arcade Invade</h3>
-                        <p>懐かしいレトロゲームの定番。</p>
-                        <a href="https://fumifum1.github.io/game/" target="_blank" class="cta-button">PLAY</a>
-                    </div>
-                </div>
-                <!-- More -->
-                <div class="game-card"
-                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
-                    <div class="game-info" style="text-align: center;">
-                        <h3>More Games</h3>
-                        <a href="game.html" class="cta-button">VIEW ALL</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<script>
+document.querySelectorAll('[data-split]').forEach(el => {
+  el.innerHTML = el.innerHTML.split('<br>').map(w => [...w].map(c => `<span class="ch">${c}</span>`).join('')).join('<br>');
+});
+// タッチ端末では、タイトル文字はタップで跳ねる
+document.querySelectorAll('.ch').forEach(c => c.addEventListener('pointerdown', e => {
+  if (e.pointerType === 'mouse') return;
+  c.classList.add('pop'); setTimeout(() => c.classList.remove('pop'), 450);
+}));
 
-        <!-- Music Section -->
-        <section class="section fade-in-section">
-            <h2>Music</h2>
-            <p>AIで生成された、心に響くメロディ。</p>
+// --- Mitama がカーソルにゆっくり付いてくる（PCのみ） ---
+const bd = document.getElementById('buddy'); let tx = innerWidth * .8, ty = 200, bx = tx, by = ty;
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { tx = e.clientX + 30; ty = e.clientY + 30; } });
+(function loop() {
+  const vx = (tx - bx) * .06, vy = (ty - by) * .06; bx += vx; by += vy;
+  bd.style.transform = `translate(${bx - 37}px,${by - 37}px) rotate(${vx * 1.5}deg) scale(${1 + Math.min(Math.abs(vx) + Math.abs(vy), 20) / 100})`;
+  requestAnimationFrame(loop);
+})();
 
-            <!-- Musician Intro -->
-            <div class="artist-intro music-artist-intro" style="margin-top: 40px; margin-bottom: 50px;">
-                <div class="artist-image-container">
-                    <img src="jpg/artist1.jpg" alt="BEAR BEER BEAT" class="artist-image">
-                </div>
-                <div class="artist-description">
-                    <h3>BEAR BEER BEAT</h3>
-                    <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
-                    <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
-                    <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
-                    <a href="artist-profile.html" class="cta-button" style="margin-top: 20px;">View Full Profile</a>
-                </div>
-            </div>
+// --- しゃぼん玉 ---
+const cols = ['#ff7ac6', '#a98bff', '#6ee7c8', '#ffe066', '#7cc8ff'];
+const bubbles = (x, y, n = 6) => {
+  for (let i = 0; i < n; i++) {
+    const b = document.createElement('span'), s = 14 + Math.random() * 36;
+    b.className = 'bub';
+    Object.assign(b.style, { left: x + 'px', top: y + 'px', width: s + 'px', height: s + 'px', background: cols[i % cols.length], animationDelay: i * 45 + 'ms' });
+    b.style.setProperty('--dx', (Math.random() * 180 - 90) + 'px');
+    document.body.appendChild(b); setTimeout(() => b.remove(), 1700);
+  }
+};
+addEventListener('click', e => { if (!e.target.closest('a,button,.list div,.mitama')) bubbles(e.clientX, e.clientY); });
 
-            <div id="suno-player-area" style="margin-bottom: 30px; min-height: 180px;">
-                <!-- Player will be inserted here -->
-                <p style="text-align: center; color: #666;">Select a song to play</p>
-            </div>
+// --- ぷにっと（押す→つぶれる、離す→ゼリーで戻る）。スクロール開始時は解除 ---
+document.querySelectorAll('.puni').forEach(el => {
+  const release = jelly => {
+    if (!el.classList.contains('pressed')) return;
+    el.classList.remove('pressed', 'jelly');
+    if (jelly) { void el.offsetWidth; el.classList.add('jelly'); }
+  };
+  el.addEventListener('pointerdown', e => {
+    el.classList.add('pressed');
+    if (e.pointerType === 'touch' && navigator.vibrate) navigator.vibrate(8);
+  });
+  el.addEventListener('pointerup', () => release(true));
+  el.addEventListener('pointercancel', () => release(false));
+  el.addEventListener('pointerleave', () => release(true));
+  el.addEventListener('animationend', e => { if (e.animationName === 'jelly') el.classList.remove('jelly'); });
+});
 
-            <div class="card-container carousel-list" id="song-list">
+// --- カードをタップした瞬間：しゃぼん玉＋ぷにっと → 少し待ってから開く ---
+document.querySelectorAll('.cd').forEach(cd => cd.addEventListener('click', e => {
+  bubbles(e.clientX || cd.getBoundingClientRect().left + cd.offsetWidth / 2, e.clientY || cd.getBoundingClientRect().top + 60, 9);
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // 新しいタブ指定はそのまま
+  e.preventDefault();
+  setTimeout(() => { const w = window.open(cd.href, '_blank'); if (w) w.opener = null; else location.href = cd.href; }, 380);
+}));
 
-                <div class="song-item active" data-suno-id="6b4a5f0e-1799-4b9f-b27e-7bbe61fe8bcc"
-                    data-song-title="そのまま進め、ゆっくり歩いていこう">
-                    <img src="jpg/y_b.jpg" alt="そのまま進め、ゆっくり歩いていこう" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>そのまま進め、ゆっくり歩いていこう</h3>
-                        <p>焦らなくていい、自分らしく進めばいい</p>
-                        <p>そんな想いをのせたラップ</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="af907997-203b-408d-afb5-6bdc6b1d653c"
-                    data-song-title="Hamburg steak recipe">
-                    <img src="jpg/song8.jpg" alt="Hamburg steak recipe" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Hamburg steak recipe</h3>
-                        <p>レシピをラップのビートにのせて</p>
-                        <p>この人達（AI）しか歌わない…</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="81859e00-c3ab-45a0-82a5-447a655e7d84"
-                    data-song-title="ありのままで2">
-                    <img src="jpg/song1-2.jpg" alt="ありのままで2" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>ありのままで2</h3>
-                        <p>SUNOのVer4.5でリミックス</p>
-                        <p>前回のVer.3と比較して聞いてみてください</p>
-                    </div>
-                </div>
+// --- スマホメニュー ---
+const mbtn = document.getElementById('mbtn'), mmenu = document.getElementById('mmenu');
+mbtn.addEventListener('click', e => { e.stopPropagation(); const o = mmenu.classList.toggle('open'); mbtn.setAttribute('aria-expanded', o); mbtn.textContent = o ? 'Close' : 'Menu'; });
+document.addEventListener('click', e => { if (!e.target.closest('nav') && mmenu.classList.contains('open')) mbtn.click(); });
 
-                <div class="song-item" data-suno-id="87d91602-d491-4305-9390-84dc0dc3211f"
-                    data-song-title="over">
-                    <img src="jpg/song2.jpg" alt="over" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>over</h3>
-                        <p>ひたすらまくしたてラップ</p>
-                        <p>SUNO-Ver4.5</p>
-                    </div>
-                </div>
-                <!-- More -->
-                <div class="song-item"
-                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
-                    <div class="song-info" style="text-align: center;">
-                        <h3>More Music</h3>
-                        <a href="music.html" class="cta-button">VIEW ALL</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+// --- 曲リスト ---
+// --- 曲リスト＋プレイヤー（Suno の埋め込みを使用） ---
+const SONGS = [
+  ['jpg/y_b.jpg', 'そのまま進め、ゆっくり歩いていこう', '6b4a5f0e-1799-4b9f-b27e-7bbe61fe8bcc'],
+  ['jpg/song8.jpg', 'Hamburg steak recipe', 'af907997-203b-408d-afb5-6bdc6b1d653c'],
+  ['jpg/song1-2.jpg', 'ありのままで2', '81859e00-c3ab-45a0-82a5-447a655e7d84'],
+  ['jpg/song2.jpg', 'over', '87d91602-d491-4305-9390-84dc0dc3211f'],
+];
+const mpl = document.getElementById('mplayer'), mpif = document.getElementById('mpif'), rows = [...document.querySelectorAll('.list div')];
+let cur = 0, playing = false;
+const setSong = (i, play) => {
+  cur = (i + SONGS.length) % SONGS.length;
+  const [img, title, id] = SONGS[cur];
+  document.getElementById('mpcv').src = img;
+  document.getElementById('mptt').textContent = title;
+  document.getElementById('mpcover').style.setProperty('--art', `url(${img})`);
+  rows.forEach((r, k) => { r.classList.toggle('on', k === cur); r.querySelector('i').textContent = k === cur ? '♪' : '▶'; });
+  if (play) {
+    mpif.hidden = false; mpif.src = 'https://suno.com/embed/' + id + '/';
+    playing = true; mpl.classList.add('playing'); document.getElementById('mpplay').textContent = '❚❚';
+  }
+};
+const stop = () => { playing = false; mpl.classList.remove('playing'); mpif.src = 'about:blank'; mpif.hidden = true; document.getElementById('mpplay').textContent = '▶'; };
+document.getElementById('mpplay').addEventListener('click', e => { e.stopPropagation(); playing ? stop() : setSong(cur, true); });
+document.getElementById('mpcover').addEventListener('click', e => { e.stopPropagation(); setSong(cur, true); });
+document.getElementById('mpcover').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSong(cur, true); } });
+document.getElementById('mpnext').addEventListener('click', e => { e.stopPropagation(); setSong(cur + 1, playing); });
+document.getElementById('mpprev').addEventListener('click', e => { e.stopPropagation(); setSong(cur - 1, playing); });
+rows.forEach((r, k) => r.addEventListener('click', () => setSong(k, true)));
 
-        <!-- Others Section -->
-        <section class="section fade-in-section">
-            <h2>Other Creations</h2>
-            <div class="card-container">
-                <div class="game-card is-new">
-                    <img src="jpg/k_n.png" alt="Celestial Compass - KIPPOUI NAVI" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Celestial Compass</h3>
-                        <p>生年月日と旅立つ日から、吉方位をわかりやすく確認できるWebアプリ。</p>
-                        <a href="https://fumifum1.github.io/works/kippoui-navi/" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
-                    </div>
-                </div>
-                <div class="game-card is-new">
-                    <img src="jpg/v_p.jpg" alt="GraffitiStudio" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>GraffitiStudio</h3>
-                        <p>画像生成AI用のプロンプト作成ツール。</p>
-                        <a href="https://fumifum1.github.io/works/GraffitiStudio.html" target="_blank" class="cta-button">TRY IT</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="jpg/q_c.png" alt="QR.create" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>QR.create</h3>
-                        <p>オリジナルQRコード作成アプリ。</p>
-                        <a href="https://fumifum1.github.io/works/qr.html" target="_blank" class="cta-button">TRY IT</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="jpg/p_t.jpg" alt="PDF Tool" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>PDF Tool</h3>
-                        <p>簡易的なPDF編集ツール。</p>
-                        <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank" class="cta-button">TRY
-                            IT</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="jpg/q_s.jpg" alt="QuickShot" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>QuickShot</h3>
-                        <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
-                        <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="jpg/c_t.png" alt="Celestial Tarot" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Tarot</h3>
-                        <p>タロット占いを楽しめるウェブアプリ。</p>
-                        <a href="https://fumifum1.github.io/works/tarot_g.html" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
-                    </div>
-                </div>
-                <!-- More -->
-                <div class="game-card"
-                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
-                    <div class="game-info" style="text-align: center;">
-                        <h3>More Creations</h3>
-                        <a href="other.html" class="cta-button">VIEW ALL</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+// --- Mitama のセリフ（今日の運勢は1日1回） ---
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const talks = ['やあ！ミタマだよ👻', 'バグじゃないよ、仕様だよ', 'fumifumi と AI で夜ふかし中…zzz', 'ハンマーは飾りです🔨', 'BINGO！…じゃなかった', 'ハンバーグのレシピ、ラップで覚えた？', '焦らなくていい、ゆっくり行こう', 'べーっ👅', 'CNP の世界から遊びにきたよ'];
+const todayKey = new Date().toLocaleDateString('sv-SE'); // 端末の日付（YYYY-MM-DD）
+const STORE = 'synapse-mitama-fortune';
+const loadFortune = () => { try { const v = JSON.parse(localStorage.getItem(STORE)); return v && v.date === todayKey ? v : null; } catch { return null; } };
+const saveFortune = v => { try { localStorage.setItem(STORE, JSON.stringify(v)); } catch { /* 保存できない環境ではこのページを開いている間だけ有効 */ } };
+let fortune = loadFortune();
+const drawFortune = () => {
+  const luck = pick(['大吉✨', '中吉', '小吉', '吉', '末吉', '凶…でもご愛敬']);
+  const text = pick([
+    `ラッキー方位は「${pick(['北', '北東', '東', '南東', '南', '南西', '西', '北西'])}」`,
+    `ラッキー作品は「${pick(['BINGO', 'Reversi', 'Tarot', 'Celestial Compass', 'GraffitiStudio', 'QuickShot'])}」`,
+    `ラッキーアイテムは${pick(['ハンバーグ', 'ヘッドホン', 'ビンゴカード', 'タロットカード', 'あったかい飲みもの', 'スニーカー'])}`,
+    `今日の一曲は「${pick(['そのまま進め、ゆっくり歩いていこう', 'Hamburg steak recipe', 'ありのままで2', 'over'])}」`,
+  ]);
+  return { date: todayKey, luck, text };
+};
 
-        <!-- Blog Section -->
-        <section id="blog" class="section fade-in-section">
-            <h2>Blog</h2>
-            <div class="card-container">
-                <div class="game-card">
-                    <img src="https://fumifum1.github.io/blog/assets/tsugihagi-ghost/main.png"
-                        alt="ツギハギゴースト" class="game-thumbnail blog-thumbnail">
-                    <div class="game-info">
-                        <h3>Tsugihagi Ghost</h3>
-                        <p>捨てられたぬいぐるみから生まれた、やさしい幽霊のLINEスタンプ紹介記事。</p>
-                        <a href="https://fumifum1.github.io/blog/tsugihagi_ghost.html" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">READ</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="https://fumifum1.github.io/blog/assets/gothic-fantasy-boy/main.png"
-                        alt="黒猫耳の魔法使い ノクト" class="game-thumbnail blog-thumbnail">
-                    <div class="game-info">
-                        <h3>Gothic Fantasy Boy</h3>
-                        <p>夜長に寄り添う、黒猫耳の魔法使い「ノクト」のLINEスタンプ紹介記事。</p>
-                        <a href="https://fumifum1.github.io/blog/gothic-fantasy-boy.html" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">READ</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/847836810/iPhone/sticker@2x.png"
-                        alt="スプレーアート" class="game-thumbnail blog-thumbnail">
-                    <div class="game-info">
-                        <h3>Spray Art</h3>
-                        <p>すべて“イイね”の意味を持つ、グラフィティ風スタンプ集の紹介記事。</p>
-                        <a href="https://fumifum1.github.io/blog/s_log.html" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">READ</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="https://assets.st-note.com/production/uploads/images/279163654/7945573b006a9a84b5adbb4a2365b8c7.png?fit=bounds&amp;format=jpeg&amp;height=1024&amp;quality=85&amp;width=1024"
-                        alt="note - 日常をDIYする人 fumifumi" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>note</h3>
-                        <p>「日常をDIYする人」として、制作の記録や日々の気づきを綴っています。</p>
-                        <a href="https://note.com/fumifum1" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">READ</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+const mitama = document.getElementById('mitama'), say = document.getElementById('say');
+let last = 0, count = 0;
+const speak = () => {
+  count++;
+  let line, isLuck = false;
+  if (count === 1) line = talks[0];
+  else if (!fortune && (Math.random() < .4 || count >= 4)) { // まだ占っていなければ、2〜4回目のどこかで必ず出る
+    fortune = drawFortune(); saveFortune(fortune);
+    isLuck = true; line = `<b>${fortune.luck}</b>！${fortune.text}`;
+  } else {
+    const pool = fortune ? talks.concat(`今日は「${fortune.luck}」だったね。つづきはまた明日🌙`) : talks;
+    let i; do { i = Math.floor(Math.random() * pool.length); } while (i === last); last = i; line = pool[i];
+  }
+  say.classList.remove('show'); void say.offsetWidth;
+  say.classList.toggle('luck', isLuck);
+  document.getElementById('sayLabel').textContent = isLuck ? '🔮 今日の運勢' : 'MITAMA';
+  document.getElementById('sayText').innerHTML = line;
+  say.classList.add('show');
+  mitama.classList.remove('boing'); void mitama.offsetWidth; mitama.classList.add('boing');
+  if (navigator.vibrate && navigator.userActivation?.hasBeenActive !== false) navigator.vibrate(isLuck ? [10, 40, 10] : 8);
+};
+mitama.addEventListener('click', e => { e.stopPropagation(); speak(); bubbles(e.clientX, e.clientY, 4); });
+mitama.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); speak(); } });
+// プロフィールが見えたら、あいさつ
+new IntersectionObserver((es, ob) => es.forEach(en => { if (en.isIntersecting) { setTimeout(() => { if (!count) speak(); }, 400); ob.disconnect(); } }), { threshold: .6 }).observe(mitama);
 
-    </main>
+// --- i の点の Mitama：タップでくるっとジャンプ ---
+{
+  const ch = [...document.querySelectorAll('.hero h1 .ch')].find(c => c.textContent === 'i');
+  if (ch) {
+    ch.classList.add('idot');
+    ch.innerHTML = 'ı<span class="tittle" role="img" aria-label="Mitama"><img src="jpg/artist-image.jpg" alt=""></span>';
+    const t = ch.querySelector('.tittle');
+    t.addEventListener('click', e => {
+      e.stopPropagation();
+      t.classList.remove('jump'); void t.offsetWidth; t.classList.add('jump');
+      const r = t.getBoundingClientRect(); bubbles(r.left + r.width / 2, r.top, 5);
+    });
+    t.addEventListener('animationend', e => { if (e.animationName === 'tjump') t.classList.remove('jump'); });
+  }
+}
 
-    <footer class="footer">
-        <div class="social-links">
-            <a href="https://x.com/_fum1_" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://suno.com/@fum1" target="_blank"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
-    </footer>
+// --- しゃぼん玉チャレンジ（チャレンジ中だけしゃぼん玉が浮かぶ） ---
+{
+  const $ = id => document.getElementById(id);
+  const field = $('gfield'), hud = $('hud'), COLS = ['#ff7ac6', '#a98bff', '#6ee7c8', '#ffe066', '#7cc8ff'];
+  const BK = 'synapse-bubble-best';
+  const best = () => { try { return +localStorage.getItem(BK) || 0; } catch { return 0; } };
+  let playingG = false, score = 0, left = 20, spawnT, tickT, swallow = false;
+  // しゃぼん玉を割った直後のクリックが、下のカードやリンクに届かないようにする
+  addEventListener('click', e => { if (swallow) { swallow = false; e.preventDefault(); e.stopImmediatePropagation(); } }, true);
+  const burst = (x, y, c) => {
+    for (let i = 0; i < 8; i++) {
+      const sh = document.createElement('span'), a = i / 8 * Math.PI * 2;
+      sh.className = 'shard'; sh.style.left = x + 'px'; sh.style.top = y + 'px'; sh.style.background = c;
+      sh.style.setProperty('--x', Math.cos(a) * 44 + 'px'); sh.style.setProperty('--y', Math.sin(a) * 44 + 'px');
+      document.body.appendChild(sh); setTimeout(() => sh.remove(), 520);
+    }
+  };
+  const floatTxt = (x, y, t) => { const p = document.createElement('span'); p.className = 'ptxt'; p.textContent = t; p.style.left = x + 'px'; p.style.top = y + 'px'; document.body.appendChild(p); setTimeout(() => p.remove(), 820); };
+  const spawn = () => {
+    const b = document.createElement('span'), gold = Math.random() < .08, sz = gold ? 72 : 46 + Math.random() * 46, c = pick(COLS);
+    b.className = 'gb' + (gold ? ' gold' : '');
+    if (gold) b.innerHTML = '<img src="jpg/artist-image.jpg" alt="">';
+    b.style.width = b.style.height = sz + 'px';
+    b.style.left = 4 + Math.random() * 86 + '%';
+    b.style.setProperty('--c', c);
+    b.style.setProperty('--d', 3.6 + Math.random() * 2.6 + 's');
+    b.addEventListener('pointerdown', e => {
+      e.stopPropagation(); swallow = true; setTimeout(() => swallow = false, 500);
+      burst(e.clientX, e.clientY, gold ? '#ffb800' : c); b.remove();
+      if (navigator.vibrate) navigator.vibrate(6);
+      if (playingG) { const p = gold ? 5 : 1; score += p; $('gs').textContent = score; floatTxt(e.clientX, e.clientY, '+' + p + (gold ? ' Mitama!' : '')); }
+    });
+    b.addEventListener('animationend', e => { if (e.animationName === 'rise') b.remove(); });
+    field.appendChild(b);
+  };
+  const start = () => {
+    $('result').classList.remove('on'); playingG = true; score = 0; left = 20;
+    $('gs').textContent = 0; $('gt').textContent = left; hud.classList.add('on');
+    spawnT = setInterval(spawn, 360);
+    tickT = setInterval(() => { $('gt').textContent = --left; if (left <= 0) end(); }, 1000);
+  };
+  const end = () => {
+    playingG = false; clearInterval(spawnT); clearInterval(tickT); hud.classList.remove('on');
+    field.querySelectorAll('.gb').forEach(b => b.remove());
+    const prev = best(), b = Math.max(prev, score);
+    try { localStorage.setItem(BK, b); } catch { }
+    $('rs').textContent = score;
+    $('rb').textContent = (score > prev ? '🎉 NEW BEST! ' : 'BEST ') + b;
+    $('rsay').textContent = score >= 40 ? 'すごすぎ！しゃぼん玉マスターだ👑' : score >= 25 ? 'やるね！もうちょっとで達人✨' : score >= 10 ? 'いい感じ！もう一回いく？' : 'あれ…しゃぼん玉、逃げちゃった？🫧';
+    $('result').classList.add('on');
+  };
+  $('gbtn').addEventListener('click', e => { e.stopPropagation(); start(); });
+  $('again').addEventListener('click', e => { e.stopPropagation(); start(); });
+  $('rclose').addEventListener('click', e => { e.stopPropagation(); $('result').classList.remove('on'); });
+  talks.push('しゃぼん玉チャレンジ、ベストは何点？🫧');
+}
 
-    <script src="script.js"></script>
-    <script src="menu.js" defer></script>
+// --- オープニング：しゃぼん玉が割れて Mitama 登場 → タイトル文字が降ってくる ---
+{
+  const splash = document.getElementById('splash');
+  document.querySelectorAll('.hero h1 .ch').forEach((c, i) => c.style.setProperty('--i', i));
+  document.querySelectorAll('.tags a').forEach((c, i) => c.style.setProperty('--i', i));
+  let done = false;
+  const finish = () => {
+    if (done) return; done = true; clearTimeout(timer);
+    splash.classList.add('out'); document.body.classList.add('intro');
+    setTimeout(() => splash.style.display = 'none', 760);
+  };
+  const timer = setTimeout(finish, 2900);
+  document.getElementById('spskip').addEventListener('click', e => { e.stopPropagation(); finish(); });
+  splash.addEventListener('click', e => { e.stopPropagation(); finish(); });
+  // スクロールで要素がぷにっと順番に登場
+  const rv = [...document.querySelectorAll('.sh,.cd,.more,.player,.me')];
+  rv.forEach((el, i) => { el.classList.add('reveal'); el.style.setProperty('--rd', (i % 3) * 90 + 'ms'); });
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target; el.classList.add('in'); io.unobserve(el);
+    setTimeout(() => { el.classList.remove('reveal', 'in'); el.style.removeProperty('--rd'); }, 1100);
+  }), { threshold: .15 });
+  rv.forEach(el => io.observe(el));
+}
+</script>
 </body>
-
 </html>

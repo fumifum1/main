@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Synapse Creations</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .bg-transition-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .absolute-full {
+            position: absolute;
+            inset: 0;
+        }
+        .smooth-transition {
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ambient-orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            transition: background-color 1.5s ease, transform 3s ease;
+        }
+        .orb-1 { top: 15%; left: -15%; }
+        .orb-2 { bottom: 15%; right: -15%; }
+        .plaster-texture {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+            mix-blend-mode: color-burn;
+        }
+        .brick-texture {
+            background-image: 
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
+            background-size: 58px 58px;
+            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
+            mix-blend-mode: multiply;
+        }
+        body { transition: background-color 1.5s ease, color 1.5s ease; }
+        .opacity-0 { opacity: 0; }
+    </style>
+</head>
+
+<body>
+    <!-- 背景レイヤー -->
+    <div class="bg-transition-container">
+        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
+        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
+        <div id="orb-1" class="ambient-orb orb-1"></div>
+        <div id="orb-2" class="ambient-orb orb-2"></div>
+    </div>
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="game.html">Games</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li><a href="other.html">Others</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <!-- Blog一覧セクション -->
+        <section id="blog" class="showcase-section fade-in-section">
+            <h2>Blog</h2>
+            <p>スタンプ紹介記事や、制作の記録・日々の気づきをまとめています。</p>
+            <div class="card-container">
+                <div class="game-card">
+                    <img src="https://fumifum1.github.io/blog/assets/tsugihagi-ghost/main.png"
+                        alt="ツギハギゴースト" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Tsugihagi Ghost</h3>
+                        <p>捨てられたぬいぐるみから生まれた、やさしい幽霊のLINEスタンプ紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/tsugihagi_ghost.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://fumifum1.github.io/blog/assets/gothic-fantasy-boy/main.png"
+                        alt="黒猫耳の魔法使い ノクト" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Gothic Fantasy Boy</h3>
+                        <p>夜長に寄り添う、黒猫耳の魔法使い「ノクト」のLINEスタンプ紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/gothic-fantasy-boy.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/847836810/iPhone/sticker@2x.png"
+                        alt="スプレーアート" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Spray Art</h3>
+                        <p>すべて“イイね”の意味を持つ、グラフィティ風スタンプ集の紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/s_log.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://assets.st-note.com/production/uploads/images/279163654/7945573b006a9a84b5adbb4a2365b8c7.png?fit=bounds&amp;format=jpeg&amp;height=1024&amp;quality=85&amp;width=1024"
+                        alt="note - 日常をDIYする人 fumifumi" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>note</h3>
+                        <p>「日常をDIYする人」として、制作の記録や日々の気づきを綴っています。</p>
+                        <a href="https://note.com/fumifum1" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">READ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 共通フッター -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
+    </footer>
+
+    <!-- メニューとフェードイン効果のためのスクリプト -->
+    <script src="script.js"></script>
+    <script src="menu.js" defer></script>
+</body>
+
+</html>

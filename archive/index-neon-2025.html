@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse Creations | AI-Powered Artistry</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .bg-transition-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .absolute-full {
+            position: absolute;
+            inset: 0;
+        }
+        .smooth-transition {
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ambient-orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            transition: background-color 1.5s ease, transform 3s ease;
+        }
+        .orb-1 { top: 15%; left: -15%; }
+        .orb-2 { bottom: 15%; right: -15%; }
+        .plaster-texture {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+            mix-blend-mode: color-burn;
+        }
+        .brick-texture {
+            background-image: 
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
+                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
+            background-size: 58px 58px;
+            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
+            mix-blend-mode: multiply;
+        }
+        body { transition: background-color 1.5s ease, color 1.5s ease; }
+        .opacity-0 { opacity: 0; }
+    </style>
+</head>
+
+<body>
+
+    <!-- 背景レイヤー -->
+    <div class="bg-transition-container">
+        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
+        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
+        <div id="orb-1" class="ambient-orb orb-1"></div>
+        <div id="orb-2" class="ambient-orb orb-2"></div>
+    </div>
+
+    <!-- 共通ナビゲーションメニュー -->
+    <div id="menu-container">
+        <div id="menu-icon">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="menu-content" class="hidden">
+            <ul>
+                <li><a href="../index.html">Profile</a></li>
+                <li><a href="../game.html">Games</a></li>
+                <li><a href="../music.html">Music</a></li>
+                <li><a href="../other.html">Others</a></li>
+                <li><a href="../blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="animated-title">Synapse Creations</h1>
+        <p class="subtitle">AI-Powered Artistry</p>
+        <p style="max-width: 600px; margin: 0 auto; color: #aaa;">音と映像、そしてAIが織りなす無限の可能性。</p>
+        <div style="margin-top: 50px;">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Profile Section -->
+        <section class="section artist-intro fade-in-section">
+            <div class="artist-image-container">
+                <img src="../jpg/artist-image.jpg" alt="fumifumi" class="artist-image">
+            </div>
+            <div class="artist-description">
+                <h2>Profile</h2>
+                <p><strong>fumifumi（フミフミ）</strong></p>
+                <p>Synapse Creationsの意味は、シナプスのように色々なものを取り入れ、つなげ、創作するという意味でつけました。</p>
+                <p>AIと共に、ゲームや音楽、ウェブ制作を通して、創造することの喜びを追求しています。</p>
+                <div class="tech-stack-box">
+                    <p>
+                        Basic AI: chatGTP5.6、Claud Opus5<br>
+                        Editor: Claude Desktop<br>
+                        Assets: <a href="https://www.cryptoninja-partners.xyz//" target="_blank">CNP (CryptoNinja
+                            Partners)</a><br>
+                        Music: Suno AI
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="section fade-in-section">
+            <h2>Games</h2>
+            <p>広告なしで暇つぶし。バグはご愛敬。</p>
+            <div class="card-container" id="game-list">
+                <!-- BINGO -->
+                <div class="game-card">
+                    <img src="../jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>BINGO</h3>
+                        <p>ビンゴのカード台紙と抽選が同時にできるアプリ。</p>
+                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" class="cta-button">PLAY</a>
+                    </div>
+                </div>
+                <!-- Reversi -->
+                <div class="game-card">
+                    <img src="../jpg/rv.jpg" alt="Reversi" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Reversi</h3>
+                        <p>AI対戦のリバーシ</p>
+                        <a href="https://fumifum1.github.io/game/rv.html" target="_blank"
+                            class="cta-button">PLAY</a>
+                    </div>
+                </div>
+                <!-- Arcade Invade -->
+                <div class="game-card">
+                    <img src="../jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Arcade Invade</h3>
+                        <p>懐かしいレトロゲームの定番。</p>
+                        <a href="https://fumifum1.github.io/game/" target="_blank" class="cta-button">PLAY</a>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="game-card"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="game-info" style="text-align: center;">
+                        <h3>More Games</h3>
+                        <a href="../game.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section class="section fade-in-section">
+            <h2>Music</h2>
+            <p>AIで生成された、心に響くメロディ。</p>
+
+            <!-- Musician Intro -->
+            <div class="artist-intro music-artist-intro" style="margin-top: 40px; margin-bottom: 50px;">
+                <div class="artist-image-container">
+                    <img src="../jpg/artist1.jpg" alt="BEAR BEER BEAT" class="artist-image">
+                </div>
+                <div class="artist-description">
+                    <h3>BEAR BEER BEAT</h3>
+                    <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
+                    <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
+                    <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
+                    <a href="../artist-profile.html" class="cta-button" style="margin-top: 20px;">View Full Profile</a>
+                </div>
+            </div>
+
+            <div id="suno-player-area" style="margin-bottom: 30px; min-height: 180px;">
+                <!-- Player will be inserted here -->
+                <p style="text-align: center; color: #666;">Select a song to play</p>
+            </div>
+
+            <div class="card-container carousel-list" id="song-list">
+
+                <div class="song-item active" data-suno-id="6b4a5f0e-1799-4b9f-b27e-7bbe61fe8bcc"
+                    data-song-title="そのまま進め、ゆっくり歩いていこう">
+                    <img src="../jpg/y_b.jpg" alt="そのまま進め、ゆっくり歩いていこう" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>そのまま進め、ゆっくり歩いていこう</h3>
+                        <p>焦らなくていい、自分らしく進めばいい</p>
+                        <p>そんな想いをのせたラップ</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="af907997-203b-408d-afb5-6bdc6b1d653c"
+                    data-song-title="Hamburg steak recipe">
+                    <img src="../jpg/song8.jpg" alt="Hamburg steak recipe" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>Hamburg steak recipe</h3>
+                        <p>レシピをラップのビートにのせて</p>
+                        <p>この人達（AI）しか歌わない…</p>
+                    </div>
+                </div>
+                <div class="song-item" data-suno-id="81859e00-c3ab-45a0-82a5-447a655e7d84"
+                    data-song-title="ありのままで2">
+                    <img src="../jpg/song1-2.jpg" alt="ありのままで2" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>ありのままで2</h3>
+                        <p>SUNOのVer4.5でリミックス</p>
+                        <p>前回のVer.3と比較して聞いてみてください</p>
+                    </div>
+                </div>
+
+                <div class="song-item" data-suno-id="87d91602-d491-4305-9390-84dc0dc3211f"
+                    data-song-title="over">
+                    <img src="../jpg/song2.jpg" alt="over" class="song-thumbnail">
+                    <div class="song-info">
+                        <h3>over</h3>
+                        <p>ひたすらまくしたてラップ</p>
+                        <p>SUNO-Ver4.5</p>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="song-item"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="song-info" style="text-align: center;">
+                        <h3>More Music</h3>
+                        <a href="../music.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Others Section -->
+        <section class="section fade-in-section">
+            <h2>Other Creations</h2>
+            <div class="card-container">
+                <div class="game-card is-new">
+                    <img src="../jpg/k_n.png" alt="Celestial Compass - KIPPOUI NAVI" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Celestial Compass</h3>
+                        <p>生年月日と旅立つ日から、吉方位をわかりやすく確認できるWebアプリ。</p>
+                        <a href="https://fumifum1.github.io/works/kippoui-navi/" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
+                <div class="game-card is-new">
+                    <img src="../jpg/v_p.jpg" alt="GraffitiStudio" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>GraffitiStudio</h3>
+                        <p>画像生成AI用のプロンプト作成ツール。</p>
+                        <a href="https://fumifum1.github.io/works/GraffitiStudio.html" target="_blank" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="../jpg/q_c.png" alt="QR.create" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QR.create</h3>
+                        <p>オリジナルQRコード作成アプリ。</p>
+                        <a href="https://fumifum1.github.io/works/qr.html" target="_blank" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="../jpg/p_t.jpg" alt="PDF Tool" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>PDF Tool</h3>
+                        <p>簡易的なPDF編集ツール。</p>
+                        <a href="https://fumifum1.github.io/pdf_tool/menu.html" target="_blank" class="cta-button">TRY
+                            IT</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="../jpg/q_s.jpg" alt="QuickShot" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>QuickShot</h3>
+                        <p>現場の記録写真を撮る際に、その場で写真名、場所、メモ、座標を撮影写真に直接書き込むアプリ。</p>
+                        <a href="https://fumifum1.github.io/GeoScope/QuickShot.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="../jpg/c_t.png" alt="Celestial Tarot" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>Tarot</h3>
+                        <p>タロット占いを楽しめるウェブアプリ。</p>
+                        <a href="https://fumifum1.github.io/works/tarot_g.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">TRY IT</a>
+                    </div>
+                </div>
+                <!-- More -->
+                <div class="game-card"
+                    style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <div class="game-info" style="text-align: center;">
+                        <h3>More Creations</h3>
+                        <a href="../other.html" class="cta-button">VIEW ALL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section fade-in-section">
+            <h2>Blog</h2>
+            <div class="card-container">
+                <div class="game-card">
+                    <img src="https://fumifum1.github.io/blog/assets/tsugihagi-ghost/main.png"
+                        alt="ツギハギゴースト" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Tsugihagi Ghost</h3>
+                        <p>捨てられたぬいぐるみから生まれた、やさしい幽霊のLINEスタンプ紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/tsugihagi_ghost.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://fumifum1.github.io/blog/assets/gothic-fantasy-boy/main.png"
+                        alt="黒猫耳の魔法使い ノクト" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Gothic Fantasy Boy</h3>
+                        <p>夜長に寄り添う、黒猫耳の魔法使い「ノクト」のLINEスタンプ紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/gothic-fantasy-boy.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/847836810/iPhone/sticker@2x.png"
+                        alt="スプレーアート" class="game-thumbnail blog-thumbnail">
+                    <div class="game-info">
+                        <h3>Spray Art</h3>
+                        <p>すべて“イイね”の意味を持つ、グラフィティ風スタンプ集の紹介記事。</p>
+                        <a href="https://fumifum1.github.io/blog/s_log.html" target="_blank"
+                            rel="noopener noreferrer" class="cta-button">READ</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://assets.st-note.com/production/uploads/images/279163654/7945573b006a9a84b5adbb4a2365b8c7.png?fit=bounds&amp;format=jpeg&amp;height=1024&amp;quality=85&amp;width=1024"
+                        alt="note - 日常をDIYする人 fumifumi" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3>note</h3>
+                        <p>「日常をDIYする人」として、制作の記録や日々の気づきを綴っています。</p>
+                        <a href="https://note.com/fumifum1" target="_blank" rel="noopener noreferrer"
+                            class="cta-button">READ</a>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="../blog.html" class="cta-button">すべてのBlogを見る</a>
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://x.com/_fum1_" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://suno.com/@fum1" target="_blank"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.instagram.com/sachi.cobito/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../menu.js" defer></script>
+</body>
+
+</html>
