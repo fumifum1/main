@@ -196,6 +196,7 @@ footer h2{font-family:'Unbounded';font-weight:800;font-size:clamp(30px,6vw,76px)
 .gbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:13px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--pink);transition:background .25s,color .25s,transform .16s cubic-bezier(.3,1.6,.5,1),box-shadow .16s}
 .gbtn small{opacity:.7;font-weight:500}
 .gbtn:hover{background:var(--pink);color:var(--ink)}
+.gbtn:disabled{background:#d9d4e3;color:#8a83a0;border-color:#b8b0c8;box-shadow:4px 4px 0 #b8b0c8;cursor:not-allowed;transform:none}
 .gfield{position:fixed;inset:0;z-index:35;pointer-events:none;overflow:hidden}
 .gb{position:absolute;bottom:-100px;border-radius:50%;pointer-events:auto;cursor:pointer;touch-action:manipulation;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 10%,rgba(255,255,255,.3) 24%,var(--c) 72%);border:2px solid rgba(27,21,48,.65);animation:rise var(--d) linear forwards,swing 2.4s ease-in-out infinite alternate}
 .gb.gold{background:#fff;border:3px solid #ffb800;box-shadow:0 0 0 4px rgba(255,184,0,.35)}
@@ -563,14 +564,20 @@ new IntersectionObserver((es, ob) => es.forEach(en => { if (en.isIntersecting) {
     b.addEventListener('animationend', e => { if (e.animationName === 'rise') b.remove(); });
     field.appendChild(b);
   };
+  const gbtn = $('gbtn');
   const start = () => {
+    if (playingG) return; // プレイ中の連打で二重に始まらないようにする
+    clearInterval(spawnT); clearInterval(tickT);
     $('result').classList.remove('on'); playingG = true; score = 0; left = 20;
     $('gs').textContent = 0; $('gt').textContent = left; hud.classList.add('on');
+    gbtn.disabled = true; gbtn.innerHTML = '🫧 チャレンジ中… <small>がんばれ！</small>';
     spawnT = setInterval(spawn, 360);
     tickT = setInterval(() => { $('gt').textContent = --left; if (left <= 0) end(); }, 1000);
   };
   const end = () => {
+    if (!playingG) return;
     playingG = false; clearInterval(spawnT); clearInterval(tickT); hud.classList.remove('on');
+    gbtn.disabled = false; gbtn.innerHTML = '🫧 しゃぼん玉チャレンジ <small>20秒</small>';
     field.querySelectorAll('.gb').forEach(b => b.remove());
     const prev = best(), b = Math.max(prev, score);
     try { localStorage.setItem(BK, b); } catch { }
