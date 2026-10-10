@@ -1,189 +1,62 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Synapse Creations</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .bg-transition-container {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .absolute-full {
-            position: absolute;
-            inset: 0;
-        }
-        .smooth-transition {
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .ambient-orb {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            transition: background-color 1.5s ease, transform 3s ease;
-        }
-        .orb-1 { top: 15%; left: -15%; }
-        .orb-2 { bottom: 15%; right: -15%; }
-        .plaster-texture {
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
-            mix-blend-mode: color-burn;
-        }
-        .brick-texture {
-            background-image: 
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
-            background-size: 58px 58px;
-            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
-            mix-blend-mode: multiply;
-        }
-        body { transition: background-color 1.5s ease, color 1.5s ease; }
-        .opacity-0 { opacity: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games - Synapse Creations</title>
+<meta name="description" content="fumifumi が AI と一緒につくった、広告なしで遊べるブラウザゲーム。">
+<link rel="icon" type="image/x-icon" href="jpg/ico.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="pop.css">
 </head>
-
 <body>
-    <!-- 背景レイヤー -->
-    <div class="bg-transition-container">
-        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
-        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
-        <div id="orb-1" class="ambient-orb orb-1"></div>
-        <div id="orb-2" class="ambient-orb orb-2"></div>
-    </div>
-    <!-- 共通ナビゲーションメニュー -->
-    <div id="menu-container">
-        <div id="menu-icon">
-            <span></span><span></span><span></span>
-        </div>
-        <nav id="menu-content" class="hidden">
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="game.html">Games</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="other.html">Others</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-            </ul>
-        </nav>
-    </div>
+<div class="blobs"><div><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="buddy"><img src="jpg/artist-image.jpg" alt=""></div>
 
-    <main class="main-content">
-        <!-- ゲーム一覧セクション -->
-        <section class="showcase-section fade-in-section">
-            <h2>All Games</h2>
+<nav>
+  <a class="logo" href="index.html"><img src="jpg/ico.ico" alt="">Synapse<span>✦</span></a>
+  <ul><li><a href="game.html" aria-current="page">Games</a></li><li><a href="music.html">Music</a></li><li><a href="other.html">Others</a></li><li><a href="blog.html">Blog</a></li></ul>
+  <a class="hi puni" href="#hi">Say hi 👋</a>
+  <button class="mbtn puni" id="mbtn" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <div class="mmenu" id="mmenu">
+    <a href="index.html">🏠 Top</a><a href="game.html" aria-current="page">🎮 Games</a><a href="music.html">🎧 Music</a><a href="other.html">🛠️ Others</a><a href="blog.html">✍️ Blog</a>
+  </div>
+</nav>
 
-            <!-- style.css の .card-container を再利用してグリッドレイアウトを実現 -->
-            <div class="card-container" id="game-list">
-                <!-- BINGO lottery&bingocard ---2025.9.21up-->
-                <div class="game-card is-new">
-                    <img src="jpg/bingo.jpg" alt="BINGO" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>BINGO</h3>
-                        <p>ビンゴのカード台紙と抽選が同時にできるアプリ。ちょっとしたイベントに最適‼</p>
-                        <a href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                 <!-- Reversi -->
-                <div class="game-card">
-                    <img src="jpg/rv.jpg" alt="Reversi" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Reversi</h3>
-                        <p>AI対戦のリバーシ</p>
-                        <a href="https://fumifum1.github.io/game/rv.html" target="_blank"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                <!-- 2. Arcade Invade -->
-                <div class="game-card">
-                    <img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Arcade Invade</h3>
-                        <p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p>
-                        <a href="https://fumifum1.github.io/game/" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                 <!-- 3.マインスイーパーゲーム -->
-                <div class="game-card">
-                    <img src="jpg/mines.jpg" alt="ClassicMinesweeper" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Classic Minesweeper</h3>
-                        <p>懐かしいマインスイーパー<br>数値を推理して💣を解除せよ‼</p>
-                        <a href="https://fumifum1.github.io/game/mines.html" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                <!-- ナンプレパズル＆解析アプリ 20260104up-->
-                <div class="game-card">
-                    <img src="jpg/np.jpg" alt="ClassicMinesweeper" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>SUDOKU PLAY</h3>
-                        <p>難易度3段階のナンプレパズル!ナンプレをAIで解析＆解答生成も可能！</p>
-                        <a href="https://fumifum1.github.io/game/np_play.html" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                <!-- ダービーレースゲームアプリ 20260112up-->
-                <div class="game-card">
-                    <img src="jpg/derby.jpg" alt="Derby Race game" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Derby Race game</h3>
-                        <p>レトロなおもちゃをブラウザゲームで再現。みんなで競馬レースしよう‼</p>
-                        <a href="https://fumifum1.github.io/game/derby_h6.html" target="_blank" rel="noopener noreferrer"
-                            class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-                <!-- 1. Rush Tetra Ascent -->
-                <div class="game-card">
-                    <img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3>Rush Tetra Ascent</h3>
-                        <p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p>
-                        <a href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">PLAY GAME</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<header class="phero">
+  <span class="spark" style="left:12%;top:110px">✦</span><span class="spark" style="right:14%;top:170px;animation-delay:-1s;color:var(--pink)">✦</span><span class="spark" style="left:24%;bottom:30px;animation-delay:-1.6s;color:var(--lilac)">✷</span>
+  <a class="crumb puni" href="index.html"><b>←</b>Top</a>
+  <h1 data-split>Games</h1>
+  <p>広告なしで暇つぶし。バグはご愛敬。</p>
+  <div class="stat"><span style="--c:var(--lemon)">🎮 <b>7</b> games</span><span style="--c:var(--pink)">🚫 広告なし</span><span style="--c:var(--mint)">🐞 バグはご愛敬</span></div>
+</header>
 
-    <!-- ゲームプレビュー用モーダルウィンドウ -->
-    <div id="game-preview-modal" class="game-preview-overlay hidden">
-        <iframe id="game-preview-iframe" allowfullscreen></iframe>
-        <button id="game-preview-close" class="preview-close-button">&times;</button>
-    </div>
+<div class="marq"><div>PLAY <span>✦</span> GAMES <span>✦</span> 広告なし <span>✦</span> バグはご愛敬 <span>✦</span> HAVE FUN <span>✦</span> PLAY <span>✦</span> GAMES <span>✦</span> 広告なし <span>✦</span> バグはご愛敬 <span>✦</span> HAVE FUN <span>✦</span> &nbsp;</div></div>
 
-    <!-- 共通フッター -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
-                    class="fa-brands fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
-    </footer>
+<main class="wrap">
+  <section>
+  <div class="cards">
+    <a class="cd puni" href="https://fumifum1.github.io/game/bingo.html" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><span class="new">NEW!</span><img src="jpg/bingo.jpg" alt="BINGO" loading="lazy"><h3>BINGO</h3><p>ビンゴのカード台紙と抽選が同時にできるアプリ。ちょっとしたイベントに最適‼</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/game/rv.html" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/rv.jpg" alt="Reversi" loading="lazy"><h3>Reversi</h3><p>AI対戦のリバーシ</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/game/" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/game-thumbnail2.jpg" alt="Arcade Invade" loading="lazy"><h3>Arcade Invade</h3><p>懐かしいレトロゲームの定番。<br>ひたすら敵を打ちまくれ！<br>レベル10でClear‼</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/game/mines.html" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/mines.jpg" alt="Classic Minesweeper" loading="lazy"><h3>Classic Minesweeper</h3><p>懐かしいマインスイーパー<br>数値を推理して💣を解除せよ‼</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/game/np_play.html" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/np.jpg" alt="SUDOKU PLAY" loading="lazy"><h3>SUDOKU PLAY</h3><p>難易度3段階のナンプレパズル！ナンプレをAIで解析＆解答生成も可能！</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/game/derby_h6.html" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/derby.jpg" alt="Derby Race game" loading="lazy"><h3>Derby Race game</h3><p>レトロなおもちゃをブラウザゲームで再現。みんなで競馬レースしよう‼</p><span class="go">→</span></a>
+    <a class="cd puni" href="https://fumifum1.github.io/rush-tetra-ascent/" target="_blank" rel="noopener noreferrer"><span class="pill game"><i>🎮</i>GAME</span><img src="jpg/game-thumbnail1.jpg" alt="Rush Tetra Ascent" loading="lazy"><h3>Rush Tetra Ascent</h3><p>レトロなアーケードスタイルのブロックパズルゲーム。<br>ハイスコアを目指そう！</p><span class="go">→</span></a>
+  </div>
+  <div class="more"><a class="puni" href="other.html"><b>→</b>ツールも見る</a><a class="puni" href="music.html"><b>♪</b>音楽を聴く</a><a class="puni" href="index.html"><b>←</b>トップへもどる</a></div>
+  </section>
+</main>
 
-    <!-- メニューとフェードイン効果のためのスクリプト -->
-    <script src="script.js"></script>
-    <script src="menu.js" defer></script>
-    <script src="game.js" defer></script>
+<footer id="hi">
+  <h2>Let's make<br>something fun!</h2>
+  <div class="soc"><a class="puni" href="https://x.com/_fum1_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener" aria-label="Suno"><i class="fa-solid fa-music"></i></a><a class="puni" href="https://www.instagram.com/sachi.cobito/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="puni" href="https://note.com/fumifum1" target="_blank" rel="noopener" aria-label="note"><i class="fa-solid fa-pen-nib"></i></a></div>
+  <div class="fnav"><a href="index.html">Top</a><a href="game.html">Games</a><a href="music.html">Music</a><a href="other.html">Others</a><a href="blog.html">Blog</a></div>
+  <p class="credit">Mitama: <a href="https://www.cryptoninja-partners.xyz/" target="_blank" rel="noopener">CNP (CryptoNinja Partners)</a><br>© 2025 Synapse Creations</p>
+</footer>
+
+<script src="pop.js"></script>
 </body>
-
 </html>

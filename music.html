@@ -1,233 +1,97 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music - Synapse Creations</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .bg-transition-container {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .absolute-full {
-            position: absolute;
-            inset: 0;
-        }
-        .smooth-transition {
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .ambient-orb {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            transition: background-color 1.5s ease, transform 3s ease;
-        }
-        .orb-1 { top: 15%; left: -15%; }
-        .orb-2 { bottom: 15%; right: -15%; }
-        .plaster-texture {
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
-            mix-blend-mode: color-burn;
-        }
-        .brick-texture {
-            background-image: 
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
-            background-size: 58px 58px;
-            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
-            mix-blend-mode: multiply;
-        }
-        body { transition: background-color 1.5s ease, color 1.5s ease; }
-        .opacity-0 { opacity: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music - Synapse Creations</title>
+<meta name="description" content="BEAR BEER BEAT — AIで生成された、心に響くメロディ。">
+<link rel="icon" type="image/x-icon" href="jpg/ico.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="pop.css">
 </head>
-
 <body>
-    <!-- 背景レイヤー -->
-    <div class="bg-transition-container">
-        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
-        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
-        <div id="orb-1" class="ambient-orb orb-1"></div>
-        <div id="orb-2" class="ambient-orb orb-2"></div>
+<div class="blobs"><div><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="buddy"><img src="jpg/artist-image.jpg" alt=""></div>
+
+<nav>
+  <a class="logo" href="index.html"><img src="jpg/ico.ico" alt="">Synapse<span>✦</span></a>
+  <ul><li><a href="game.html">Games</a></li><li><a href="music.html" aria-current="page">Music</a></li><li><a href="other.html">Others</a></li><li><a href="blog.html">Blog</a></li></ul>
+  <a class="hi puni" href="#hi">Say hi 👋</a>
+  <button class="mbtn puni" id="mbtn" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <div class="mmenu" id="mmenu">
+    <a href="index.html">🏠 Top</a><a href="game.html">🎮 Games</a><a href="music.html" aria-current="page">🎧 Music</a><a href="other.html">🛠️ Others</a><a href="blog.html">✍️ Blog</a>
+  </div>
+</nav>
+
+<header class="phero">
+  <span class="spark" style="left:12%;top:110px">✦</span><span class="spark" style="right:14%;top:170px;animation-delay:-1s;color:var(--pink)">✦</span><span class="spark" style="left:24%;bottom:30px;animation-delay:-1.6s;color:var(--lilac)">✷</span>
+  <a class="crumb puni" href="index.html"><b>←</b>Top</a>
+  <h1 data-split data-mitama-i>Music</h1>
+  <p>AIで生成された、心に響くメロディ。</p>
+  <div class="stat"><span style="--c:var(--pink)">🎧 <b>11</b> tracks</span><span style="--c:var(--lemon)">🐻 BEAR BEER BEAT</span><span style="--c:var(--sky)">🤖 Suno AI</span></div>
+</header>
+
+<div class="marq"><div>MUSIC <span>✦</span> BEAR BEER BEAT <span>✦</span> SUNO AI <span>✦</span> 人間の感性 × AIの偶発性 <span>✦</span> LISTEN <span>✦</span> MUSIC <span>✦</span> BEAR BEER BEAT <span>✦</span> SUNO AI <span>✦</span> 人間の感性 × AIの偶発性 <span>✦</span> LISTEN <span>✦</span> &nbsp;</div></div>
+
+<main class="wrap">
+  <section>
+    <div class="band">
+      <div class="photo"><img src="jpg/artist1.jpg" alt="BEAR BEER BEAT"></div>
+      <div>
+        <h2>BEAR BEER BEAT</h2>
+        <div class="members"><span>fumifumi · Producer</span><span>KUMA · AI Lyricist</span><span>NAMA · AI Beatmaker</span></div>
+        <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
+        <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
+        <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
+  <div class="more"><a class="puni" href="artist-profile.html"><b>→</b>フルプロフィールを見る</a></div>
+      </div>
     </div>
-    <!-- 共通ナビゲーションメニュー -->
-    <div id="menu-container">
-        <div id="menu-icon">
-            <span></span><span></span><span></span>
+  </section>
+
+  <section id="tracks">
+    <div class="player">
+      <div class="side">
+        <h3>All Tracks</h3>
+        <div class="mplayer" id="mplayer">
+          <div class="mp-bar">
+            <img id="mpcv" src="jpg/y_b.jpg" alt="">
+            <div class="mp-tx"><small>NOW PLAYING</small><b id="mptt">そのまま進め、ゆっくり歩いていこう</b></div>
+            <span class="eq"><b></b><b></b><b></b><b></b><b></b></span>
+            <button id="mpprev" aria-label="前の曲">⏮</button><button id="mpplay" class="pp" aria-label="再生">▶</button><button id="mpnext" aria-label="次の曲">⏭</button>
+          </div>
+          <div class="mp-stage">
+            <iframe id="mpif" title="Suno player" allow="autoplay" hidden></iframe>
+            <div class="mp-cover" id="mpcover" role="button" tabindex="0" aria-label="Suno で聴く" style="--art:url(jpg/y_b.jpg)"><span><b>▶</b>Suno で聴く</span></div>
+          </div>
         </div>
-        <nav id="menu-content" class="hidden">
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="game.html">Games</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="other.html">Others</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-            </ul>
-        </nav>
+      </div>
+      <div class="list">
+        <div class="puni on" data-suno="6b4a5f0e-1799-4b9f-b27e-7bbe61fe8bcc" data-title="そのまま進め、ゆっくり歩いていこう"><img src="jpg/y_b.jpg" alt="" loading="lazy"><span class="tt">そのまま進め、ゆっくり歩いていこう<small>焦らなくていい、自分らしく進めばいい。そんな想いをのせたラップ</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="af907997-203b-408d-afb5-6bdc6b1d653c" data-title="Hamburg steak recipe"><img src="jpg/song8.jpg" alt="" loading="lazy"><span class="tt">Hamburg steak recipe<small>レシピをラップのビートにのせて。この人達（AI）しか歌わない…</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="81859e00-c3ab-45a0-82a5-447a655e7d84" data-title="ありのままで2"><img src="jpg/song1-2.jpg" alt="" loading="lazy"><span class="tt">ありのままで2<small>SUNOのVer4.5でリミックス。全く違う性能が分かるよ</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="f8a1857d-3c36-46cb-bede-eb38182db9af" data-title="ありのままで"><img src="jpg/song1.jpg" alt="" loading="lazy"><span class="tt">ありのままで<small>あなたらしく！SUNOのVer3。あなたのそばに、そっと寄り添う曲</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="c426acae-ca01-4732-a0be-f0b9c2595525" data-title="Where the Wind Goes2"><img src="jpg/song3-2.jpg" alt="" loading="lazy"><span class="tt">Where the Wind Goes2<small>SUNOのVer4.5でリミックス。これも違いを比べてみて！</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="ba6a002a-404e-4a00-9f3e-b97d601fc04a" data-title="Where the Wind Goes"><img src="jpg/song3.jpg" alt="" loading="lazy"><span class="tt">Where the Wind Goes<small>風の行方。なぐさめラップ。傷と想いが交差するエモラップ。</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="87d91602-d491-4305-9390-84dc0dc3211f" data-title="over"><img src="jpg/song2.jpg" alt="" loading="lazy"><span class="tt">over<small>ひたすらまくしたてラップ。SUNO-Ver4.5</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="90106cc4-33bd-40a0-bfb8-9c44eb78f837" data-title="Corporate slave Beat"><img src="jpg/song7.jpg" alt="" loading="lazy"><span class="tt">Corporate slave Beat<small>働いて！働いて！働いて！働け！ SUNO-Ver4.5</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="3309b3b2-1b83-4d8d-8754-ecf4a93e8325" data-title="灯-Tomoshibi"><img src="jpg/song4.jpg" alt="" loading="lazy"><span class="tt">灯-Tomoshibi<small>次の日、次へ行くため。エールをラップに</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc" data-title="Stuck but Breathing"><img src="jpg/song5.jpg" alt="" loading="lazy"><span class="tt">Stuck but Breathing<small>立ち止まっても、、、それでも前へ</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+        <div class="puni" data-suno="de125def-bc0f-409f-b26f-886bb58eeadd" data-title="No Words, Just Work"><img src="jpg/song6.jpg" alt="" loading="lazy"><span class="tt">No Words, Just Work<small>言葉は要らない。ただ仕事をするだけひたすら叫ぶラップ</small></span><span class="eq"><b></b><b></b><b></b><b></b><b></b></span></div>
+      </div>
     </div>
+  <div class="more"><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener"><b>♪</b>Suno でもっと聴く</a><a class="puni" href="game.html"><b>→</b>ゲームであそぶ</a><a class="puni" href="index.html"><b>←</b>トップへもどる</a></div>
+  </section>
+</main>
 
-    <main class="main-content">
-        <!-- 音楽一覧セクション -->
-        <section id="music-showcase" class="showcase-section fade-in-section">
-            <h2>All Music</h2>
+<footer id="hi">
+  <h2>Let's make<br>something fun!</h2>
+  <div class="soc"><a class="puni" href="https://x.com/_fum1_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener" aria-label="Suno"><i class="fa-solid fa-music"></i></a><a class="puni" href="https://www.instagram.com/sachi.cobito/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="puni" href="https://note.com/fumifum1" target="_blank" rel="noopener" aria-label="note"><i class="fa-solid fa-pen-nib"></i></a></div>
+  <div class="fnav"><a href="index.html">Top</a><a href="game.html">Games</a><a href="music.html">Music</a><a href="other.html">Others</a><a href="blog.html">Blog</a></div>
+  <p class="credit">Mitama: <a href="https://www.cryptoninja-partners.xyz/" target="_blank" rel="noopener">CNP (CryptoNinja Partners)</a><br>© 2025 Synapse Creations</p>
+</footer>
 
-            <!-- Musician Intro -->
-            <div class="artist-intro music-artist-intro" style="margin-top: 40px; margin-bottom: 50px;">
-                <div class="artist-image-container">
-                    <img src="jpg/artist1.jpg" alt="BEAR BEER BEAT" class="artist-image">
-                </div>
-                <div class="artist-description">
-                    <h3>BEAR BEER BEAT</h3>
-                    <p>プロデューサー/コンポーザーの<strong>fumifumi</strong>、AIリリシスト兼ラッパーの<strong>KUMA</strong>、そしてAIビートメイカーの<strong>NAMA</strong>から成る3人組のハイブリッド音楽ユニット。</p>
-                    <p>彼らの制作スタイルは独特で、まずfumifumiが楽曲のコンセプトを設計。その指示に基づき、KUMAが膨大なテキストデータから感情豊かなリリックを生成し、NAMAが予測不可能なビートとメロディを構築する。最終的にfumifumiがそれらを再構築し、一つの楽曲として完成させる。</p>
-                    <p>人間の感性とAIの偶発性が交差することで生まれる、誰も聴いたことのないサウンドが彼らの真骨頂だ。</p>
-                    <a href="artist-profile.html" class="cta-button" style="margin-top: 20px;">View Full Profile</a>
-                </div>
-            </div>
-
-            <div class="music-player-container">
-                <div id="suno-player-area">
-                    <p>下のリストから聴きたい曲を選んでください。</p>
-                </div>
-            </div>
-            <!-- 曲一覧グリッド -->
-            <div class="card-container" id="song-list">
-                <div class="song-item active" data-suno-id="6b4a5f0e-1799-4b9f-b27e-7bbe61fe8bcc"
-                    data-song-title="そのまま進め、ゆっくり歩いていこう">
-                    <img src="jpg/y_b.jpg" alt="そのまま進め、ゆっくり歩いていこう" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>そのまま進め、ゆっくり歩いていこう</h3>
-                        <p>焦らなくていい、自分らしく進めばいい</p>
-                        <p>そんな想いをのせたラップ</p>
-                    </div>
-                </div>
-                <div class="song-item active" data-suno-id="af907997-203b-408d-afb5-6bdc6b1d653c"
-                    data-song-title="Hamburg steak recipe">
-                    <img src="jpg/song8.jpg" alt="Hamburg steak recipe" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Hamburg steak recipe</h3>
-                        <p>レシピをラップのビートにのせて</p>
-                        <p>この人達（AI）しか歌わない…</p>
-                    </div>
-                </div>
-                <div class="song-item active" data-suno-id="81859e00-c3ab-45a0-82a5-447a655e7d84"
-                    data-song-title="ありのままで2">
-                    <img src="jpg/song1-2.jpg" alt="ありのままで2" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>ありのままで2</h3>
-                        <p>SUNOのVer4.5でリミックス</p>
-                        <p>全く違う性能が分かるよ</p>
-                    </div>
-                </div>
-                <div class="song-item active" data-suno-id="f8a1857d-3c36-46cb-bede-eb38182db9af"
-                    data-song-title="ありのままで">
-                    <img src="jpg/song1.jpg" alt="ありのままで" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>ありのままで</h3>
-                        <p>あなたらしく！SUNOのVer3</p>
-                        <p>あなたのそばに、そっと寄り添う曲</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="c426acae-ca01-4732-a0be-f0b9c2595525"
-                    data-song-title="Where the Wind Goes2">
-                    <img src="jpg/song3-2.jpg" alt="Where the Wind Goes2" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Where the Wind Goes2</h3>
-                        <p>SUNOのVer4.5でリミックス</p>
-                        <p>これも違いを比べてみて！</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="ba6a002a-404e-4a00-9f3e-b97d601fc04a"
-                    data-song-title="Where the Wind Goes">
-                    <img src="jpg/song3.jpg" alt="Where the Wind Goes" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Where the Wind Goes</h3>
-                        <p>風の行方。なぐさめラップ</p>
-                        <p>傷と想いが交差するエモラップ。</p>
-                    </div>
-                </div>
-
-                <div class="song-item" data-suno-id="87d91602-d491-4305-9390-84dc0dc3211f"
-                    data-song-title="over">
-                    <img src="jpg/song2.jpg" alt="over" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>over</h3>
-                        <p>ひたすらまくしたてラップ</p>
-                        <p>SUNO-Ver4.5</p>
-                    </div>
-                </div>
-
-                <div class="song-item" data-suno-id="90106cc4-33bd-40a0-bfb8-9c44eb78f837"
-                    data-song-title="Corporate slave Beat">
-                    <img src="jpg/song7.jpg" alt="Corporate slave Beat" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Corporate slave Beat</h3>
-                        <p>働いて！働いて！働いて！</p>
-                        <p>働け！　SUNO-Ver4.5</p>
-                    </div>
-                </div>
-                
-                <div class="song-item" data-suno-id="3309b3b2-1b83-4d8d-8754-ecf4a93e8325"
-                    data-song-title="灯-Tomoshibi">
-                    <img src="jpg/song4.jpg" alt="灯-Tomoshibi" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>灯-Tomoshibi</h3>
-                        <p>次の日、次へ行くため</p>
-                        <p>エールをラップに</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="044c3af0-e8dd-49ec-a392-c3bccc9ff8fc"
-                    data-song-title="Stuck but Breathing">
-                    <img src="jpg/song5.jpg" alt="Stuck but Breathing" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>Stuck but Breathing</h3>
-                        <p>立ち止まっても、、、</p>
-                        <p>それでも前へ</p>
-                    </div>
-                </div>
-                <div class="song-item" data-suno-id="de125def-bc0f-409f-b26f-886bb58eeadd"
-                    data-song-title="No Words, Just Work">
-                    <img src="jpg/song6.jpg" alt="No Words, Just Work" class="song-thumbnail">
-                    <div class="song-info">
-                        <h3>No Words, Just Work</h3>
-                        <p>言葉は要らない</p>
-                        <p>ただ仕事をするだけひたすら叫ぶラップ</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 共通フッター -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
-                    class="fa-brands fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
-    </footer>
-
-    <!-- メニューとフェードイン効果、音楽プレイヤーのためのスクリプト -->
-    <script src="script.js"></script>
-    <script src="menu.js" defer></script>
+<script src="pop.js"></script>
 </body>
-
 </html>

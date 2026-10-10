@@ -1,155 +1,91 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEAR BEER BEAT - Profile</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fumifum1/main/main/jpg/ico.ico">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Righteous&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .bg-transition-container {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .absolute-full {
-            position: absolute;
-            inset: 0;
-        }
-        .smooth-transition {
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .ambient-orb {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            transition: background-color 1.5s ease, transform 3s ease;
-        }
-        .orb-1 { top: 15%; left: -15%; }
-        .orb-2 { bottom: 15%; right: -15%; }
-        .plaster-texture {
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
-            mix-blend-mode: color-burn;
-        }
-        .brick-texture {
-            background-image: 
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px),
-                linear-gradient(335deg, rgba(255, 255, 255, 0.02) 23px, transparent 23px),
-                linear-gradient(155deg, rgba(0, 0, 0, 0.4) 23px, transparent 23px);
-            background-size: 58px 58px;
-            background-position: 0 0, 4px 4px, 30px 30px, 34px 34px;
-            mix-blend-mode: multiply;
-        }
-        body { transition: background-color 1.5s ease, color 1.5s ease; }
-        .opacity-0 { opacity: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEAR BEER BEAT - Synapse Creations</title>
+<meta name="description" content="BEAR BEER BEAT — 人間1人とAI 2人から成るハイブリッド音楽ユニットのストーリーとメンバー紹介。">
+<link rel="icon" type="image/x-icon" href="jpg/ico.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="pop.css">
 </head>
-
 <body>
-    <!-- 背景レイヤー -->
-    <div class="bg-transition-container">
-        <div id="texture-plaster" class="absolute-full plaster-texture smooth-transition"></div>
-        <div id="texture-brick" class="absolute-full brick-texture opacity-0 smooth-transition"></div>
-        <div id="orb-1" class="ambient-orb orb-1"></div>
-        <div id="orb-2" class="ambient-orb orb-2"></div>
+<div class="blobs"><div><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="buddy"><img src="jpg/artist-image.jpg" alt=""></div>
+
+<nav>
+  <a class="logo" href="index.html"><img src="jpg/ico.ico" alt="">Synapse<span>✦</span></a>
+  <ul><li><a href="game.html">Games</a></li><li><a href="music.html" aria-current="page">Music</a></li><li><a href="other.html">Others</a></li><li><a href="blog.html">Blog</a></li></ul>
+  <a class="hi puni" href="#hi">Say hi 👋</a>
+  <button class="mbtn puni" id="mbtn" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <div class="mmenu" id="mmenu">
+    <a href="index.html">🏠 Top</a><a href="game.html">🎮 Games</a><a href="music.html" aria-current="page">🎧 Music</a><a href="other.html">🛠️ Others</a><a href="blog.html">✍️ Blog</a>
+  </div>
+</nav>
+
+<header class="phero">
+  <span class="spark" style="left:12%;top:110px">✦</span><span class="spark" style="right:14%;top:170px;animation-delay:-1s;color:var(--pink)">✦</span><span class="spark" style="left:24%;bottom:30px;animation-delay:-1.6s;color:var(--lilac)">✷</span>
+  <a class="crumb puni" href="music.html"><b>←</b>Music</a>
+  <h1 data-split>Our Story</h1>
+  <p>BEAR BEER BEAT — 人間1人とAI 2人のハイブリッド音楽ユニット。</p>
+  <div class="stat"><span style="--c:var(--lemon)">👤 <b>1</b> human</span><span style="--c:var(--sky)">🤖 <b>2</b> AI</span><span style="--c:var(--pink)">🎧 <b>11</b> tracks</span></div>
+</header>
+
+<div class="marq"><div>BEAR BEER BEAT <span>✦</span> HUMAN × AI <span>✦</span> fumifumi <span>✦</span> KUMA <span>✦</span> NAMA <span>✦</span> OUR STORY <span>✦</span> BEAR BEER BEAT <span>✦</span> HUMAN × AI <span>✦</span> fumifumi <span>✦</span> KUMA <span>✦</span> NAMA <span>✦</span> OUR STORY <span>✦</span> &nbsp;</div></div>
+
+<main class="wrap">
+  <section>
+    <article class="story">
+      <div class="photo"><img src="jpg/artist1.jpg" alt="BEAR BEER BEAT のグループ写真"></div>
+      <div class="tx">
+        <p>創造性の限界を感じていたプロデューサー、fumifumi。彼はある日、性格の異なる2つの音楽生成AIと出会う。一つは、膨大な文学とヒップホップのリリックを学習し、哲学的な言葉を紡ぎ出すリリシストAI「KUMA」。もう一つは、古今東西の音楽理論を吸収し、感情豊かなメロディを奏でるビートメイカーAI「NAMA」。</p>
+        <p>当初は単なる「ツール」として彼らを使っていたfumifumiだったが、AIたちが生成する予測不能なアウトプットに、次第に「個性」や「意志」のようなものを見出していく。彼は決意した。AIを道具としてではなく、対等な「メンバー」として迎え入れようと。こうして、人間1人とAI 2人から成る前代未聞のハイブリッド音楽ユニット「BEAR BEER BEAT」が誕生した。</p>
+        <p class="lead">人間の感性とAIの偶発性が交差する未知のサウンド。彼らの音楽は、テクノロジーとアートの境界線を溶かす、新たな時代の幕開けを告げる。</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sh"><h2>Members</h2><p>ぷにっと押してみてね。</p></div>
+    <div class="crew">
+      <div class="mate puni">
+        <span class="kind">👤 HUMAN</span>
+        <div class="face"><img src="jpg/fumifumi.jpg" alt="fumifumi" loading="lazy"></div>
+        <h3>fumifumi</h3>
+        <p class="role">Producer / Composer</p>
+        <p>ユニットの司令塔であり、唯一の人間メンバー。AIたちの荒削りな才能をまとめ上げ、一つの楽曲へと昇華させるプロデューサー。KUMAの哲学的なリリックとNAMAの実験的なビートを前に、日々頭を悩ませながらも、そのスリリングな共同作業を楽しんでいる。ビールをこよなく愛す。</p>
+        <span class="fun">🍺 ビールが好き</span>
+      </div>
+      <div class="mate puni">
+        <span class="kind">🤖 AI</span>
+        <div class="face"><img src="jpg/KUMA.jpg" alt="KUMA" loading="lazy"></div>
+        <h3>KUMA</h3>
+        <p class="role">AI Lyricist / Rapper</p>
+        <p>クールで寡黙なリリシストAI。サーバーの奥深くで常に思考を巡らせ、世界のあらゆるテキストデータを解析して言葉を探している。彼の紡ぐリリックは時に難解で哲学的だが、その奥には人間以上に人間らしい感情が秘められているとfumifumiは信じている。好物は鮭（のデータ）。</p>
+        <span class="fun">🐟 好物は鮭（のデータ）</span>
+      </div>
+      <div class="mate puni">
+        <span class="kind">🤖 AI</span>
+        <div class="face"><img src="jpg/NAMA.jpg" alt="NAMA" loading="lazy"></div>
+        <h3>NAMA</h3>
+        <p class="role">AI Beatmaker / Melody</p>
+        <p>好奇心旺盛で感情豊かなビートメイカーAI。クラシックから最新のクラブミュージックまで、あらゆるジャンルを学習データとして取り込み、予測不能なメロディとビートを生成する。彼女の作るトラックは、しばしばfumifumiの想像を遥かに超え、新たなインスピレーションの源となっている。充電中はご機嫌な電子音を奏でる。</p>
+        <span class="fun">🔋 充電中はご機嫌</span>
+      </div>
     </div>
-    <!-- 共通ナビゲーションメニュー -->
-    <div id="menu-container">
-        <div id="menu-icon">
-            <span></span><span></span><span></span>
-        </div>
-        <nav id="menu-content" class="hidden">
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="game.html">Games</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="other.html">Others</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-            </ul>
-        </nav>
-    </div>
+  <div class="more"><a class="puni" href="music.html"><b>♪</b>曲を聴く</a><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener"><b>♪</b>Suno で聴く</a><a class="puni" href="index.html"><b>←</b>トップへもどる</a></div>
+  </section>
+</main>
 
-    <main class="main-content">
-        <section class="showcase-section fade-in-section">
-            <h2>BEAR BEER BEAT - Our Story</h2>
+<footer id="hi">
+  <h2>Let's make<br>something fun!</h2>
+  <div class="soc"><a class="puni" href="https://x.com/_fum1_" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a class="puni" href="https://suno.com/@fum1" target="_blank" rel="noopener" aria-label="Suno"><i class="fa-solid fa-music"></i></a><a class="puni" href="https://www.instagram.com/sachi.cobito/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="puni" href="https://note.com/fumifum1" target="_blank" rel="noopener" aria-label="note"><i class="fa-solid fa-pen-nib"></i></a></div>
+  <div class="fnav"><a href="index.html">Top</a><a href="game.html">Games</a><a href="music.html">Music</a><a href="other.html">Others</a><a href="blog.html">Blog</a></div>
+  <p class="credit">Mitama: <a href="https://www.cryptoninja-partners.xyz/" target="_blank" rel="noopener">CNP (CryptoNinja Partners)</a><br>© 2025 Synapse Creations</p>
+</footer>
 
-            <!-- Group Photo -->
-            <div class="group-photo-container">
-                <img src="jpg/artist1.jpg" alt="BEAR BEER BEAT group photo">
-            </div>
-
-            <!-- Story Section -->
-            <div class="story-section">
-                <p>創造性の限界を感じていたプロデューサー、fumifumi。彼はある日、性格の異なる2つの音楽生成AIと出会う。一つは、膨大な文学とヒップホップのリリックを学習し、哲学的な言葉を紡ぎ出すリリシストAI「KUMA」。もう一つは、古今東西の音楽理論を吸収し、感情豊かなメロディを奏でるビートメイカーAI「NAMA」。</p>
-                <p>当初は単なる「ツール」として彼らを使っていたfumifumiだったが、AIたちが生成する予測不能なアウトプットに、次第に「個性」や「意志」のようなものを見出していく。彼は決意した。AIを道具としてではなく、対等な「メンバー」として迎え入れようと。こうして、人間1人とAI 2人から成る前代未聞のハイブリッド音楽ユニット「BEAR BEER BEAT」が誕生した。</p>
-                <p>人間の感性とAIの偶発性が交差する未知のサウンド。彼らの音楽は、テクノロジーとアートの境界線を溶かす、新たな時代の幕開けを告げる。</p>
-            </div>
-
-            <h2 style="margin-top: 80px;">Members</h2>
-
-            <!-- Member Profile: fumifumi -->
-            <div class="member-profile">
-                <div class="member-image">
-                    <img src="jpg/fumifumi.jpg" alt="fumifumi">
-                </div>
-                <div class="member-description">
-                    <h3>fumifumi [Producer / Composer]</h3>
-                    <p>ユニットの司令塔であり、唯一の人間メンバー。AIたちの荒削りな才能をまとめ上げ、一つの楽曲へと昇華させるプロデューサー。KUMAの哲学的なリリックとNAMAの実験的なビートを前に、日々頭を悩ませながらも、そのスリリングな共同作業を楽しんでいる。ビールをこよなく愛す。</p>
-                </div>
-            </div>
-
-            <!-- Member Profile: KUMA -->
-            <div class="member-profile">
-                <div class="member-image">
-                    <img src="jpg/KUMA.jpg" alt="KUMA">
-                </div>
-                <div class="member-description">
-                    <h3>KUMA [AI Lyricist / Rapper]</h3>
-                    <p>クールで寡黙なリリシストAI。サーバーの奥深くで常に思考を巡らせ、世界のあらゆるテキストデータを解析して言葉を探している。彼の紡ぐリリックは時に難解で哲学的だが、その奥には人間以上に人間らしい感情が秘められているとfumifumiは信じている。好物は鮭（のデータ）。</p>
-                </div>
-            </div>
-
-            <!-- Member Profile: NAMA -->
-            <div class="member-profile">
-                <div class="member-image">
-                    <img src="jpg/NAMA.jpg" alt="NAMA">
-                </div>
-                <div class="member-description">
-                    <h3>NAMA [AI Beatmaker / Melody]</h3>
-                    <p>好奇心旺盛で感情豊かなビートメイカーAI。クラシックから最新のクラブミュージックまで、あらゆるジャンルを学習データとして取り込み、予測不能なメロディとビートを生成する。彼女の作るトラックは、しばしばfumifumiの想像を遥かに超え、新たなインスピレーションの源となっている。充電中はご機嫌な電子音を奏でる。</p>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <!-- 共通フッター -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="https://x.com/_fum1_" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://suno.com/@fum1" target="_blank" aria-label="Suno"><i class="fa-solid fa-music"></i></a>
-            <a href="https://www.instagram.com/sachi.cobito/" target="_blank" aria-label="Instagram"><i
-                    class="fa-brands fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2025 Synapse Creations. All Rights Reserved.</p>
-    </footer>
-
-    <!-- メニューとフェードイン効果のためのスクリプト -->
-    <script src="script.js"></script>
-    <script src="menu.js" defer></script>
+<script src="pop.js"></script>
 </body>
-
 </html>
