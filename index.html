@@ -103,6 +103,14 @@ section{padding:110px 0 0}
 .cd p{font-size:14px;color:var(--mute);margin:0 56px 0 6px;font-weight:500}
 .cd .go{position:absolute;right:20px;bottom:18px;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:transform .4s cubic-bezier(.3,2,.5,1)}
 .cd:hover .go{transform:rotate(-45deg) scale(1.1)}
+/* Blog：新着記事を横長カードで目立たせる */
+.cd.feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;align-items:center;padding:14px 14px 14px}
+.cd.feature img{aspect-ratio:1200/630;object-fit:cover}
+.cd.feature h3{font-size:clamp(20px,2.4vw,28px);margin:0 0 10px;line-height:1.3}
+.cd.feature p{margin:0 60px 0 0;font-size:15px;line-height:1.8}
+.cd.feature .tagl{display:inline-block;font-family:"Unbounded";font-size:11px;font-weight:600;padding:4px 12px;border:2px solid var(--ink);border-radius:999px;background:var(--mint);margin-bottom:12px}
+@media (max-width:860px){.cd.feature{grid-template-columns:1fr;gap:6px}.cd.feature div{padding:8px 6px 0}}
+
 /* 種類ラベル（GAME / TOOL）は常に表示し、NEW は別のステッカーにする */
 .cd .pill{position:absolute;left:26px;top:26px;padding:4px 12px;border-radius:999px;border:2px solid var(--ink);font-family:'Unbounded';font-size:11px;font-weight:600;background:#fff}
 .pill.game{background:var(--lemon)}.pill.tool{background:var(--sky)}
@@ -345,6 +353,7 @@ body.intro .tags a{animation:drop .6s cubic-bezier(.3,1.6,.5,1) backwards;animat
   <section id="blog">
     <div class="sh"><h2>Blog</h2><p>つくったものの裏話。</p></div>
     <div class="cards">
+      <a class="cd puni feature" href="https://fumifum1.github.io/blog/ui-design-20.html" target="_blank" rel="noopener"><span class="new">NEW!</span><img src="https://fumifum1.github.io/blog/assets/ui-design-20/cover.png" alt="AIと作ったトップページのUIデザイン20案"><div><span class="tagl">MAKING OF</span><h3>AIと作ったトップページのUIデザイン20案</h3><p>美術館風からRPG風まで。このサイトのトップページを、AIと一緒に20通りのデザインで作ってみた記録。全部さわれるプレビュー付き。</p></div><span class="go">→</span></a>
       <a class="cd puni" href="https://fumifum1.github.io/blog/tsugihagi_ghost.html" target="_blank" rel="noopener"><img src="https://fumifum1.github.io/blog/assets/tsugihagi-ghost/main.png" alt="" style="object-fit:contain;background:#fff"><h3>Tsugihagi Ghost</h3><p>やさしい幽霊のLINEスタンプ</p><span class="go">→</span></a>
       <a class="cd puni" href="https://fumifum1.github.io/blog/gothic-fantasy-boy.html" target="_blank" rel="noopener"><img src="https://fumifum1.github.io/blog/assets/gothic-fantasy-boy/main.png" alt="" style="object-fit:contain;background:#fff"><h3>Gothic Fantasy Boy</h3><p>黒猫耳の魔法使い ノクト</p><span class="go">→</span></a>
       <a class="cd puni" href="https://fumifum1.github.io/blog/s_log.html" target="_blank" rel="noopener"><img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/847836810/iPhone/sticker@2x.png" alt="" style="object-fit:contain;background:#fff"><h3>Spray Art</h3><p>ぜんぶ“イイね”のスタンプ集</p><span class="go">→</span></a>
